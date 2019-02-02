@@ -37,10 +37,13 @@ class Site extends CI_Controller {
         $data = $this->user_model->getByNik();
 
         if ($data) {
+            $last_login = date('d M Y h:m a');
             $newdata = array(
                 'nik'  => $data->nik,
                 'role'     => $data->role,
+                'last_login' => $last_login
             );
+
             $this->session->set_userdata($newdata);
             echo json_encode(array('failed'=>'false'));
         }

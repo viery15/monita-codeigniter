@@ -26,7 +26,7 @@
                                         <h5 class="name">
                                             <a href="#"><?= $this->session->nik ?></a>
                                         </h5>
-                                        <span class="email">johndoe@example.com</span>
+                                        <span class="email">Last Login: <br><?= $this->session->last_login ?></span>
                                     </div>
                                 </div>
                                 <div class="account-dropdown__body">

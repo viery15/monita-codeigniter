@@ -12,4 +12,5 @@ $route['users'] = 'users/index';
 $route['login'] = 'site/index';
 $route['dashboard'] = 'site/dashboard';
 $route['myrequest'] = 'myrequest/index';
+$route['mytask'] = 'mytask/index';
 $route['logout'] = 'site/logout';
