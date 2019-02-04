@@ -69,6 +69,28 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getMonitoring($nik)
+    {
+        $this->db->where('user_to', $nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getProgress($nik)
+    {
+        $this->db->where('user_to', $nik);
+        $this->db->where('status', 'progress');
+
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getDone($nik)
+    {
+        $this->db->where('user_to', $nik);
+        $this->db->where('status', 'done');
+
+        return $this->db->get($this->_table)->result();
+    }
+
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();

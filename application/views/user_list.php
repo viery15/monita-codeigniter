@@ -41,7 +41,7 @@
                                 <br><br>
                                 <button type="button" class="btn btn-info btn-create" data-toggle="modal" data-target="#modal-user"><i class="fa fa-plus"></i> Create New User</button>
                                 <br><br>
-                                <table id="example" class="display nowrap" style="width:100%">
+                                <table id="example" class="table table-hover table-data3" style="width:100%">
                                     <thead>
                                     <tr>
                                         <th>NIK</th>

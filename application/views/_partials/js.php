@@ -16,9 +16,10 @@
 <script src="<?php echo base_url('assets/circle-progress/circle-progress.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
 <script src="<?php echo base_url('assets/chartjs/Chart.bundle.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/select2/select2.min.js') ?>">
-    <script src="<?php echo base_url('js/select2.min.js') ?>">
-</script>
+<script src="<?php echo base_url('assets/select2/select2.min.js') ?>"></script>
+<script src="<?php echo base_url('js/highcharts.js') ?>"></script>
+<script src="<?php echo base_url('js/export-data.js') ?>"></script>
+<script src="<?php echo base_url('js/exporting.js') ?>"></script>
 
 <!-- Main JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
