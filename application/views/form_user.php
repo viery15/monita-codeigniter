@@ -66,15 +66,16 @@ if(isset($id)) {
 <?php } ?>
 
 <script type="text/javascript">
-
     $('#submit-user').click(function(){
         $.ajax({
            url : "<?php echo base_url(); ?>/Users/create",
            type : 'post',
            data : $("#form-user").serialize(),
            success : function (a) {
-//               console.log(data);
-               location.reload();
+               alert("Create user sukses");
+               $("#form-user")[0].reset();
+               $('#modal-user').modal('hide');
+               $("#user-table-list").html(a);
            }
         });
     });
@@ -85,8 +86,10 @@ if(isset($id)) {
             type : 'post',
             data : $("#form-user").serialize(),
             success : function (a) {
-//               console.log(data);
-                location.reload();
+                alert("Update user sukses");
+                $("#form-user")[0].reset();
+                $('#modal-user').modal('hide');
+                $("#user-table-list").html(a);
             }
         });
     });
