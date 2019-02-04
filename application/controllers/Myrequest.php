@@ -9,6 +9,7 @@ class Myrequest extends CI_Controller
         parent::__construct();
         $this->load->model("task_model");
         $this->load->model("user_model");
+        $this->load->model("comment_model");
         $this->load->library('form_validation');
     }
 
@@ -39,11 +40,29 @@ class Myrequest extends CI_Controller
         $this->load->view("myrequest_form", $data);
     }
 
+    public function form_comment($id){
+        $data["task"] = $this->task_model->getById($id);
+        $data["comment"] = $this->comment_model->getByTaskId($id);
+
+        $this->load->view("myrequest_form_comment", $data);
+    }
+
     public function create(){
         $this->task_model->save();
 
         $data["myrequest"] = $this->task_model->getRequest();
         $this->load->view("myrequest_table_list", $data);
+    }
+
+    public function submitcomment(){
+        $post = $this->input->post();
+        $this->comment_model->save();
+
+        $data["task"] = $this->task_model->getById($post['task_id']);
+        $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+
+        $this->load->view("myrequest_form_comment", $data);
+
     }
 
     public function resend(){

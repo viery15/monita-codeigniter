@@ -14,7 +14,7 @@
         <th>Remark</th>
         <th>Description</th>
         <th>Status</th>
-        <th>Action</th>
+        <th width="21%">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
             <td><?= ucfirst($request->remark) ?></td>
             <td><?= ucfirst($request->description) ?></td>
             <td><?= ucfirst($request->status) ?></td>
-            <td width="20%">
+            <td >
                 <?php
                     if ($request->status == "pending") {
                 ?>
@@ -40,21 +40,13 @@
                     ?>
                     <button title="Resend Request" type="button" class="btn btn-warning btn-resend" id="<?= $request->id ?>"><i class="fa fa-refresh"></i></button>
                 <?php } ?>
+                <button title="Comment" type="button" class="btn btn-info btn-comment" data-toggle="modal" data-target="#modal-comment" id="<?= $request->id ?>"><i class="fa fa-comments"></i></button>
             </td>
         </tr>
     <?php } ?>
 
     </tbody>
-    <tfoot>
-    <tr>
-        <th>Date Start</th>
-        <th>Assign To</th>
-        <th>Remark</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
-    </tfoot>
+
 </table>
 
 <script type="text/javascript" language="JavaScript">
@@ -107,8 +99,12 @@
 
         $('.btn-update').click(function(){
             var id = $(this).attr('id');
-//            alert(id);
             $('#content-modal').load("<?php echo base_url(); ?>/Myrequest/form_update/"+id);
+        });
+
+        $('.btn-comment').click(function(){
+            var id = $(this).attr('id');
+            $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
         });
     });
 </script>

@@ -85,6 +85,16 @@
     </div>
 </div>
 
+<!-- MODAL COMMENT-->
+<div id="modal-comment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div id="content-comment"></div>
+        </div>
+    </div>
+</div>
+
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
 

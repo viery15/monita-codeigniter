@@ -31,7 +31,7 @@
                 <?php
                     if ($task->status == 'progress') {
                 ?>
-                <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check-square"></i></button>
+                <button data-toggle="modal" data-target="#modal-task" title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check-square"></i></button>
                 <?php } ?>
 
                 <?php
@@ -40,6 +40,7 @@
                     <button title="Approve" type="button" class="btn btn-success btn-approve" id="<?= $task->id ?>"><i class="fa fa-check"></i></button>
                     <button title="Reject" type="button" class="btn btn-danger btn-reject" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
                 <?php } ?>
+                <button title="Comment" type="button" class="btn btn-info btn-comment" id="<?= $task->id ?>"><i class="fa fa-comments"></i></button>
             </td>
         </tr>
     <?php } ?>
