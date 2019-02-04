@@ -47,6 +47,27 @@ class Mytask extends CI_Controller
         $this->load->view("mytask_form",$data);
     }
 
+    public function approve(){
+        $this->task_model->approve();
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
+    }
+
+    public function done(){
+        $this->task_model->done();
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
+    }
+
+    public function reject(){
+        $this->task_model->reject();
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
+    }
+
     public function create(){
         $this->task_model->save();
 

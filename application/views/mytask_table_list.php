@@ -28,8 +28,18 @@
             <td><?= ucfirst($task->description) ?></td>
             <td><?= ucfirst($task->status) ?></td>
             <td width="20%">
-                <button type="button" class="btn btn-warning btn-update" data-toggle="modal" data-target="#modal-task" id="<?= $task->id ?>"><i class="fa fa-pencil-square-o"></i></button>
-                <button type="button" class="btn btn-danger btn-delete" id="<?= $task->id ?>"><i class="fa fa-trash"></i></button>
+                <?php
+                    if ($task->status == 'progress') {
+                ?>
+                <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check"></i></button>
+                <?php } ?>
+
+                <?php
+                if ($task->status == 'pending') {
+                    ?>
+                    <button title="Approve" type="button" class="btn btn-success btn-approve" id="<?= $task->id ?>"><i class="fa fa-check"></i></button>
+                    <button title="Reject" type="button" class="btn btn-danger btn-reject" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
+                <?php } ?>
             </td>
         </tr>
     <?php } ?>
@@ -81,10 +91,49 @@
             }
         });
 
-        $('.btn-update').click(function(){
+        $('.btn-approve').click(function(){
             var id = $(this).attr('id');
-//            alert(id);
-            $('#content-modal').load("<?php echo base_url(); ?>/Mytask/form_update/"+id);
+            if (confirm('Are you sure you want to approve this?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Mytask/approve",
+                    type: 'post',
+                    data: {'id': id},
+                    success: function (a) {
+                        alert("Approve task success");
+                        $("#mytask-table-list").html(a);
+                    }
+                });
+            }
+        });
+
+        $('.btn-done').click(function(){
+            var id = $(this).attr('id');
+            if (confirm('Are you sure done with this request?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Mytask/done",
+                    type: 'post',
+                    data: {'id': id},
+                    success: function (a) {
+                        alert("success");
+                        $("#mytask-table-list").html(a);
+                    }
+                });
+            }
+        });
+
+        $('.btn-reject').click(function(){
+            var id = $(this).attr('id');
+            if (confirm('Are you sure you want to reject this?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Mytask/reject",
+                    type: 'post',
+                    data: {'id': id},
+                    success: function (a) {
+                        alert("Reject task success");
+                        $("#mytask-table-list").html(a);
+                    }
+                });
+            }
         });
     });
 </script>

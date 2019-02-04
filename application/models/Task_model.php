@@ -124,4 +124,31 @@ class Task_model extends CI_Model
 
         $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
+
+    public function approve()
+    {
+        $post = $this->input->post();
+
+        $this->db->set('status', 'progress');
+        $this->db->where('id', $post['id']);
+        $this->db->update($this->_table);
+    }
+
+    public function done()
+    {
+        $post = $this->input->post();
+
+        $this->db->set('status', 'done');
+        $this->db->where('id', $post['id']);
+        $this->db->update($this->_table);
+    }
+
+    public function reject()
+    {
+        $post = $this->input->post();
+
+        $this->db->set('status', 'rejected');
+        $this->db->where('id', $post['id']);
+        $this->db->update($this->_table);
+    }
 }
