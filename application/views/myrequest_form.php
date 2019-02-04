@@ -67,7 +67,7 @@ if(isset($request->id)) {
             <input type="hidden" class="form-control" id="status" name="status" value="pending">
 <!--            <input type="hidden" class="form-control" id="status" name="status" value="pending">-->
             <div class="form-group">
-                <label for="nik">Date Range: <i style="color:red">*</i></label>
+                <label for="nik">Date: <i style="color:red">*</i></label>
                 <div class="input-group input-daterange">
                     <input style="background-color: white" type="text" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
                     <div class="input-group-addon">to</div>

@@ -151,4 +151,13 @@ class Task_model extends CI_Model
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
+
+    public function resend()
+    {
+        $post = $this->input->post();
+
+        $this->db->set('status', 'pending');
+        $this->db->where('id', $post['id']);
+        $this->db->update($this->_table);
+    }
 }

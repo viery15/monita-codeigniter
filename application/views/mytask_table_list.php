@@ -31,7 +31,7 @@
                 <?php
                     if ($task->status == 'progress') {
                 ?>
-                <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check"></i></button>
+                <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check-square"></i></button>
                 <?php } ?>
 
                 <?php

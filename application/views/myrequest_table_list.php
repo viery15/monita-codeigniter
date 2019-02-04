@@ -28,8 +28,18 @@
             <td><?= ucfirst($request->description) ?></td>
             <td><?= ucfirst($request->status) ?></td>
             <td width="20%">
-                <button type="button" class="btn btn-warning btn-update" data-toggle="modal" data-target="#modal-request" id="<?= $request->id ?>"><i class="fa fa-pencil-square-o"></i></button>
-                <button type="button" class="btn btn-danger btn-delete" id="<?= $request->id ?>"><i class="fa fa-trash"></i></button>
+                <?php
+                    if ($request->status == "pending") {
+                ?>
+                    <button title="Update" type="button" class="btn btn-warning btn-update" data-toggle="modal" data-target="#modal-request" id="<?= $request->id ?>"><i class="fa fa-pencil-square-o"></i></button>
+                    <button title="Delete" type="button" class="btn btn-danger btn-delete" id="<?= $request->id ?>"><i class="fa fa-trash"></i></button>
+                <?php } ?>
+
+                <?php
+                if ($request->status == "rejected") {
+                    ?>
+                    <button title="Resend Request" type="button" class="btn btn-warning btn-resend" id="<?= $request->id ?>"><i class="fa fa-refresh"></i></button>
+                <?php } ?>
             </td>
         </tr>
     <?php } ?>
@@ -74,7 +84,21 @@
                     data: {'id': id},
                     success: function (a) {
                         alert("Delete request success");
-                        $('#modal-request').modal('hide');
+                        $("#myrequest-table-list").html(a);
+                    }
+                });
+            }
+        });
+
+        $('.btn-resend').click(function(){
+            var id = $(this).attr('id');
+            if (confirm('Are you sure you want to resend this?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Myrequest/resend",
+                    type: 'post',
+                    data: {'id': id},
+                    success: function (a) {
+                        alert("Resend request success");
                         $("#myrequest-table-list").html(a);
                     }
                 });

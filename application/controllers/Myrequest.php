@@ -46,6 +46,13 @@ class Myrequest extends CI_Controller
         $this->load->view("myrequest_table_list", $data);
     }
 
+    public function resend(){
+        $this->task_model->resend();
+
+        $data["myrequest"] = $this->task_model->getRequest();
+        $this->load->view("myrequest_table_list", $data);
+    }
+
     public function update(){
         $this->task_model->update();
 
