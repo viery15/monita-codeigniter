@@ -118,8 +118,10 @@ if(isset($task->id)) {
             type : 'post',
             data : $("#form-task").serialize(),
             success : function (a) {
-//               console.log(data);
-                location.reload();
+                alert("Create task success");
+                $("#form-task")[0].reset();
+                $('#modal-task').modal('hide');
+                $("#mytask-table-list").html(a);
             }
         });
     });
@@ -130,8 +132,10 @@ if(isset($task->id)) {
             type : 'post',
             data : $("#form-task").serialize(),
             success : function (a) {
-//               console.log(data);
-                location.reload();
+                alert("Update task success");
+                $("#form-task")[0].reset();
+                $('#modal-task').modal('hide');
+                $("#mytask-table-list").html(a);
             }
         });
     });

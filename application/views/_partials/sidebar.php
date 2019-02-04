@@ -11,17 +11,12 @@
                     <a href="<?php echo base_url(); ?>dashboard">
                     <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
-                <li class=" has-sub">
-                    <a class="js-arrow" href="#">
-                        <i class="fas fa-tasks"></i>Task</a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list">
-                        <li class="<?php echo $this->uri->segment(1) == 'mytask' ? 'active': '' ?>">
-                            <a href="<?php echo base_url(); ?>mytask"><i class="fas fa-list-alt"></i> My Task</a>
-                        </li>
-                        <li class="<?php echo $this->uri->segment(1) == 'myrequest' ? 'active': '' ?>">
-                            <a href="<?php echo base_url(); ?>myrequest"><i class="fas fa-outdent"></i> My Request</a>
-                        </li>
-                    </ul>
+
+                <li class="<?php echo $this->uri->segment(1) == 'mytask' ? 'active': '' ?>">
+                    <a href="<?php echo base_url(); ?>mytask"><i class="fas fa-list-alt"></i> My Task</a>
+                </li>
+                <li class="<?php echo $this->uri->segment(1) == 'myrequest' ? 'active': '' ?>">
+                    <a href="<?php echo base_url(); ?>myrequest"><i class="fas fa-outdent"></i> My Request</a>
                 </li>
                 <li class="<?php echo $this->uri->segment(1) == 'monitoring' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>monitoring">

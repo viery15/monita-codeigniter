@@ -21,6 +21,9 @@ class Myrequest extends CI_Controller
     public function delete(){
         $id = $this->input->post('id');
         $this->task_model->delete($id);
+
+        $data["myrequest"] = $this->task_model->getRequest();
+        $this->load->view("myrequest_table_list", $data);
     }
 
     public function form_add(){
@@ -33,14 +36,20 @@ class Myrequest extends CI_Controller
         $data["request"] = $this->task_model->getById($id);
         $data["users"] = $this->user_model->getUserAssign();
 
-        $this->load->view("myrequest_form",$data);
+        $this->load->view("myrequest_form", $data);
     }
 
     public function create(){
         $this->task_model->save();
+
+        $data["myrequest"] = $this->task_model->getRequest();
+        $this->load->view("myrequest_table_list", $data);
     }
 
     public function update(){
         $this->task_model->update();
+
+        $data["myrequest"] = $this->task_model->getRequest();
+        $this->load->view("myrequest_table_list", $data);
     }
 }

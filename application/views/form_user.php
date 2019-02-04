@@ -45,7 +45,7 @@ if(isset($id)) {
     <form id="form-user" name="form-user">
         <div class="form-group">
             <label for="nik">NIK: <i style="color:red">*</i></label>
-            <input type="text" class="form-control" id="nik" name="nik" required>
+            <input autocomplete="off" type="text" class="form-control" id="nik" name="nik" required>
         </div>
 
         <div class="form-group">

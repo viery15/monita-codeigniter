@@ -29,6 +29,9 @@ class Mytask extends CI_Controller
     public function delete(){
         $id = $this->input->post('id');
         $this->task_model->delete($id);
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
     }
 
     public function form_add(){
@@ -46,9 +49,15 @@ class Mytask extends CI_Controller
 
     public function create(){
         $this->task_model->save();
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
     }
 
     public function update(){
         $this->task_model->update();
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
     }
 }

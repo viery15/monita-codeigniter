@@ -119,8 +119,10 @@ if(isset($request->id)) {
             type : 'post',
             data : $("#form-request").serialize(),
             success : function (a) {
-//               console.log(data);
-                location.reload();
+                alert("Create request success");
+                $("#form-request")[0].reset();
+                $('#modal-request').modal('hide');
+                $("#myrequest-table-list").html(a);
             }
         });
     });
@@ -131,8 +133,10 @@ if(isset($request->id)) {
             type : 'post',
             data : $("#form-request").serialize(),
             success : function (a) {
-//               console.log(data);
-                location.reload();
+                alert("Update request success");
+                $("#form-request")[0].reset();
+                $('#modal-request').modal('hide');
+                $("#myrequest-table-list").html(a);
             }
         });
     });
