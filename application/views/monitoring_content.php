@@ -6,11 +6,17 @@
  * Time: 3:56 PM
  */
 
+
 ?>
 <div class="row">
+
     <div class="col-lg-12">
         <div class="au-card m-b-30">
             <div class="au-card-inner">
+                <?php
+                    $count_done = count((array)$done);
+                    $count_progress = count((array)$progress);
+                ?>
                 <div id="container" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
             </div>
         </div>
@@ -109,7 +115,7 @@
                 colorByPoint: true,
                 data: [{
                     name: 'Done',
-                    y: <?php echo json_encode(count($done),JSON_NUMERIC_CHECK) ?>,
+                    y: <?php echo json_encode($count_done,JSON_NUMERIC_CHECK) ?>,
                     sliced: true,
                     selected: true
                 }, {

@@ -86,11 +86,10 @@
 </div>
 
 <!-- MODAL COMMENT-->
-<div id="modal-comment" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
+<div class="modal fade" id="modal-comment" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div id="content-comment"></div>
+            <div id="content-modal-comment"></div>
         </div>
     </div>
 </div>

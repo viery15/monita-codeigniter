@@ -91,6 +91,20 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getCountProgress($nik){
+        $this->db->where('user_to', $nik);
+        $this->db->where('status', 'done');
+
+        $this->db->count_all_results($this->_table);
+    }
+
+    public function getCountDone($nik){
+        $this->db->where('user_to', $nik);
+        $this->db->where('status', 'done');
+
+        $this->db->count_all_results($this->_table);
+    }
+
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();
@@ -121,6 +135,7 @@ class Task_model extends CI_Model
         $this->user_to = $post["user_to"];
         $this->remark = $post["remark"];
         $this->description = $post["description"];
+        $this->updated_at = date('m-d-Y H:i:s');
 
         $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
@@ -130,15 +145,18 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'progress');
+        $this->db->set('updated_at', date("m-d-Y H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
 
     public function done()
     {
+        $date =
         $post = $this->input->post();
 
         $this->db->set('status', 'done');
+        $this->db->set('updated_at', date("m-d-Y H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
@@ -148,6 +166,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'rejected');
+        $this->db->set('updated_at', date("m-d-Y H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
@@ -157,6 +176,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'pending');
+        $this->db->set('updated_at', date("m-d-Y H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
