@@ -1,7 +1,7 @@
 <aside class="menu-sidebar d-none d-lg-block">
-    <div class="logo">
-        <a href="#">
-            <img src="<?php echo base_url('images/icon/logo.png') ?>" alt="Cool Admin" />
+    <div class="logo" style="background: #1e7fe8;">
+        <a href="#" style="width: 83%;">
+            <img src="<?php echo base_url('images/icon/monita3.png') ?>" alt="Cool Admin" />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">

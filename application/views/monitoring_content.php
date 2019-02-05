@@ -9,7 +9,6 @@
 
 ?>
 <div class="row">
-
     <div class="col-lg-12">
         <div class="au-card m-b-30">
             <div class="au-card-inner">

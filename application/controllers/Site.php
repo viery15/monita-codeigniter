@@ -18,7 +18,7 @@ class Site extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-
+        $this->load->model("task_model");
     }
 
     public function index()
@@ -28,7 +28,19 @@ class Site extends CI_Controller {
 
     public function dashboard()
     {
-        $this->load->view("login");
+        $data['mytask'] = $this->task_model->getTask();
+        $data['myrequest'] = $this->task_model->getRequest();
+        $data['task_pending'] = $this->task_model->getTaskPending();
+        $data['task_done'] = $this->task_model->getTaskDone();
+        $data['task_progress'] = $this->task_model->getTaskProgress();
+        $data['task_rejected'] = $this->task_model->getTaskRejected();
+
+        $data['req_pending'] = $this->task_model->getReqPending();
+        $data['req_done'] = $this->task_model->getReqDone();
+        $data['req_progress'] = $this->task_model->getReqProgress();
+        $data['req_rejected'] = $this->task_model->getReqRejected();
+
+        $this->load->view("dashboard",$data);
     }
 
     public function login()
@@ -37,7 +49,7 @@ class Site extends CI_Controller {
         $data = $this->user_model->getByNik();
 
         if ($data) {
-            $last_login = date('d M Y h:m a');
+            $last_login = date('d M Y h:i a');
             $newdata = array(
                 'nik'  => $data->nik,
                 'role'     => $data->role,

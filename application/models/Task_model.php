@@ -69,6 +69,62 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getTaskPending()
+    {
+        $this->db->where('status','pending');
+        $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getTaskDone()
+    {
+        $this->db->where('status','done');
+        $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getTaskProgress()
+    {
+        $this->db->where('status','progress');
+        $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getTaskRejected()
+    {
+        $this->db->where('status','rejected');
+        $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getReqPending()
+    {
+        $this->db->where('status','pending');
+        $this->db->where('user_from', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getReqDone()
+    {
+        $this->db->where('status','done');
+        $this->db->where('user_from', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getReqProgress()
+    {
+        $this->db->where('status','progress');
+        $this->db->where('user_from', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getReqRejected()
+    {
+        $this->db->where('status','rejected');
+        $this->db->where('user_from', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
     public function getMonitoring($nik)
     {
         $this->db->where('user_to', $nik);
