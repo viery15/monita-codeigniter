@@ -56,6 +56,7 @@ class Myrequest extends CI_Controller
 
     public function submitcomment(){
         $post = $this->input->post();
+
         $this->comment_model->save();
 
         $data["task"] = $this->task_model->getById($post['task_id']);
@@ -77,5 +78,10 @@ class Myrequest extends CI_Controller
 
         $data["myrequest"] = $this->task_model->getRequest();
         $this->load->view("myrequest_table_list", $data);
+    }
+
+    public function download($filename){
+        $this->load->helper('download');
+        force_download(FCPATH.'/uploads/'.$filename, null);
     }
 }

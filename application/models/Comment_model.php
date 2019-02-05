@@ -34,10 +34,31 @@ class Comment_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $post['user_comment'] = $this->session->nik;
-        $post['created_at'] = date('m-d-Y H:i:s');
 
-        $this->db->insert($this->_table, $post);
+        $path = FCPATH.'/uploads/'. $_FILES["attachment"]['name'];
+        $file_name = $_FILES["attachment"]['name'];
+        $num = 0;
+//        $max_file_size = 1048576 * 50;
+        while(file_exists($path)) {
+            $num++;
+            $path = FCPATH.'/uploads/'. $num . $_FILES["attachment"]['name'];
+            $file_name = $num . $_FILES["attachment"]['name'];
+        }
+
+//        if (filesize($_FILES['attachment']['tmp_name']) < $max_file_size) {
+            if (move_uploaded_file($_FILES['attachment']['tmp_name'], $path)) {
+                $post['attachment'] = $file_name;
+            }
+            $post['user_comment'] = $this->session->nik;
+            $post['created_at'] = date('m-d-Y H:i:s');
+
+            $this->db->insert($this->_table, $post);
+//        }
+//
+//        else {
+//            print_r($_FILES);
+//            echo "too large";
+//        }
+
     }
-
 }

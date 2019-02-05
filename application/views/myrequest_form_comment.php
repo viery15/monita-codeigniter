@@ -197,12 +197,12 @@
     ?>
         <div class="media comment-box" style="width: 100%">
             <div class="media-body">
-                <h4 class="media-heading"><?= $comment->user_comment ?> <small class="text-muted"> - <?= date("d M Y H:m a", strtotime($comment->created_at)) ?></small></h4>
+                <h4 class="media-heading"><?= $comment->user_comment ?> <small class="text-muted"> - <?= date("d M Y H:i a", strtotime($comment->created_at)) ?></small></h4>
                 <p><?= $comment->comment ?>
                     <?php
                         if (isset($comment->attachment)) {
                     ?>
-                    <br><br>Attachments :<br><i class="fa fa-file"></i>
+                    <br><br>Attachments :<br><i class="fa fa-file"></i> <a href="<?php echo site_url('Myrequest/download/'.$comment->attachment) ?>"><?= $comment->attachment ?></a>
                     <?php } ?>
                 </p>
             </div>
