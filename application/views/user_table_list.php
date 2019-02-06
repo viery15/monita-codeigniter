@@ -56,14 +56,14 @@ $date_now = date('d M Y');
                         '50%',
                     ]
                 },
-                filename: 'List Users (<?= $date_now ?>)'
+                filename: 'List Users (per <?= $date_now ?>)'
             }, {
                 extend: 'excel',
                 exportOptions: {
                     columns: [ 0, 1, 2, 3, 4]
                 },
-                title: 'List Users (<?= $date_now ?>)',
-                filename: 'List Users (<?= $date_now ?>)',
+                title: 'List Users (per <?= $date_now ?>)',
+                filename: 'List Users (per <?= $date_now ?>)',
             }]
         });
 

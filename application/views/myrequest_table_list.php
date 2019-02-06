@@ -58,7 +58,7 @@ $date_now = date('d M Y');
 
             buttons: [{
                 extend: 'pdf',
-                title: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                title: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 exportOptions: {
                     columns: [ 0, 1, 2, 3, 4]
                 },
@@ -71,14 +71,14 @@ $date_now = date('d M Y');
                         '20%'
                     ]
                 },
-                filename: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }, {
                 extend: 'excel',
                 exportOptions: {
                     columns: [ 0, 1, 2, 3, 4]
                 },
-                title: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
-                filename: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                title: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
+                filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }]
         });
 

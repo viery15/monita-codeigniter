@@ -67,7 +67,7 @@ $date_now = date('d M Y');
 
             buttons: [{
                 extend: 'pdf',
-                title: 'Tasks Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                title: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 exportOptions: {
                     columns: [ 0, 1, 2, 3, 4]
                 },
@@ -80,14 +80,14 @@ $date_now = date('d M Y');
                         '20%'
                     ]
                 },
-                filename: 'Tasks Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                filename: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }, {
                 extend: 'excel',
                 exportOptions: {
                     columns: [ 0, 1, 2, 3, 4]
                 },
-                title: 'Tasks Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
-                filename: 'Tasks Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                title: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
+                filename: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }]
         });
 
