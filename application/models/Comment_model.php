@@ -31,6 +31,11 @@ class Comment_model extends CI_Model
         return $this->db->get_where($this->_table, ["task_id" => $id])->result();
     }
 
+    public function delete($id)
+    {
+        return $this->db->delete($this->_table, array("task_id" => $id));
+    }
+
     public function save()
     {
         $post = $this->input->post();

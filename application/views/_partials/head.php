@@ -32,8 +32,6 @@
 <link rel="stylesheet" href="<?php echo base_url('css/bootstrap-theme.min.css') ?>">
 <link href="<?php echo base_url('css/select2.min.css') ?>" rel="stylesheet" media="all">
 
-
-
 <!-- Main CSS-->
 <link href="<?php echo base_url('css/theme.css') ?>" rel="stylesheet" media="all">
 
