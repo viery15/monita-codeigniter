@@ -6,7 +6,7 @@
 <meta name="keywords" content="au theme template">
 
 <!-- Title Page-->
-<title>Dashboard</title>
+
 <!-- Fontfaces CSS-->
 
 <link href="<?php echo base_url('css/font-face.css') ?>" rel="stylesheet" media="all">

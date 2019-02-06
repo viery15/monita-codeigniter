@@ -11,6 +11,7 @@
 <html lang="en">
 
 <head>
+    <title>Login</title>
     <?php $this->load->view("_partials/head.php") ?>
 
 </head>

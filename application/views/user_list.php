@@ -5,6 +5,7 @@
 <html lang="en">
 
 <head>
+    <title>Users</title>
     <?php $this->load->view("_partials/head.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 

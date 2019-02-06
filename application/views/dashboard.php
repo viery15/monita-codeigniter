@@ -13,6 +13,7 @@
 <html lang="en">
 
 <head>
+    <title>Dashboard</title>
     <?php $this->load->view("_partials/head.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
 
