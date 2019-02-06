@@ -37,22 +37,33 @@
     </tr>
     </tfoot>
 </table>
-
+<?php
+$date_now = date('d M Y');
+?>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#example').DataTable({
             dom: 'Bfrtip',
             buttons: [{
                 extend: 'pdf',
-                title: 'Customized PDF Title',
-                filename: 'customized_pdf_file_name'
+                title: 'List Users (<?= $date_now ?>)',
+                exportOptions: {
+                    columns: [ 0, 1]
+                },
+                customize: function ( doc ) {
+                    doc.content[1].table.widths = [
+                        '50%',
+                        '50%',
+                    ]
+                },
+                filename: 'List Users (<?= $date_now ?>)'
             }, {
                 extend: 'excel',
-                title: 'Customized EXCEL Title',
-                filename: 'customized_excel_file_name'
-            }, {
-                extend: 'csv',
-                filename: 'customized_csv_file_name'
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4]
+                },
+                title: 'List Users (<?= $date_now ?>)',
+                filename: 'List Users (<?= $date_now ?>)',
             }]
         });
 

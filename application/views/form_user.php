@@ -45,7 +45,7 @@ if(isset($id)) {
     <form id="form-user" name="form-user">
         <div class="form-group">
             <label for="nik">NIK: <i style="color:red">*</i></label>
-            <input autocomplete="off" type="text" class="form-control" id="nik" name="nik" required>
+            <input autocomplete="off" type="text" class="form-control" id="nik" name="nik" value="" required>
         </div>
 
         <div class="form-group">
@@ -67,6 +67,12 @@ if(isset($id)) {
 
 <script type="text/javascript">
     $('#submit-user').click(function(){
+        var nik = $("#nik").val();
+        if (nik == "") {
+            alert("Make sure all form fields are filled");
+        }
+        else {
+
         $.ajax({
            url : "<?php echo base_url(); ?>/Users/create",
            type : 'post',
@@ -76,8 +82,13 @@ if(isset($id)) {
                $("#form-user")[0].reset();
                $('#modal-user').modal('hide');
                $("#user-table-list").html(a);
+
+           },
+           error : function(e) {
+               alert("Make sure all form fields are filled");
            }
         });
+        }
     });
 
     $('#update-user').click(function(){

@@ -10,9 +10,7 @@ class Users extends CI_Controller
         if ($this->session->nik == NULL) {
             redirect(base_url());
         }
-        if ($this->session->role != 'admin') {
-            redirect(base_url());
-        }
+        if ($this->session->role != 'admin') {}
         $this->load->model("user_model");
         $this->load->library('form_validation');
     }

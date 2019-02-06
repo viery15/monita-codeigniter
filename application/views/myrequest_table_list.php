@@ -48,22 +48,37 @@
     </tbody>
 
 </table>
-
+<?php
+$date_now = date('d M Y');
+?>
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
         $('#table-request').DataTable({
             dom: 'Bfrtip',
+
             buttons: [{
                 extend: 'pdf',
-                title: 'Customized PDF Title',
-                filename: 'customized_pdf_file_name'
+                title: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4]
+                },
+                customize: function ( doc ) {
+                    doc.content[1].table.widths = [
+                        '20%',
+                        '20%',
+                        '20%',
+                        '20%',
+                        '20%'
+                    ]
+                },
+                filename: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
             }, {
                 extend: 'excel',
-                title: 'Customized EXCEL Title',
-                filename: 'customized_excel_file_name'
-            }, {
-                extend: 'csv',
-                filename: 'customized_csv_file_name'
+                exportOptions: {
+                    columns: [ 0, 1, 2, 3, 4]
+                },
+                title: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
+                filename: 'Requests Of '+ <?= $this->session->nik ?>+' (<?= $date_now ?>)',
             }]
         });
 
