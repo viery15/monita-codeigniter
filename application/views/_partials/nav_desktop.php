@@ -5,6 +5,9 @@
                 <form class="form-header" action="" method="POST">
                 </form>
                 <div class="header-button">
+                <div class="noti-wrap">
+
+                </div>
                     <div class="account-wrap">
                         <div class="account-item clearfix js-item-menu">
                             <div class="image">
@@ -28,7 +31,6 @@
                                     </div>
                                 </div>
                                 <div class="account-dropdown__body">
-
                                     <div class="account-dropdown__item">
                                         <a href="<?php echo base_url(); ?>logout">
                                             <i class="zmdi zmdi-power"></i>Logout</a>

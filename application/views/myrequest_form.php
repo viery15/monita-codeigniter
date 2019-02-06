@@ -138,7 +138,9 @@ if(isset($request->id)) {
                 alert("Update request success");
                 $("#form-request")[0].reset();
                 $('#modal-request').modal('hide');
+                $('#modal-task').modal('hide');
                 $("#myrequest-table-list").html(a);
+                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
             }
         });
     });

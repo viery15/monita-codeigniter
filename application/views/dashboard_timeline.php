@@ -11,9 +11,7 @@
                 </button>
             </div>
             <div class="au-task js-list-load">
-                <div class="au-task__title">
-                    <p>Tasks for John Doe</p>
-                </div>
+
                 <?php
                     foreach ($mytask as $mytask) {
                 ?>
@@ -96,7 +94,7 @@
                 <?php } ?>
 
                 <div class="au-task__footer">
-                    <button class="au-btn au-btn-load js-load-btn">load more</button>
+                    <button class="au-btn au-btn-load" id="btn-load-task">load more</button>
                 </div>
             </div>
         </div>
@@ -114,9 +112,6 @@
         </button>
     </div>
     <div class="au-task js-list-load">
-        <div class="au-task__title">
-            <p>Tasks for John Doe</p>
-        </div>
         <?php
         foreach ($myrequest as $myrequest) {
         ?>
@@ -185,7 +180,7 @@
                             <?php
                             if ($myrequest->status == 'pending') {
                                 ?>
-                                <button class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i> Update</button>
+                                <button id="<?= $myrequest->id ?>" class="btn btn-warning btn-sm btn-update" data-toggle="modal" data-target="#modal-task"><i class="fa fa-pencil-square-o"></i> Update</button>
                                 <button id="<?= $myrequest->id ?>" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-close"></i> Delete</button>
                             <?php } ?>
 
@@ -200,17 +195,22 @@
                     <?php } ?>
 
                     <div class="au-task__footer">
-                        <button class="au-btn au-btn-load js-load-btn">load more</button>
+                        <button class="au-btn au-btn-load" id="btn-load-request">load more</button>
                     </div>
                 </div>
             </div>
         </div>
 </div>
 
-
-
-
     <script>
+        $("#btn-load-request").click(function(){
+            window.location.href="<?php echo base_url() ?>myrequest";
+        });
+
+        $("#btn-load-task").click(function(){
+            window.location.href="<?php echo base_url() ?>mytask";
+        });
+
         $("#btn-add-task").click(function(){
             $('#content-modal2').load("<?php echo base_url(); ?>/Mytask/form_add");
         });
@@ -222,6 +222,11 @@
         $('.btn-comment').click(function(){
             var id = $(this).attr('id');
             $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
+        });
+
+        $('.btn-update').click(function(){
+            var id = $(this).attr('id');
+            $('#content-modal2').load("<?php echo base_url(); ?>/Myrequest/form_update/"+id);
         });
 
         $('.btn-done').click(function(){

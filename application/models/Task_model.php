@@ -59,6 +59,7 @@ class Task_model extends CI_Model
 
     public function getRequest()
     {
+        $this->db->order_by('updated_at','DESC');
         $this->db->where('user_from', $this->session->nik);
         return $this->db->get($this->_table)->result();
     }
@@ -73,6 +74,7 @@ class Task_model extends CI_Model
 
     public function getTask()
     {
+        $this->db->order_by('updated_at','DESC');
         $this->db->where('user_to', $this->session->nik);
         return $this->db->get($this->_table)->result();
     }
