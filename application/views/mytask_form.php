@@ -122,6 +122,7 @@ if(isset($task->id)) {
                 $("#form-task")[0].reset();
                 $('#modal-task').modal('hide');
                 $("#mytask-table-list").html(a);
+                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
             }
         });
     });

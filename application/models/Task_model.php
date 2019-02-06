@@ -63,9 +63,25 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getRequestTimeline()
+    {
+        $this->db->where('user_from', $this->session->nik);
+        $this->db->limit(5);
+        $this->db->order_by('updated_at', 'DESC');
+        return $this->db->get($this->_table)->result();
+    }
+
     public function getTask()
     {
         $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getTaskTimeline()
+    {
+        $this->db->where('user_to', $this->session->nik);
+        $this->db->limit(5);
+        $this->db->order_by('updated_at', 'DESC');
         return $this->db->get($this->_table)->result();
     }
 

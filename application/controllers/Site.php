@@ -26,10 +26,19 @@ class Site extends CI_Controller {
         $this->load->view("login");
     }
 
+    public function timeline()
+    {
+        $data['mytask'] = $this->task_model->getTaskTimeline();
+        $data['myrequest'] = $this->task_model->getRequestTimeline();
+
+        $this->load->view("dashboard_timeline",$data);
+    }
+
     public function dashboard()
     {
-        $data['mytask'] = $this->task_model->getTask();
-        $data['myrequest'] = $this->task_model->getRequest();
+        $data['mytask'] = $this->task_model->getTaskTimeline();
+        $data['myrequest'] = $this->task_model->getRequestTimeline();
+
         $data['task_pending'] = $this->task_model->getTaskPending();
         $data['task_done'] = $this->task_model->getTaskDone();
         $data['task_progress'] = $this->task_model->getTaskProgress();

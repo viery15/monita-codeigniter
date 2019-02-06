@@ -123,6 +123,8 @@ if(isset($request->id)) {
                 $("#form-request")[0].reset();
                 $('#modal-request').modal('hide');
                 $("#myrequest-table-list").html(a);
+                $('#modal-task').modal('hide');
+                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
             }
         });
     });
