@@ -18,12 +18,19 @@ class Site extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+
         $this->load->model("task_model");
     }
 
     public function index()
     {
-        $this->load->view("login");
+        if ($this->session->nik != null) {
+            redirect('/dashboard');
+        }
+        else {
+            $this->load->view("login");
+        }
+
     }
 
     public function timeline()
@@ -36,6 +43,9 @@ class Site extends CI_Controller {
 
     public function dashboard()
     {
+        if ($this->session->nik == NULL) {
+            redirect(base_url());
+        }
         $data['mytask'] = $this->task_model->getTaskTimeline();
         $data['myrequest'] = $this->task_model->getRequestTimeline();
 

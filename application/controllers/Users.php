@@ -7,6 +7,12 @@ class Users extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if ($this->session->nik == NULL) {
+            redirect(base_url());
+        }
+        if ($this->session->role != 'admin') {
+            redirect(base_url());
+        }
         $this->load->model("user_model");
         $this->load->library('form_validation');
     }

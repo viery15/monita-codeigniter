@@ -22,10 +22,14 @@
                     <a href="<?php echo base_url(); ?>monitoring">
                     <i class="fas fa-laptop"></i>Monitoring</a>
                 </li>
+                <?php
+                if ($this->session->role == 'admin') {
+                ?>
                 <li class="<?php echo $this->uri->segment(1) == 'users' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>users">
                     <i class="fas fa-user"></i>Users</a>
                 </li>
+                <?php } ?>
             </ul>
         </nav>
     </div>

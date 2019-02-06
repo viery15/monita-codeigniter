@@ -66,7 +66,7 @@
                     alert('Username atau Password salah');
                 }
                 else if(a.failed == 'false') {
-                    window.location.href = "<?php echo base_url(); ?>users";
+                    window.location.href = "<?php echo base_url(); ?>dashboard";
                 }
             },
         });
