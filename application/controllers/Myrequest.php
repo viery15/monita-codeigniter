@@ -13,6 +13,7 @@ class Myrequest extends CI_Controller
         $this->load->model("task_model");
         $this->load->model("user_model");
         $this->load->model("comment_model");
+        $this->load->model("notification_model");
         $this->load->library('form_validation');
     }
 
@@ -52,7 +53,8 @@ class Myrequest extends CI_Controller
     }
 
     public function create(){
-        $this->task_model->save();
+        $task_id = $this->task_model->save();
+        $this->notification_model->save($task_id);
 
         $data["myrequest"] = $this->task_model->getRequest();
         $this->load->view("myrequest_table_list", $data);
@@ -64,6 +66,8 @@ class Myrequest extends CI_Controller
         $this->comment_model->save();
 
         $data["task"] = $this->task_model->getById($post['task_id']);
+        $this->notification_model->comment($data['task']);
+
         $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
 
         $this->load->view("myrequest_form_comment", $data);
@@ -71,6 +75,10 @@ class Myrequest extends CI_Controller
     }
 
     public function resend(){
+        $post = $this->input->post();
+        $data["task"] = $this->task_model->getById($post['id']);
+
+        $this->notification_model->resend($data['task']);
         $this->task_model->resend();
 
         $data["myrequest"] = $this->task_model->getRequest();

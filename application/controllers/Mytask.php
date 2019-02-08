@@ -20,6 +20,7 @@ class Mytask extends CI_Controller
         }
         $this->load->model("task_model");
         $this->load->model("user_model");
+        $this->load->model("notification_model");
         $this->load->library('form_validation');
     }
 
@@ -52,13 +53,23 @@ class Mytask extends CI_Controller
     }
 
     public function approve(){
+        $post = $this->input->post();
+        $data["task"] = $this->task_model->getById($post['id']);
+
         $this->task_model->approve();
+        $this->notification_model->approve($data['task']);
 
         $data["mytask"] = $this->task_model->getTask();
+
+
         $this->load->view("mytask_table_list", $data);
     }
 
     public function done(){
+        $post = $this->input->post();
+        $data["task"] = $this->task_model->getById($post['id']);
+
+        $this->notification_model->done($data['task']);
         $this->task_model->done();
 
         $data["mytask"] = $this->task_model->getTask();
@@ -66,6 +77,10 @@ class Mytask extends CI_Controller
     }
 
     public function reject(){
+        $post = $this->input->post();
+        $data["task"] = $this->task_model->getById($post['id']);
+
+        $this->notification_model->reject($data['task']);
         $this->task_model->reject();
 
         $data["mytask"] = $this->task_model->getTask();

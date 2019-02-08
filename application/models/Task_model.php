@@ -196,6 +196,8 @@ class Task_model extends CI_Model
         $post['created_at'] = date('m-d-Y H:i:s');
         $post['updated_at'] = date('m-d-Y H:i:s');
         $this->db->insert($this->_table,$post);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
     }
 
     public function update()
