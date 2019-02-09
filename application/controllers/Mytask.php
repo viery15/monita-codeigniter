@@ -21,6 +21,7 @@ class Mytask extends CI_Controller
         $this->load->model("task_model");
         $this->load->model("user_model");
         $this->load->model("notification_model");
+        $this->load->model("comment_model");
         $this->load->library('form_validation');
     }
 
@@ -28,6 +29,14 @@ class Mytask extends CI_Controller
     {
         $data["mytask"] = $this->task_model->getTask();
         $this->load->view("mytask", $data);
+    }
+
+    public function task($id)
+    {
+        $data["task"] = $this->task_model->getById($id);
+        $data['comment'] = $this->comment_model->getByTaskId($id);
+
+        $this->load->view("task_page",$data);
     }
 
     public function delete(){

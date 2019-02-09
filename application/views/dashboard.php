@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body id="web">
 <div class="page-wrapper">
     <!-- HEADER MOBILE-->
     <?php $this->load->view("_partials/navbar.php") ?>

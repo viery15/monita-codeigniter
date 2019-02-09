@@ -14,4 +14,5 @@ $route['dashboard'] = 'site/dashboard';
 $route['myrequest'] = 'myrequest/index';
 $route['mytask'] = 'mytask/index';
 $route['logout'] = 'site/logout';
+$route['task/(:num)'] = 'mytask/task/$1';
 $route['monitoring'] = 'monitoring/index';

@@ -22,7 +22,7 @@ $data = $this->ci->notification_model->getByUserTarget();
                             <?php
                             foreach ($data as $data) {
                             ?>
-                            <div class="notifi__item">
+                            <div class="notifi__item notif" id="<?= $data->id_task ?>">
                                     <?php
                                     if ($data->type == 'new') {
                                         ?>
@@ -145,3 +145,9 @@ $data = $this->ci->notification_model->getByUserTarget();
         </div>
     </div>
 </header>
+<script type="text/javascript">
+    $(".notif").click(function(){
+        var id = $(this).attr("id");
+        window.location.href = "<?php echo base_url()?>task/"+id;
+    });
+</script>
