@@ -20,6 +20,7 @@ class Site extends CI_Controller {
         parent::__construct();
 
         $this->load->model("task_model");
+        $this->load->model("notification_model");
     }
 
     public function index()
@@ -39,6 +40,15 @@ class Site extends CI_Controller {
         $data['myrequest'] = $this->task_model->getRequestTimeline();
 
         $this->load->view("dashboard_timeline",$data);
+    }
+
+    public function notification()
+    {
+        $data['notif_task'] = $this->notification_model->getNotifTask();
+        $data['notif_req'] = $this->notification_model->getNotifReq();
+//        print_r($data['notif_req']);
+
+        $this->load->view("notification_page",$data);
     }
 
     public function dashboard()

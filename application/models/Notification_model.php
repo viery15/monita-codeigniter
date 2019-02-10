@@ -18,6 +18,30 @@ class Notification_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getNotifTask()
+    {
+
+        $this->db->select('monita.notification.*,monita.tasks.user_to');
+        $this->db->from('monita.notification');
+        $this->db->where('user_target',$this->session->nik);
+        $this->db->where('user_to',$this->session->nik);
+        $this->db->order_by('notification.created_at','DESC');
+        $this->db->join('monita.tasks', 'monita.notification.id_task = monita.tasks.id');
+        return $this->db->get()->result();
+    }
+
+    public function getNotifReq()
+    {
+
+        $this->db->select('monita.notification.*');
+        $this->db->from('monita.notification');
+        $this->db->where('user_target',$this->session->nik);
+        $this->db->where('tasks.user_from',$this->session->nik);
+        $this->db->join('monita.tasks', 'monita.notification.id_task = monita.tasks.id');
+        $this->db->order_by('notification.created_at','DESC');
+        return $this->db->get()->result();
+    }
+
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();
