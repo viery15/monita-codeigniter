@@ -74,6 +74,19 @@ class Mytask extends CI_Controller
         $this->load->view("mytask_table_list", $data);
     }
 
+    public function approve2(){
+        $post = $this->input->post();
+        $this->task_model->approve();
+
+        $data["task"] = $this->task_model->getById($post['id']);
+        $this->notification_model->approve($data['task']);
+
+        $data["mytask"] = $this->task_model->getTask();
+
+
+        $this->load->view("task_page_content", $data);
+    }
+
     public function done(){
         $post = $this->input->post();
         $data["task"] = $this->task_model->getById($post['id']);
@@ -85,6 +98,18 @@ class Mytask extends CI_Controller
         $this->load->view("mytask_table_list", $data);
     }
 
+    public function done2(){
+        $post = $this->input->post();
+        $this->task_model->done();
+
+        $data["task"] = $this->task_model->getById($post['id']);
+        $this->notification_model->done($data['task']);
+
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("task_page_content", $data);
+    }
+
     public function reject(){
         $post = $this->input->post();
         $data["task"] = $this->task_model->getById($post['id']);
@@ -94,6 +119,17 @@ class Mytask extends CI_Controller
 
         $data["mytask"] = $this->task_model->getTask();
         $this->load->view("mytask_table_list", $data);
+    }
+
+    public function reject2(){
+        $post = $this->input->post();
+        $this->task_model->reject();
+        $data["task"] = $this->task_model->getById($post['id']);
+
+        $this->notification_model->reject($data['task']);
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("task_page_content", $data);
     }
 
     public function create(){

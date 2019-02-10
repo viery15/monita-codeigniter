@@ -32,6 +32,15 @@ class Myrequest extends CI_Controller
         $this->load->view("myrequest_table_list", $data);
     }
 
+    public function delete2(){
+        $id = $this->input->post('id');
+        $this->task_model->delete($id);
+        $this->comment_model->delete($id);
+
+//        $data["myrequest"] = $this->task_model->getRequest();
+//        $this->load->view("myrequest_table_list", $data);
+    }
+
     public function form_add(){
         $data["users"] = $this->user_model->getUserAssign();
 
@@ -43,6 +52,13 @@ class Myrequest extends CI_Controller
         $data["users"] = $this->user_model->getUserAssign();
 
         $this->load->view("myrequest_form", $data);
+    }
+
+    public function form_update2($id){
+        $data["request"] = $this->task_model->getById($id);
+        $data["users"] = $this->user_model->getUserAssign();
+
+        $this->load->view("myrequest_form2", $data);
     }
 
     public function form_comment($id){
@@ -74,6 +90,20 @@ class Myrequest extends CI_Controller
 
     }
 
+    public function submitcomment2(){
+        $post = $this->input->post();
+
+        $this->comment_model->save();
+
+        $data["task"] = $this->task_model->getById($post['task_id']);
+        $this->notification_model->comment($data['task']);
+
+        $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+
+        $this->load->view("comment_page", $data);
+
+    }
+
     public function resend(){
         $post = $this->input->post();
         $data["task"] = $this->task_model->getById($post['id']);
@@ -85,11 +115,29 @@ class Myrequest extends CI_Controller
         $this->load->view("myrequest_table_list", $data);
     }
 
+    public function resend2(){
+        $post = $this->input->post();
+        $this->task_model->resend();
+        $data["task"] = $this->task_model->getById($post['id']);
+
+        $this->notification_model->resend($data['task']);
+
+        $data["myrequest"] = $this->task_model->getRequest();
+        $this->load->view("task_page_content", $data);
+    }
+
     public function update(){
         $this->task_model->update();
 
         $data["myrequest"] = $this->task_model->getRequest();
         $this->load->view("myrequest_table_list", $data);
+    }
+
+    public function update2(){
+        $post = $this->input->post();
+        $this->task_model->update();
+        $data["task"] = $this->task_model->getById($post['id']);
+        $this->load->view("task_page_content", $data);
     }
 
     public function download($filename){

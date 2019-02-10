@@ -5,13 +5,14 @@
  * Date: 2/8/2019
  * Time: 8:14 AM
  */
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Users</title>
+    <title>Task Detail</title>
     <?php $this->load->view("_partials/head.php") ?>
     <?php $this->load->view("_partials/js.php") ?>
     <style type="text/css">
@@ -209,13 +210,18 @@
         <!-- HEADER DESKTOP-->
 
         <!-- MAIN CONTENT-->
-        <div class="main-content">
+        <div class="main-content" style="padding-bottom: 100px;">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="overview-wrap">
                                 <h2 class="title-1">
+                                    <?php
+                                    if ($task == NULL) {
+                                        echo "Task Not Found";
+                                    } else {
+                                    ?>
                                     <?php
                                         if ($this->session->nik == $task->user_from){
                                     ?>
@@ -233,59 +239,15 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <br>
-                            <div class="card">
-                                <div class="card-header"><b><?= $task->remark ?></b></div>
-                                <div class="card-body">
-                                    <?= $task->description ?> <br><br>
-                                    <button type="button" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Approve</button>
-                                    <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-close"></i> Reject</button>
-                                </div>
-                                <div class="card-footer">
-                                    <i class="fa fa-clock" aria-hidden="true"></i> <?= date('d M Y h:i a', strtotime($task->updated_at)) ?> &nbsp;
-                                    <?php
-                                    if ($this->session->nik == $task->user_from) {
-                                    ?>
-                                    <i class="fa fa-user" aria-hidden="true"></i> <?= $task->user_to ?> &nbsp;
-                                    <?php } ?>
-                                    <?php
-                                    if ($this->session->nik == $task->user_to) {
-                                        ?>
-                                        <i class="fa fa-user" aria-hidden="true"></i> <?= $task->user_from ?> &nbsp;
-                                    <?php } ?>
-                                    <i class="fa fa-tag" aria-hidden="true"></i> <?= ucfirst($task->status) ?>
-                                </div>
+                            <div id="task-content">
+                            <?php $this->load->view("task_page_content.php") ?>
                             </div>
                         </div>
                     </div>
                     <h4>Comments</h4>
 
-                    <?php
-                    foreach ($comment as $comment){
-                    ?>
-                    <div class="media comment-box" style="width: 100%">
-                        <div class="media-body">
-                            <h4 class="media-heading"><?= $comment->user_comment ?> <small class="text-muted"> - <?= date('d M Y h:i a', strtotime($comment->created_at)) ?></small></h4>
-                            <p style="background-color: white"><?= $comment->comment ?>
-                            </p>
-                        </div>
-                    </div>
-                    <?php } ?>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="widget-area no-padding blank">
-                                <div class="status-upload">
-                                    <form id="form-comment" type="post" enctype="multipart/form-data" name="form">
-                                        <textarea placeholder="Type your comment here..." id="text-comment" name="comment"></textarea>
-                                        <ul>
-                                            <input type="text" value="" style="display: none">
-                                            <input type="file" name="attachment" id="attach">
-                                        </ul>
-                                        <button type="button" id="" class="btn btn-success green submit-comment"><i class="fa fa-share"></i> Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="comment-section" >
+                        <?php $this->load->view("comment_page.php") ?>
                     </div>
                 </div>
             </div>
@@ -294,8 +256,18 @@
         <!-- END PAGE CONTAINER-->
     </div>
 </div>
+<?php } ?>
+<div id="modal-request" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
 
+            <div id="content-modal"></div>
 
+        </div>
+
+    </div>
+</div>
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
 </body>
@@ -303,6 +275,23 @@
 </html>
 <!-- end document-->
 <script type="text/javascript">
-
+    $(".submit-comment").click(function(){
+        id = $(this).attr("id");
+        var comment = $("#text-comment").val();
+        var form = $('#form-comment')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        formData.append('task_id', id);
+        $.ajax({
+            url : "<?php echo base_url(); ?>/myrequest/submitcomment2",
+            type : 'post',
+            data : formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success : function(e){
+                $('#comment-section').html(e);
+            }
+        });
+    });
 </script>
 
