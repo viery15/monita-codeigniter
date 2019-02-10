@@ -31,7 +31,6 @@ class Site extends CI_Controller {
         else {
             $this->load->view("login");
         }
-
     }
 
     public function timeline()

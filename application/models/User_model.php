@@ -44,6 +44,12 @@ class User_model extends CI_Model
         return $this->db->get_where($this->_table, ["nik" => $post['nik']])->row();
     }
 
+    public function getByNik2($nik)
+    {
+//        $post = $this->input->post();
+        return $this->db->get_where($this->_table, ["nik" => $nik])->row();
+    }
+
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id" => $id));
