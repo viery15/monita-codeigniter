@@ -50,7 +50,7 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
-                <label for="nik">Remark: <i style="color:red">*</i></label>
+                <label for="nik">Title: <i style="color:red">*</i></label>
                 <input value="<?= $request->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
 
@@ -95,7 +95,7 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
-                <label for="nik">Remark: <i style="color:red">*</i></label>
+                <label for="nik">Title: <i style="color:red">*</i></label>
                 <input autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
 

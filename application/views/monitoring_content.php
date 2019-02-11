@@ -28,8 +28,8 @@
             <table id="list-data" class="table table-borderless table-data3" style="width:100%">
                 <thead>
                 <tr>
-                    <th scope="col">Date Start</th>
-                    <th scope="col">Remark</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assign From</th>
                     <th scope="col">Status</th>
@@ -62,8 +62,8 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Remark</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assign From</th>
                     <th scope="col">Status</th>

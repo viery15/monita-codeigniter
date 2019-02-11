@@ -9,9 +9,9 @@
 <table id="table-request" class="table table-hover table-data3" style="width:100%">
     <thead>
     <tr>
-        <th>Date Start</th>
+        <th>Start Date</th>
         <th>Assign To</th>
-        <th>Remark</th>
+        <th>Title</th>
         <th>Description</th>
         <th>Status</th>
         <th width="21%">Action</th>

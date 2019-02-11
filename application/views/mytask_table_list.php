@@ -9,9 +9,9 @@
 <table id="example" class="table table-hover table-data3" style="width:100%">
     <thead>
     <tr>
-        <th>Date Start</th>
+        <th>Start Date</th>
         <th>Assign From</th>
-        <th>Remark</th>
+        <th>Title</th>
         <th>Description</th>
         <th>Status</th>
         <th>Action</th>
@@ -46,16 +46,6 @@
     <?php } ?>
 
     </tbody>
-    <tfoot>
-    <tr>
-        <th>Date Start</th>
-        <th>Assign From</th>
-        <th>Remark</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
-    </tfoot>
 </table>
 <?php
 $date_now = date('d M Y');
