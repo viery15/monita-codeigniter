@@ -67,6 +67,7 @@ class User_model extends CI_Model
         $this->id = $post["id"];
         $this->nik = $post["nik"];
         $this->role = $post["role"];
+        $this->email = $post["email"];
 
         $this->db->update($this->_table, $this, array('id' => $post['id']));
     }

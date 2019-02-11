@@ -40,3 +40,28 @@ foreach ($comment as $comment){
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(".submit-comment").click(function(){
+        id = $(this).attr("id");
+        var comment = $("#text-comment").val();
+        if (comment == "") {
+            alert("comment must be filled");
+        }
+        else {
+            var form = $('#form-comment')[0]; // You need to use standard javascript object here
+            var formData = new FormData(form);
+            formData.append('task_id', id);
+            $.ajax({
+                url: "<?php echo base_url(); ?>/myrequest/submitcomment2",
+                type: 'post',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (e) {
+                    $('#comment-section').html(e);
+                }
+            });
+        }
+    });
+</script>

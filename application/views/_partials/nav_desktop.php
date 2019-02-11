@@ -85,13 +85,13 @@ $data = $this->ci->notification_model->getByUserTarget();
                                     <?php
                                     if ($data->type == 'done') {
                                         ?>
-                                        <p>your request to <?= $data->user_from ?> is complete</p>
+                                        <p>Your request to <?= $data->user_from ?> is complete</p>
                                     <?php } ?>
 
                                     <?php
                                     if ($data->type == 'reject') {
                                         ?>
-                                        <p>your request has been rejected by <?= $data->user_from ?></p>
+                                        <p>Your request has been rejected by <?= $data->user_from ?></p>
                                     <?php } ?>
                                     <?php
                                     if ($data->type == 'approve') {
@@ -103,7 +103,7 @@ $data = $this->ci->notification_model->getByUserTarget();
                             </div>
                             <?php } ?>
                             <div class="notifi__footer">
-                                <a href="#">All notifications</a>
+                                <a href="<?= base_url() ?>notification">All notifications</a>
                             </div>
                         </div>
                     </div>

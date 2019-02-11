@@ -56,19 +56,26 @@
                                 <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
                                     <div class="bg-overlay bg-overlay--blue"></div>
                                     <h3>
-                                        <i class="zmdi zmdi-account-calendar"></i>Notification of My Tasks</h3>
-                                    <button class="au-btn-plus">
-                                        <i class="zmdi zmdi-plus"></i>
-                                    </button>
+                                        <i class="fa fa-tasks"></i>Notification of My Tasks</h3>
                                 </div>
                                 <div class="au-task js-list-load">
                                     <div class="au-task-list">
 
-
                                         <?php
                                         foreach ($notif_task as $task){
                                         ?>
-                                        <div class="au-task__item au-task__item--danger">
+                                        <?php
+                                        if ($task->type == 'new'){
+                                        ?>
+                                        <div id="<?= $task->id_task ?>" class="au-task__item au-task__item--warning btn-notif2" style="cursor:pointer;">
+                                        <?php } ?>
+
+                                        <?php
+                                        if ($task->type == 'comment task'){
+                                        ?>
+                                        <div id="<?= $task->id_task ?>" class="au-task__item au-task__item--success btn-notif2" style="cursor:pointer;">
+                                        <?php } ?>
+
                                             <div class="au-task__item-inner">
                                                 <h5 class="task">
                                                     <?php
@@ -101,17 +108,37 @@
                                 <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
                                     <div class="bg-overlay bg-overlay--blue"></div>
                                     <h3>
-                                        <i class="zmdi zmdi-account-calendar"></i>Notification of My Requests</h3>
-                                    <button class="au-btn-plus">
-                                        <i class="zmdi zmdi-plus"></i>
-                                    </button>
+                                        <i class="fa fa-tasks"></i>Notification of My Requests</h3>
                                 </div>
                                 <div class="au-task js-list-load">
                                     <div class="au-task-list">
                                         <?php
                                         foreach ($notif_req as $req){
                                             ?>
-                                            <div class="au-task__item au-task__item--danger">
+                                            <?php
+                                            if ($req->type == 'approve'){
+                                            ?>
+                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success btn-notif" style="cursor:pointer;">
+                                            <?php } ?>
+
+                                            <?php
+                                            if ($req->type == 'reject'){
+                                            ?>
+                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--danger btn-notif" style="cursor:pointer;">
+                                            <?php } ?>
+
+                                            <?php
+                                            if ($req->type == 'done'){
+                                            ?>
+                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success btn-notif" style="cursor:pointer;">
+                                            <?php } ?>
+
+                                            <?php
+                                            if ($req->type == 'comment request'){
+                                            ?>
+                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success btn-notif" style="cursor:pointer;">
+                                            <?php } ?>
+
                                                 <div class="au-task__item-inner">
                                                     <h5 class="task">
                                                         <?php
@@ -133,7 +160,7 @@
                                                         <?php } ?>
 
                                                         <?php
-                                                        if ($req->type == 'comment task'){
+                                                        if ($req->type == 'comment request'){
                                                             ?>
                                                             <a href="#"><?= $req->user_from ?> comment on your task </a>
                                                         <?php } ?>
@@ -174,9 +201,13 @@
 </html>
 <!-- end document-->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('.btn-create').click(function(){
-            $('#content-modal').load("<?php echo base_url(); ?>/Users/form_add");
-        });
+    $(".btn-notif").click(function(){
+       var id = $(this).attr('id');
+       window.location.href = "<?php echo base_url()?>task/"+id;
+    });
+
+    $(".btn-notif2").click(function(){
+        var id = $(this).attr('id');
+        window.location.href = "<?php echo base_url()?>task/"+id;
     });
 </script>

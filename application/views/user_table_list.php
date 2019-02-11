@@ -11,6 +11,7 @@
     <thead>
     <tr>
         <th>NIK</th>
+        <th>Email</th>
         <th>Role</th>
         <th>Action</th>
     </tr>
@@ -21,6 +22,7 @@
         ?>
         <tr>
             <td><?= $user->nik ?></td>
+            <td><?= $user->email ?></td>
             <td><?= ucfirst($user->role) ?></td>
             <td width="20%">
                 <button type="button" class="btn btn-warning btn-update" data-toggle="modal" data-target="#modal-user" id="<?= $user->id ?>"><i class="fa fa-pencil-square-o"></i></button>
@@ -32,6 +34,7 @@
     <tfoot>
     <tr>
         <th>NIK</th>
+        <th>Email</th>
         <th>Role</th>
         <th>Action</th>
     </tr>

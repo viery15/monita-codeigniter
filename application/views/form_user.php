@@ -23,6 +23,11 @@ if(isset($id)) {
             </div>
 
             <div class="form-group">
+                <label for="nik">Email: <i style="color:red">*</i></label>
+                <input autocomplete="off" type="email" class="form-control" id="email" name="email" value="<?= $email ?>" required>
+            </div>
+
+            <div class="form-group">
                 <label for="role">Role: <i style="color:red">*</i></label>
                 <select class="form-control" id="role" name="role">
                     <option disabled>Select role</option>
@@ -46,6 +51,11 @@ if(isset($id)) {
         <div class="form-group">
             <label for="nik">NIK: <i style="color:red">*</i></label>
             <input autocomplete="off" type="text" class="form-control" id="nik" name="nik" value="" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nik">Email: <i style="color:red">*</i></label>
+            <input autocomplete="off" type="email" class="form-control" id="email" name="email" value="" required>
         </div>
 
         <div class="form-group">

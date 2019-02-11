@@ -38,6 +38,16 @@ class Site extends CI_Controller {
         $data['mytask'] = $this->task_model->getTaskTimeline();
         $data['myrequest'] = $this->task_model->getRequestTimeline();
 
+        $data['task_pending'] = $this->task_model->getTaskPending();
+        $data['task_done'] = $this->task_model->getTaskDone();
+        $data['task_progress'] = $this->task_model->getTaskProgress();
+        $data['task_rejected'] = $this->task_model->getTaskRejected();
+
+        $data['req_pending'] = $this->task_model->getReqPending();
+        $data['req_done'] = $this->task_model->getReqDone();
+        $data['req_progress'] = $this->task_model->getReqProgress();
+        $data['req_rejected'] = $this->task_model->getReqRejected();
+
         $this->load->view("dashboard_timeline",$data);
     }
 

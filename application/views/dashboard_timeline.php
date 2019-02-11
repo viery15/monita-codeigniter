@@ -1,4 +1,21 @@
 <div class="row">
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <div id="chart-mytask" style="min-width: 400px; height: 400px; margin-top: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="au-card m-b-30">
+            <div class="au-card-inner">
+                <div id="chart-myrequest" style="min-width: 400px; height: 400px; margin-top: 0 auto"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
 <!--    TIMELINE MY TASKS-->
     <div class="col-lg-6">
         <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
@@ -200,6 +217,18 @@
                 </div>
             </div>
         </div>
+        <?php
+        $count_task_done = count((array)$task_done);
+        $count_task_pending = count((array)$task_pending);
+        $count_task_progress = count((array)$task_progress);
+        $count_task_rejected = count((array)$task_rejected);
+
+        $count_req_done = count((array)$req_done);
+        $count_req_pending = count((array)$req_pending);
+        $count_req_progress = count((array)$req_progress);
+        $count_req_rejected = count((array)$req_rejected);
+
+        ?>
 </div>
 
     <script>
@@ -304,3 +333,124 @@
             }
         });
     </script>
+
+    <script>
+        $(function () {
+            Highcharts.setOptions({
+                colors: ['#50B432', '#308dc5', '#ffff19', '#f00000']
+            });
+
+            Highcharts.chart('chart-mytask', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Summary of '+ <?= $this->session->nik ?>+'\'s Tasks'
+                },
+
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        size: 200,
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function() {
+                                return '<b>'+ this.point.name +'</b>: ' + this.point.y + ' ('+ Math.round(this.percentage*100)/100 + ' %)';
+                            },
+                            distance: 1,
+
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Count',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Done',
+                        y: <?php echo json_encode($count_task_done,JSON_NUMERIC_CHECK) ?>,
+                        sliced: true,
+                        selected: true
+                    }, {
+                        name: 'On Progress',
+                        y: <?php echo json_encode($count_task_progress,JSON_NUMERIC_CHECK) ?>,
+                    },
+                        {
+                            name: 'Pending',
+                            y: <?php echo json_encode($count_task_pending,JSON_NUMERIC_CHECK) ?>,
+                        },
+                        {
+                            name: 'Unapproved',
+                            y: <?php echo json_encode($count_task_rejected,JSON_NUMERIC_CHECK) ?>,
+                        }]
+                }]
+            });
+        });
+    </script>
+
+    <script>
+        $(function () {
+            Highcharts.setOptions({
+                colors: ['#50B432', '#308dc5', '#ffff19', '#f00000']
+            });
+
+            Highcharts.chart('chart-myrequest', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Summary of '+ <?= $this->session->nik ?>+'\'s Requests'
+                },
+
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        size: 200,
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function() {
+                                return '<b>'+ this.point.name +'</b>: ' + this.point.y + ' ('+ Math.round(this.percentage*100)/100 + ' %)';
+                            },
+                            distance: 1,
+
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Count',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Done',
+                        y: <?php echo json_encode($count_req_done,JSON_NUMERIC_CHECK) ?>,
+                        sliced: true,
+                        selected: true
+                    }, {
+                        name: 'On Progress',
+                        y: <?php echo json_encode($count_req_progress,JSON_NUMERIC_CHECK) ?>,
+                    },
+                        {
+                            name: 'Pending',
+                            y: <?php echo json_encode($count_req_pending,JSON_NUMERIC_CHECK) ?>,
+                        },
+                        {
+                            name: 'Unapproved',
+                            y: <?php echo json_encode($count_req_rejected,JSON_NUMERIC_CHECK) ?>,
+                        }]
+                }]
+            });
+        });
+    </script>
+

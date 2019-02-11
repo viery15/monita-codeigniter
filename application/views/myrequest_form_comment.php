@@ -234,19 +234,24 @@
     $(".submit-comment").click(function(){
         id = $(this).attr("id");
         var comment = $("#text-comment").val();
-        var form = $('#form-comment')[0]; // You need to use standard javascript object here
-        var formData = new FormData(form);
-        formData.append('task_id', id);
-        $.ajax({
-            url : "<?php echo base_url(); ?>/myrequest/submitcomment",
-            type : 'post',
-            data : formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success : function(e){
-                $('#content-modal-comment').html(e);
-            }
-        });
+        if (comment == "") {
+            alert("comment must be filled");
+        }
+        else {
+            var form = $('#form-comment')[0]; // You need to use standard javascript object here
+            var formData = new FormData(form);
+            formData.append('task_id', id);
+            $.ajax({
+                url: "<?php echo base_url(); ?>/myrequest/submitcomment",
+                type: 'post',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (e) {
+                    $('#content-modal-comment').html(e);
+                }
+            });
+        }
     });
 </script>
