@@ -60,6 +60,17 @@
                                 </div>
                                 <div class="au-task js-list-load">
                                     <div class="au-task-list">
+                                        <?php
+                                        if ($notif_task == NULL) {
+                                            ?>
+                                            <div  class="au-task__item au-task__item">
+                                                <div class="au-task__item-inner">
+                                                    <h5 class="task" style="font-weight: normal;">
+                                                        Notification not found
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
 
                                         <?php
                                         foreach ($notif_task as $task){
@@ -112,6 +123,17 @@
                                 </div>
                                 <div class="au-task js-list-load">
                                     <div class="au-task-list">
+                                        <?php
+                                        if ($notif_req == NULL) {
+                                        ?>
+                                        <div  class="au-task__item au-task__item">
+                                            <div class="au-task__item-inner">
+                                                <h5 class="task" style="font-weight: normal;">
+                                                    Notification not found
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
                                         <?php
                                         foreach ($notif_req as $req){
                                             ?>

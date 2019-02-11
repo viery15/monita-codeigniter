@@ -10,7 +10,7 @@
 <?php
 foreach ($comment as $comment){
     ?>
-    <div class="media comment-box" style="width: 100%">
+    <div class="media comment-box" style="width: 100%;margin-bottom: -20px">
         <div class="media-body">
             <h4 class="media-heading"><?= $comment->user_comment ?> <small class="text-muted"> - <?= date('d M Y h:i a', strtotime($comment->created_at)) ?></small></h4>
             <p style="background-color: white"><?= $comment->comment ?>
@@ -45,7 +45,7 @@ foreach ($comment as $comment){
         id = $(this).attr("id");
         var comment = $("#text-comment").val();
         if (comment == "") {
-            alert("comment must be filled");
+            alert("Comment cannot empty");
         }
         else {
             var form = $('#form-comment')[0]; // You need to use standard javascript object here

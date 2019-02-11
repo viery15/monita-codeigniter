@@ -235,7 +235,7 @@
         id = $(this).attr("id");
         var comment = $("#text-comment").val();
         if (comment == "") {
-            alert("comment must be filled");
+            alert("Comment cannot empty");
         }
         else {
             var form = $('#form-comment')[0]; // You need to use standard javascript object here

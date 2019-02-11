@@ -28,6 +28,17 @@
                 </button>
             </div>
             <div class="au-task js-list-load">
+                <?php
+                if ($mytask == NULL) {
+                    ?>
+                    <div  class="au-task__item au-task__item">
+                        <div class="au-task__item-inner">
+                            <h5 class="task" style="font-weight: normal;">
+                                Task not found
+                            </h5>
+                        </div>
+                    </div>
+                <?php } ?>
 
                 <?php
                     foreach ($mytask as $mytask) {
@@ -130,6 +141,17 @@
     </div>
     <div class="au-task js-list-load">
         <?php
+        if ($myrequest == NULL) {
+            ?>
+            <div  class="au-task__item au-task__item">
+                <div class="au-task__item-inner">
+                    <h5 class="task" style="font-weight: normal;">
+                        Request not found
+                    </h5>
+                </div>
+            </div>
+        <?php } ?>
+        <?php
         foreach ($myrequest as $myrequest) {
         ?>
 
@@ -211,9 +233,13 @@
                     </div>
                     <?php } ?>
 
+                    <?php
+                    if ($myrequest != NULL) {
+                    ?>
                     <div class="au-task__footer">
                         <button class="au-btn au-btn-load" id="btn-load-request">load more</button>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
