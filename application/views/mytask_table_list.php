@@ -89,7 +89,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Delete task success");
+                        alert("Data deleted successful");
                         $('#modal-task').modal('hide');
                         $("#mytask-table-list").html(a);
                     }
@@ -105,7 +105,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Approve task success");
+                        alert("Data approved successful");
                         $("#mytask-table-list").html(a);
                     }
                 });
@@ -120,7 +120,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("success");
+                        alert("Success");
                         $("#mytask-table-list").html(a);
                     }
                 });
@@ -135,7 +135,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Reject task success");
+                        alert("Data rejected successful");
                         $("#mytask-table-list").html(a);
                     }
                 });

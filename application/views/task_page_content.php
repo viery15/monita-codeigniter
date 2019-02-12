@@ -65,7 +65,7 @@
                 type: 'post',
                 data: {'id': id},
                 success: function (a) {
-                    alert("Delete request success");
+                    alert("Data deleted successful");
 //                    $("#myrequest-table-list").html(a);
                     window.location.href = "<?= base_url(); ?>"
                 }
@@ -86,7 +86,7 @@
                 type: 'post',
                 data: {'id': id},
                 success: function (a) {
-                    alert("Resend request success");
+                    alert("Data resent successful");
                     $("#task-content").html(a);
                 }
             });
@@ -101,7 +101,7 @@
                 type: 'post',
                 data: {'id': id},
                 success: function (a) {
-                    alert("Approve task success");
+                    alert("Data approved successful");
                     $("#task-content").html(a);
                 }
             });
@@ -116,7 +116,7 @@
                 type: 'post',
                 data: {'id': id},
                 success: function (a) {
-                    alert("success");
+                    alert("Success");
                     $("#task-content").html(a);
                 }
             });
@@ -131,7 +131,7 @@
                 type: 'post',
                 data: {'id': id},
                 success: function (a) {
-                    alert("Reject task success");
+                    alert("Data rejected successful");
                     $("#task-content").html(a);
                 }
             });

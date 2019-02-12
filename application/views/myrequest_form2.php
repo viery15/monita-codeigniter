@@ -152,7 +152,7 @@ if(isset($request->id)) {
                 type: 'post',
                 data: $("#form-request").serialize(),
                 success: function (a) {
-                    alert("Update request success");
+                    alert("Data updated successful");
                     $("#form-request")[0].reset();
                     $('#modal-request').modal('hide');
                     $('#modal-task').modal('hide');

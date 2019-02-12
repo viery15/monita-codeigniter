@@ -292,7 +292,7 @@
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("success");
+                        alert("Success");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -307,7 +307,7 @@
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Reject task success");
+                        alert("Data rejected successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -322,7 +322,7 @@
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Approve task success");
+                        alert("Data approved successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -337,7 +337,7 @@
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Delete request success");
+                        alert("Data deleted successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -352,7 +352,7 @@
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Resend request success");
+                        alert("Data resent successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -479,4 +479,3 @@
             });
         });
     </script>
-

@@ -91,7 +91,7 @@ if(isset($id)) {
                     type: 'post',
                     data: $("#form-user").serialize(),
                     success: function (a) {
-                        alert("Create user sukses");
+                        alert("Data saved successful");
                         $("#form-user")[0].reset();
                         $('#modal-user').modal('hide');
                         $("#user-table-list").html(a);
@@ -105,16 +105,29 @@ if(isset($id)) {
     });
 
     $('#update-user').click(function(){
-        $.ajax({
-            url : "<?php echo base_url(); ?>/Users/update",
-            type : 'post',
-            data : $("#form-user").serialize(),
-            success : function (a) {
-                alert("Update user sukses");
-                $("#form-user")[0].reset();
-                $('#modal-user').modal('hide');
-                $("#user-table-list").html(a);
+        var nik = $("#nik").val();
+        var email = $("#email").val();
+        var role = $("#role").children("option:selected").val();
+        var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+        if (nik == "" || email == "" || role == "") {
+            alert("All required fields cannot be empty!");
+        }
+        else {
+            if(testEmail.test(email)) {
+                $.ajax({
+                    url : "<?php echo base_url(); ?>/Users/update",
+                    type : 'post',
+                    data : $("#form-user").serialize(),
+                    success : function (a) {
+                        alert("Data updated successful");
+                        $("#form-user")[0].reset();
+                        $('#modal-user').modal('hide');
+                        $("#user-table-list").html(a);
+                    }
+                });
             }
-        });
+            else {
+                alert("The email address is not valid");
+            }
     });
 </script>

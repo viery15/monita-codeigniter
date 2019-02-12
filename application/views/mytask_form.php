@@ -11,7 +11,7 @@
 if(isset($task->id)) {
     ?>
     <div class="modal-header">
-        Update User #<?= $task->id ?>
+        Update Task #<?= $task->id ?>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
@@ -127,7 +127,7 @@ if(isset($task->id)) {
                 type: 'post',
                 data: $("#form-task").serialize(),
                 success: function (a) {
-                    alert("Create task success");
+                    alert("Data saved successful");
                     $("#form-task")[0].reset();
                     $('#modal-task').modal('hide');
                     $("#mytask-table-list").html(a);
@@ -152,7 +152,7 @@ if(isset($task->id)) {
                 type: 'post',
                 data: $("#form-task").serialize(),
                 success: function (a) {
-                    alert("Update task success");
+                    alert("Data updated successful");
                     $("#form-task")[0].reset();
                     $('#modal-task').modal('hide');
                     $("#mytask-table-list").html(a);

@@ -90,7 +90,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Delete request success");
+                        alert("Data deleted successful");
                         $("#myrequest-table-list").html(a);
                     }
                 });
@@ -105,7 +105,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Resend request success");
+                        alert("Data resent successful");
                         $("#myrequest-table-list").html(a);
                     }
                 });
