@@ -146,8 +146,21 @@ class Mytask extends CI_Controller
     public function approve2(){
         $post = $this->input->post();
         $this->task_model->approve();
-
         $data["task"] = $this->task_model->getById($post['id']);
+        $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
+
+        $email['destination'] = $data['user']->email;
+        $email['type'] = "approve";
+        $email['from'] = $data['task']->user_to;
+        $email['task_id'] = $data['task']->id;
+        $email['date_from'] = $data['task']->date_from;
+        $email['date_to'] = $data['task']->date_to;
+        $email['description'] = $data['task']->description;
+        $email['status'] = $data['task']->status;
+        $email['title'] = $data['task']->remark;
+
+        $this->sendmail($email);
+
         $this->notification_model->approve($data['task']);
 
         $data["mytask"] = $this->task_model->getTask();
@@ -182,11 +195,22 @@ class Mytask extends CI_Controller
     public function done2(){
         $post = $this->input->post();
         $this->task_model->done();
-
         $data["task"] = $this->task_model->getById($post['id']);
+        $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
+
         $this->notification_model->done($data['task']);
 
+        $email['destination'] = $data['user']->email;
+        $email['type'] = "done";
+        $email['from'] = $data['task']->user_to;
+        $email['task_id'] = $data['task']->id;
+        $email['date_from'] = $data['task']->date_from;
+        $email['date_to'] = $data['task']->date_to;
+        $email['description'] = $data['task']->description;
+        $email['status'] = $data['task']->status;
+        $email['title'] = $data['task']->remark;
 
+        $this->sendmail($email);
         $data["mytask"] = $this->task_model->getTask();
         $this->load->view("task_page_content", $data);
     }
@@ -219,8 +243,21 @@ class Mytask extends CI_Controller
         $post = $this->input->post();
         $this->task_model->reject();
         $data["task"] = $this->task_model->getById($post['id']);
+        $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
 
         $this->notification_model->reject($data['task']);
+
+        $email['destination'] = $data['user']->email;
+        $email['type'] = "reject";
+        $email['from'] = $data['task']->user_to;
+        $email['task_id'] = $data['task']->id;
+        $email['date_from'] = $data['task']->date_from;
+        $email['date_to'] = $data['task']->date_to;
+        $email['description'] = $data['task']->description;
+        $email['status'] = $data['task']->status;
+        $email['title'] = $data['task']->remark;
+
+        $this->sendmail($email);
 
         $data["mytask"] = $this->task_model->getTask();
         $this->load->view("task_page_content", $data);

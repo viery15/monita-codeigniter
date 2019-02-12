@@ -182,10 +182,18 @@ class Myrequest extends CI_Controller
 
     public function resend2(){
         $post = $this->input->post();
-        $this->task_model->resend();
         $data["task"] = $this->task_model->getById($post['id']);
+        $data["user"] = $this->user_model->getByNik2($data['task']->user_to);
 
         $this->notification_model->resend($data['task']);
+        $this->task_model->resend();
+
+        $email['destination'] = $data['user']->email;
+        $email['type'] = "new";
+        $email['from'] = $data['task']->user_from;
+        $email['task_id'] = $data['task']->id;
+
+        $this->sendmail($email);
 
         $data["myrequest"] = $this->task_model->getRequest();
         $this->load->view("task_page_content", $data);

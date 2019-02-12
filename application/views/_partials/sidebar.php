@@ -11,7 +11,10 @@
                     <a href="<?php echo base_url(); ?>dashboard">
                     <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
-
+                <li class="<?php echo $this->uri->segment(1) == 'mycalendar' ? 'active': '' ?>">
+                    <a href="<?php echo base_url(); ?>mycalendar">
+                        <i class="fas fa-calendar-alt"></i>My Calendar</a>
+                </li>
                 <li class="<?php echo $this->uri->segment(1) == 'mytask' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>mytask"><i class="fas fa-list-alt"></i> My Task</a>
                 </li>

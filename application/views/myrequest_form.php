@@ -77,7 +77,7 @@ if(isset($request->id)) {
             <div class="form-group">
                 <label for="role">Assign To: <i style="color:red">*</i></label>
                 <select class="form-control select-nik" id="user_to" name="user_to" required>
-                    <option disabled selected>Select NIK</option>
+                    <option disabled selected value="">Select NIK</option>
                     <?php
                         foreach ($users as $user) {
                     ?>
@@ -114,35 +114,55 @@ if(isset($request->id)) {
     });
 
     $('#submit-request').click(function(){
-        $.ajax({
-            url : "<?php echo base_url(); ?>/Myrequest/create",
-            type : 'post',
-            data : $("#form-request").serialize(),
-            success : function (a) {
-                alert("Create request success");
-                $("#form-request")[0].reset();
-                $('#modal-request').modal('hide');
-                $("#myrequest-table-list").html(a);
-                $('#modal-task').modal('hide');
-                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
-            }
-        });
+        var date_from = $("#date_from").val();
+        var date_to = $("#date_to").val();
+        var remark = $("#remark").val();
+        var description = $("#description").val();
+        var user_to = $("#user_to").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+            alert("All required fields cannot be empty!");
+        }
+        else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Myrequest/create",
+                type: 'post',
+                data: $("#form-request").serialize(),
+                success: function (a) {
+                    alert("Create request success");
+                    $("#form-request")[0].reset();
+                    $('#modal-request').modal('hide');
+                    $("#myrequest-table-list").html(a);
+                    $('#modal-task').modal('hide');
+                    $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
+                }
+            });
+        }
     });
 
     $('#update-user').click(function(){
-        $.ajax({
-            url : "<?php echo base_url(); ?>/Myrequest/update",
-            type : 'post',
-            data : $("#form-request").serialize(),
-            success : function (a) {
-                alert("Update request success");
-                $("#form-request")[0].reset();
-                $('#modal-request').modal('hide');
-                $('#modal-task').modal('hide');
-                $("#myrequest-table-list").html(a);
-                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
-            }
-        });
+        var date_from = $("#date_from").val();
+        var date_to = $("#date_to").val();
+        var remark = $("#remark").val();
+        var description = $("#description").val();
+        var user_to = $("#user_to").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+            alert("All required fields cannot be empty!");
+        }
+        else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Myrequest/update",
+                type: 'post',
+                data: $("#form-request").serialize(),
+                success: function (a) {
+                    alert("Update request success");
+                    $("#form-request")[0].reset();
+                    $('#modal-request').modal('hide');
+                    $('#modal-task').modal('hide');
+                    $("#myrequest-table-list").html(a);
+                    $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
+                }
+            });
+        }
     });
 </script>
 

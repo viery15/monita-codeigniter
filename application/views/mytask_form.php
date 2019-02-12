@@ -76,7 +76,7 @@ if(isset($task->id)) {
             <div class="form-group">
                 <label for="role">Assign From: <i style="color:red">*</i></label>
                 <select class="form-control select-nik" id="user_from" name="user_from" required>
-                    <option disabled selected>Select NIK</option>
+                    <option disabled selected value="">Select NIK</option>
                     <?php
                     foreach ($users as $user) {
                         ?>
@@ -113,33 +113,51 @@ if(isset($task->id)) {
     });
 
     $('#submit-task').click(function(){
-        $.ajax({
-            url : "<?php echo base_url(); ?>/Mytask/create",
-            type : 'post',
-            data : $("#form-task").serialize(),
-            success : function (a) {
-                alert("Create task success");
-                $("#form-task")[0].reset();
-                $('#modal-task').modal('hide');
-                $("#mytask-table-list").html(a);
-                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
-            }
-        });
+        var date_from = $("#date_from").val();
+        var date_to = $("#date_to").val();
+        var remark = $("#remark").val();
+        var description = $("#description").val();
+        var user_to = $("#user_from").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+            alert("All required fields cannot be empty!");
+        }
+        else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Mytask/create",
+                type: 'post',
+                data: $("#form-task").serialize(),
+                success: function (a) {
+                    alert("Create task success");
+                    $("#form-task")[0].reset();
+                    $('#modal-task').modal('hide');
+                    $("#mytask-table-list").html(a);
+                    $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
+                }
+            });
+        }
     });
 
     $('#update-task').click(function(){
-        $.ajax({
-            url : "<?php echo base_url(); ?>/Mytask/update",
-            type : 'post',
-            data : $("#form-task").serialize(),
-            success : function (a) {
-                alert("Update task success");
-                $("#form-task")[0].reset();
-                $('#modal-task').modal('hide');
-                $("#mytask-table-list").html(a);
-            }
-        });
+        var date_from = $("#date_from").val();
+        var date_to = $("#date_to").val();
+        var remark = $("#remark").val();
+        var description = $("#description").val();
+        var user_to = $("#user_to").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+            alert("All required fields cannot be empty!");
+        }
+        else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Mytask/update",
+                type: 'post',
+                data: $("#form-task").serialize(),
+                success: function (a) {
+                    alert("Update task success");
+                    $("#form-task")[0].reset();
+                    $('#modal-task').modal('hide');
+                    $("#mytask-table-list").html(a);
+                }
+            });
+        }
     });
 </script>
-
-

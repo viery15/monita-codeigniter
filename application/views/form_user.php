@@ -61,7 +61,7 @@ if(isset($id)) {
         <div class="form-group">
             <label for="role">Role: <i style="color:red">*</i></label>
             <select class="form-control" id="role" name="role" required>
-                <option disabled selected>Select role</option>
+                <option disabled selected value="">Select role</option>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
             </select>
@@ -78,26 +78,29 @@ if(isset($id)) {
 <script type="text/javascript">
     $('#submit-user').click(function(){
         var nik = $("#nik").val();
-        if (nik == "") {
-            alert("Make sure all form fields are filled");
+        var email = $("#email").val();
+        var role = $("#role").children("option:selected").val();
+        var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+        if (nik == "" || email == "" || role == "") {
+            alert("All required fields cannot be empty!");
         }
         else {
-
-        $.ajax({
-           url : "<?php echo base_url(); ?>/Users/create",
-           type : 'post',
-           data : $("#form-user").serialize(),
-           success : function (a) {
-               alert("Create user sukses");
-               $("#form-user")[0].reset();
-               $('#modal-user').modal('hide');
-               $("#user-table-list").html(a);
-
-           },
-           error : function(e) {
-               alert("Make sure all form fields are filled");
-           }
-        });
+            if(testEmail.test(email)) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Users/create",
+                    type: 'post',
+                    data: $("#form-user").serialize(),
+                    success: function (a) {
+                        alert("Create user sukses");
+                        $("#form-user")[0].reset();
+                        $('#modal-user').modal('hide');
+                        $("#user-table-list").html(a);
+                    },
+                });
+            }
+            else {
+                alert("The email address is not valid");
+            }
         }
     });
 

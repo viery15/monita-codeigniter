@@ -64,7 +64,7 @@
             dataType: 'json',
             success : function(a) {
                 if (a.failed == 'true') {
-                    alert('Username atau Password salah');
+                    alert('Invalid credentials');
                 }
                 else if(a.failed == 'false') {
                     window.location.href = "<?php echo base_url(); ?>dashboard";

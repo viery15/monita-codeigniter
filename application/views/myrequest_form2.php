@@ -138,18 +138,28 @@ if(isset($request->id)) {
     });
 
     $('#update-user').click(function(){
-        $.ajax({
-            url : "<?php echo base_url(); ?>/Myrequest/update2",
-            type : 'post',
-            data : $("#form-request").serialize(),
-            success : function (a) {
-                alert("Update request success");
-                $("#form-request")[0].reset();
-                $('#modal-request').modal('hide');
-                $('#modal-task').modal('hide');
-                $("#task-content").html(a);
-            }
-        });
+        var date_from = $("#date_from").val();
+        var date_to = $("#date_to").val();
+        var remark = $("#remark").val();
+        var description = $("#description").val();
+        var user_to = $("#user_to").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+            alert("All required fields cannot be empty!");
+        }
+        else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Myrequest/update2",
+                type: 'post',
+                data: $("#form-request").serialize(),
+                success: function (a) {
+                    alert("Update request success");
+                    $("#form-request")[0].reset();
+                    $('#modal-request').modal('hide');
+                    $('#modal-task').modal('hide');
+                    $("#task-content").html(a);
+                }
+            });
+        }
     });
 </script>
 
