@@ -17,4 +17,5 @@ $route['logout'] = 'site/logout';
 $route['task/(:num)'] = 'mytask/task/$1';
 $route['monitoring'] = 'monitoring/index';
 $route['mycalendar'] = 'mycalendar';
+$route['category'] = 'category';
 $route['notification'] = 'site/notification';

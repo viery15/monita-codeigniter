@@ -121,14 +121,14 @@
         deals: [{
             rentedTo: 'Lisa Star',
             from: today - 1 * day,
-            to: today + 3 * day
+            to: today + 5 * day
         }, {
             rentedTo: 'Shane Long',
             from: today - 1 * day,
-            to: today - 2 * day
+            to: today + 5 * day
         }, {
             rentedTo: 'Jack Coleman',
-            from: today + 1 * day,
+            from: today + 9 * day,
             to: today + 360 * day
         }]
     }, {
@@ -265,23 +265,8 @@
                     categories: map(series, function (s) {
                         return s.current.rentedTo;
                     })
-                }, {
-                    title: {
-                        text: 'From'
-                    },
-                    categories: map(series, function (s) {
-                        return dateFormat('%e %b', s.current.from);
-                    })
-                }, {
-                    title: {
-                        text: 'To'
-                    },
-                    categories: map(series, function (s) {
-                        return dateFormat('%e %b', s.current.to);
-                    })
                 }]
             }
         }
     });
 </script>
-
