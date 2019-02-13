@@ -11,6 +11,7 @@
     <tr>
         <th>Start Date</th>
         <th>Assign To</th>
+        <th>Category</th>
         <th>Title</th>
         <th>Description</th>
         <th>Status</th>
@@ -24,6 +25,7 @@
         <tr>
             <td><?= date("d M Y", strtotime($request->date_from)) ?></td>
             <td><?= $request->user_to ?></td>
+            <td><?= strtoupper($request->category) ?></td>
             <td><?= ucfirst($request->remark) ?></td>
             <td><?= ucfirst($request->description) ?></td>
             <td><?= ucfirst($request->status) ?></td>

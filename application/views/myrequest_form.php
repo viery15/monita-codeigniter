@@ -42,6 +42,18 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
+                <label for="role">Category: <i style="color:red">*</i></label>
+                <select class="form-control select-category" id="category" name="category" required>
+                    <option disabled selected>Select Category</option>
+                    <?php
+                    foreach ($category as $category) {
+                        ?>
+                        <option value="<?= $category->label ?>"<?=$request->category == $category->label ? ' selected="selected"' : '';?>><?= $category->label ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
                 <input value="<?= $request->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
@@ -87,6 +99,18 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
+                <label for="role">Category: <i style="color:red">*</i></label>
+                <select class="form-control select-category" id="category" name="category" required>
+                    <option disabled selected>Select Category</option>
+                    <?php
+                    foreach ($category as $category) {
+                        ?>
+                        <option value="<?= $category->label ?>"><?= $category->label ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
                 <input autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
@@ -109,6 +133,9 @@ if(isset($request->id)) {
     $(".select-nik").select2({
         width: 'resolve' // need to override the changed default
     });
+    $(".select-category").select2({
+        width: 'resolve' // need to override the changed default
+    });
     $('.input-daterange input').each(function() {
         $(this).datepicker();
     });
@@ -119,7 +146,8 @@ if(isset($request->id)) {
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_to").children("option:selected").val();
-        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+        var category = $("#category").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "" || category == "") {
             alert("All required fields cannot be empty!");
         }
         else {
@@ -145,7 +173,8 @@ if(isset($request->id)) {
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_to").children("option:selected").val();
-        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+        var category = $("#category").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "" || category == "") {
             alert("All required fields cannot be empty!");
         }
         else {
@@ -165,4 +194,3 @@ if(isset($request->id)) {
         }
     });
 </script>
-

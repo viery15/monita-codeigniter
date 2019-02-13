@@ -13,6 +13,7 @@ class Myrequest extends CI_Controller
         $this->load->model("task_model");
         $this->load->model("user_model");
         $this->load->model("comment_model");
+        $this->load->model("category_model");
         $this->load->model("notification_model");
         $this->load->library('form_validation');
     }
@@ -85,6 +86,7 @@ class Myrequest extends CI_Controller
 
     public function form_add(){
         $data["users"] = $this->user_model->getUserAssign();
+        $data["category"] = $this->category_model->getAll();
 
         $this->load->view("myrequest_form",$data);
     }
@@ -92,6 +94,7 @@ class Myrequest extends CI_Controller
     public function form_update($id){
         $data["request"] = $this->task_model->getById($id);
         $data["users"] = $this->user_model->getUserAssign();
+        $data["category"] = $this->category_model->getAll();
 
         $this->load->view("myrequest_form", $data);
     }

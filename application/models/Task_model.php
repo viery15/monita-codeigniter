@@ -208,6 +208,7 @@ class Task_model extends CI_Model
         $this->status = $post["status"];
         $this->date_from = $post["date_from"];
         $this->date_to = $post["date_to"];
+        $this->category = $post["category"];
         $this->user_to = $post["user_to"];
         $this->remark = $post["remark"];
         $this->description = $post["description"];
