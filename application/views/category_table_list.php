@@ -11,9 +11,8 @@
     foreach ($category as $category) {
         ?>
         <tr>
-            <td><?= $category->label ?></td>
-            <td><?= $category->name ?></td>
-
+            <td><?= strtoupper($category->label) ?></td>
+            <td><?= ucfirst($category->name) ?></td>
             <td width="20%">
                 <button type="button" class="btn btn-warning btn-update" data-toggle="modal" data-target="#modal-category" id="<?= $category->id ?>"><i class="fa fa-pencil-square-o"></i></button>
                 <button type="button" class="btn btn-danger btn-delete" id="<?= $category->id ?>"><i class="fa fa-trash"></i></button>
