@@ -41,6 +41,18 @@ if(isset($task->id)) {
             </div>
 
             <div class="form-group">
+                <label for="role">Category: <i style="color:red">*</i></label>
+                <select class="form-control select-category" id="category" name="category" required>
+                    <option disabled selected>Select Category</option>
+                    <?php
+                    foreach ($category as $category) {
+                        ?>
+                        <option value="<?= $category->label ?>"<?=$request->category == $category->label ? ' selected="selected"' : '';?>><?= $category->label ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
                 <input value="<?= $task->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
@@ -86,6 +98,18 @@ if(isset($task->id)) {
             </div>
 
             <div class="form-group">
+                <label for="role">Category: <i style="color:red">*</i></label>
+                <select class="form-control select-category" id="category" name="category" required>
+                    <option disabled selected>Select Category</option>
+                    <?php
+                    foreach ($category as $category) {
+                        ?>
+                        <option value="<?= $category->label ?>"><?= $category->label ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
                 <input autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
@@ -106,6 +130,9 @@ if(isset($task->id)) {
 
 <script type="text/javascript">
     $(".select-nik").select2({
+        width: 'resolve' // need to override the changed default
+    });
+    $(".select-category").select2({
         width: 'resolve' // need to override the changed default
     });
     $('.input-daterange input').each(function() {

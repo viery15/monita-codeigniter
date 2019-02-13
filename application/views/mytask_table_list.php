@@ -11,6 +11,7 @@
     <tr>
         <th>Start Date</th>
         <th>Assign From</th>
+        <th>Category</th>
         <th>Title</th>
         <th>Description</th>
         <th>Status</th>
@@ -24,6 +25,7 @@
         <tr>
             <td><?= date("d M Y", strtotime($task->date_from)) ?></td>
             <td><?= $task->user_from ?></td>
+            <td><?= ucfirst($task->category) ?></td>
             <td><?= ucfirst($task->remark) ?></td>
             <td><?= ucfirst($task->description) ?></td>
             <td><?= ucfirst($task->status) ?></td>

@@ -1,22 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: VIERY
- * Date: 2/2/2019
- * Time: 9:59 AM
- */
-?>
-
-<?php
-/**
- * Created by PhpStorm.
- * User: VIERY
- * Date: 1/31/2019
- * Time: 2:59 PM
- */
-?>
-
-
 <?php header('Access-Control-Allow-Origin: *'); ?>
 
 <!DOCTYPE html>
@@ -110,4 +91,3 @@
     });
 
 </script>
-

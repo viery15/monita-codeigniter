@@ -22,7 +22,7 @@ class Mytask extends CI_Controller
         $this->load->model("user_model");
         $this->load->model("notification_model");
         $this->load->model("comment_model");
-        $this->load->library('form_validation');
+        $this->load->model("category_model");
     }
 
     public function index()
@@ -107,6 +107,7 @@ class Mytask extends CI_Controller
 
     public function form_add(){
         $data["users"] = $this->user_model->getUserAssign();
+        $data["category"] = $this->category_model->getAll();
 
         $this->load->view("mytask_form",$data);
     }
@@ -114,6 +115,7 @@ class Mytask extends CI_Controller
     public function form_update($id){
         $data["task"] = $this->task_model->getById($id);
         $data["users"] = $this->user_model->getUserAssign();
+        $data["category"] = $this->category_model->getAll();
 
         $this->load->view("mytask_form",$data);
     }
@@ -270,9 +272,14 @@ class Mytask extends CI_Controller
         $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
 
         $email['destination'] = $data['user']->email;
-        $email['type'] = "done";
+        $email['type'] = "reject";
         $email['from'] = $data['task']->user_to;
         $email['task_id'] = $data['task']->id;
+        $email['date_from'] = $data['task']->date_from;
+        $email['date_to'] = $data['task']->date_to;
+        $email['description'] = $data['task']->description;
+        $email['status'] = $data['task']->status;
+        $email['title'] = $data['task']->remark;
 
         $this->sendmail($email);
 
