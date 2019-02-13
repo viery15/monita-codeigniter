@@ -29,6 +29,7 @@
                 <thead>
                 <tr>
                     <th scope="col">Start Date</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assign From</th>
@@ -41,6 +42,7 @@
                 ?>
                 <tr>
                     <td><?= date('d M Y', strtotime($done->date_from))  ?></td>
+                    <td><?= strtoupper($done->category) ?></td>
                     <td><?= ucfirst($done->remark) ?></td>
                     <td><?= ucfirst($done->description)  ?></td>
                     <td><?= ucfirst($done->user_from)  ?></td>
@@ -53,6 +55,7 @@
                     ?>
                     <tr>
                         <td><?= date('d M Y', strtotime($progress->date_from))  ?></td>
+                        <td><?= strtoupper($done->category) ?></td>
                         <td><?= ucfirst($progress->remark) ?></td>
                         <td><?= ucfirst($progress->description)  ?></td>
                         <td><?= ucfirst($progress->user_from)  ?></td>
@@ -63,6 +66,7 @@
                 <tfoot>
                 <tr>
                     <th scope="col">Start Date</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assign From</th>
@@ -125,4 +129,3 @@
         });
     });
 </script>
-
