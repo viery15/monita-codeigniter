@@ -52,9 +52,6 @@
 
                     <div id="timeline-dashboard">
                     <?php $this->load->view("dashboard_timeline.php") ?>
-
-
-
                     </div>
                 </div>
             </div>
@@ -96,7 +93,6 @@
     </div>
 </div>
 
-
 <?php $this->load->view("loading-modal.php") ?>
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
@@ -109,4 +105,3 @@
         $("#modal-loading").show();
     });
 </script>
-
