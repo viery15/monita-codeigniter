@@ -291,7 +291,11 @@
                     url: "<?php echo base_url(); ?>/Mytask/done",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Success");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
@@ -306,7 +310,11 @@
                     url: "<?php echo base_url(); ?>/Mytask/reject",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Data rejected successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
@@ -321,7 +329,11 @@
                     url: "<?php echo base_url(); ?>/Mytask/approve",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Data approved successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
@@ -351,7 +363,11 @@
                     url: "<?php echo base_url(); ?>/Myrequest/resend",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Data resent successful");
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }

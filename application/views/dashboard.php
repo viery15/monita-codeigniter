@@ -44,6 +44,7 @@
                         <div class="col-md-12">
                             <div class="overview-wrap">
                                 <h2 class="title-1">Dashboard</h2>
+
                             </div>
                         </div>
                     </div>
@@ -51,6 +52,9 @@
 
                     <div id="timeline-dashboard">
                     <?php $this->load->view("dashboard_timeline.php") ?>
+
+
+
                     </div>
                 </div>
             </div>
@@ -91,10 +95,18 @@
         </div>
     </div>
 </div>
+
+
+<?php $this->load->view("loading-modal.php") ?>
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
 </body>
 
 </html>
 <!-- end document-->
+<script type="text/javascript">
+    $("#coba").click(function(){
+        $("#modal-loading").show();
+    });
+</script>
 
