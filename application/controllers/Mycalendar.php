@@ -20,14 +20,24 @@ class Mycalendar extends CI_Controller
             redirect(base_url());
         }
 
-        $this->load->model("user_model");
-        $this->load->library('form_validation');
+        $this->load->model("category_model");
+        $this->load->model("task_model");
     }
 
     public function index()
     {
-//        $data["users"] = $this->user_model->getAll();
-        $this->load->view("mycalendar");
+        $data["task"] = $this->task_model->getTaskCalender();
+        $data["category"] = $this->category_model->getAll();
+
+        $this->load->view("mycalendar",$data);
+    }
+
+    public function search($category)
+    {
+        $data["task"] = $this->task_model->getByCategory($category);
+
+//        print_r($data);
+        $this->load->view("mycalendar_content",$data);
     }
 
 }

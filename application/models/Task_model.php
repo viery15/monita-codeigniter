@@ -64,6 +64,14 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getTaskCalender(){
+        $this->db->where('user_to', $this->session->nik);
+        $this->db->where('status', 'progress');
+        $this->db->or_where('status', 'done');
+
+        return $this->db->get($this->_table)->result();
+    }
+
     public function getRequestTimeline()
     {
         $this->db->where('user_from', $this->session->nik);
@@ -182,6 +190,11 @@ class Task_model extends CI_Model
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();
+    }
+
+    public function getByCategory($category)
+    {
+        return $this->db->get_where($this->_table, ["category" => $category])->result();
     }
 
     public function delete($id)

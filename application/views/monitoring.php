@@ -104,7 +104,6 @@
 <!-- end document-->
 <script type="text/javascript">
     $(document).ready(function() {
-
         $(".select-nik").select2({
             width: 'resolve'
         });
