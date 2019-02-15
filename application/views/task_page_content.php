@@ -85,7 +85,11 @@
                 url: "<?php echo base_url(); ?>/Myrequest/resend2",
                 type: 'post',
                 data: {'id': id},
+                beforeSend: function () {
+                    $('#loading').click();
+                },
                 success: function (a) {
+                    $('#modal-loading').modal('toggle');
                     alert("Data resent successful");
                     $("#task-content").html(a);
                 }
@@ -100,7 +104,11 @@
                 url: "<?php echo base_url(); ?>/Mytask/approve2",
                 type: 'post',
                 data: {'id': id},
+                beforeSend: function () {
+                    $('#loading').click();
+                },
                 success: function (a) {
+                    $('#modal-loading').modal('toggle');
                     alert("Data approved successful");
                     $("#task-content").html(a);
                 }
@@ -115,7 +123,11 @@
                 url: "<?php echo base_url(); ?>/Mytask/done2",
                 type: 'post',
                 data: {'id': id},
+                beforeSend: function () {
+                    $('#loading').click();
+                },
                 success: function (a) {
+                    $('#modal-loading').modal('toggle');
                     alert("Success");
                     $("#task-content").html(a);
                 }
@@ -130,7 +142,11 @@
                 url: "<?php echo base_url(); ?>/Mytask/reject2",
                 type: 'post',
                 data: {'id': id},
+                beforeSend: function () {
+                    $('#loading').click();
+                },
                 success: function (a) {
+                    $('#modal-loading').modal('toggle');
                     alert("Data rejected successful");
                     $("#task-content").html(a);
                 }
