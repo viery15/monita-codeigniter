@@ -58,6 +58,7 @@
         </div>
         <!-- END MAIN CONTENT-->
         <!-- END PAGE CONTAINER-->
+        <?php $this->load->view("_partials/copyright.php") ?>
     </div>
 </div>
 

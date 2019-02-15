@@ -44,6 +44,7 @@
                 </div>
             </div>
         </div>
+        <?php $this->load->view("_partials/copyright.php") ?>
     </div>
 
 </div>
