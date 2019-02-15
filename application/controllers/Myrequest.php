@@ -223,6 +223,19 @@ class Myrequest extends CI_Controller
 
     public function download($filename){
         $this->load->helper('download');
-        force_download(FCPATH.'/uploads/'.$filename, null);
+        $filename2 = str_replace('%20', ' ', $filename);
+        force_download(FCPATH.'/uploads/'.$filename2, null);
+
+//        set_time_limit(0); // unlimited max execution time
+//        $options = array(
+//            CURLOPT_FILE    => fopen($filename, 'w'),
+//            CURLOPT_TIMEOUT =>  28800, // set this to 8 hours so we dont timeout on big files
+//            CURLOPT_URL     => '/uploads/'.$filename,
+//        );
+//
+//        $ch = curl_init();
+//        curl_setopt_array($ch, $options);
+//        curl_exec($ch);
+//        curl_close($ch);
     }
 }
