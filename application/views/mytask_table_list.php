@@ -106,7 +106,11 @@ $date_now = date('d M Y');
                     url: "<?php echo base_url(); ?>/Mytask/approve",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Data approved successful");
                         $("#mytask-table-list").html(a);
                     }
@@ -121,7 +125,11 @@ $date_now = date('d M Y');
                     url: "<?php echo base_url(); ?>/Mytask/done",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Success");
                         $("#mytask-table-list").html(a);
                     }
@@ -136,7 +144,11 @@ $date_now = date('d M Y');
                     url: "<?php echo base_url(); ?>/Mytask/reject",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Data rejected successful");
                         $("#mytask-table-list").html(a);
                     }

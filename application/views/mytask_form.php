@@ -153,10 +153,14 @@ if(isset($task->id)) {
                 url: "<?php echo base_url(); ?>/Mytask/create",
                 type: 'post',
                 data: $("#form-task").serialize(),
+                beforeSend: function () {
+                    $('#modal-task').modal('hide');
+                    $('#loading').click();
+                },
                 success: function (a) {
+                    $('#modal-loading').modal('toggle');
                     alert("Data saved successful");
                     $("#form-task")[0].reset();
-                    $('#modal-task').modal('hide');
                     $("#mytask-table-list").html(a);
                     $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                 }

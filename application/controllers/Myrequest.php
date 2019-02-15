@@ -171,7 +171,7 @@ class Myrequest extends CI_Controller
         $data["user"] = $this->user_model->getByNik2($data['task']->user_to);
 
         $this->notification_model->resend($data['task']);
-        
+
         $email['destination'] = $data['user']->email;
         $email['type'] = "new";
         $email['from'] = $data['task']->user_to;
