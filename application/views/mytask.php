@@ -78,7 +78,7 @@
 
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
-
+<?php $this->load->view("loading-modal.php") ?>
 </body>
 
 </html>

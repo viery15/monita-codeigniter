@@ -268,6 +268,7 @@
 
     </div>
 </div>
+<?php $this->load->view("loading-modal.php") ?>
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
 </body>

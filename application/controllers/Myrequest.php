@@ -166,16 +166,21 @@ class Myrequest extends CI_Controller
 
     public function resend(){
         $post = $this->input->post();
+        $this->task_model->resend();
         $data["task"] = $this->task_model->getById($post['id']);
         $data["user"] = $this->user_model->getByNik2($data['task']->user_to);
 
         $this->notification_model->resend($data['task']);
-        $this->task_model->resend();
-
+        
         $email['destination'] = $data['user']->email;
         $email['type'] = "new";
-        $email['from'] = $data['task']->user_from;
+        $email['from'] = $data['task']->user_to;
         $email['task_id'] = $data['task']->id;
+        $email['date_from'] = $data['task']->date_from;
+        $email['date_to'] = $data['task']->date_to;
+        $email['description'] = $data['task']->description;
+        $email['status'] = $data['task']->status;
+        $email['title'] = $data['task']->remark;
 
         $this->sendmail($email);
 

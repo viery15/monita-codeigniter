@@ -77,11 +77,8 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-
             <div id="content-modal2"></div>
-
         </div>
-
     </div>
 </div>
 
@@ -100,8 +97,3 @@
 
 </html>
 <!-- end document-->
-<script type="text/javascript">
-    $("#coba").click(function(){
-        $("#modal-loading").show();
-    });
-</script>

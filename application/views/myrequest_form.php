@@ -155,10 +155,14 @@ if(isset($request->id)) {
                 url: "<?php echo base_url(); ?>/Myrequest/create",
                 type: 'post',
                 data: $("#form-request").serialize(),
+                beforeSend: function () {
+                    $('#modal-request').modal('hide');
+                    $('#loading').click();
+                },
                 success: function (a) {
+                    $('#modal-loading').modal('toggle');
                     alert("Data saved successful");
                     $("#form-request")[0].reset();
-                    $('#modal-request').modal('hide');
                     $("#myrequest-table-list").html(a);
                     $('#modal-task').modal('hide');
                     $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");

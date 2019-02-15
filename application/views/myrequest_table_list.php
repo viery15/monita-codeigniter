@@ -106,7 +106,11 @@ $date_now = date('d M Y');
                     url: "<?php echo base_url(); ?>/Myrequest/resend",
                     type: 'post',
                     data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
                     success: function (a) {
+                        $('#modal-loading').modal('toggle');
                         alert("Data resent successful");
                         $("#myrequest-table-list").html(a);
                     }
