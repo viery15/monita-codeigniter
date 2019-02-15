@@ -77,31 +77,32 @@
                                 <b><?= $mytask->remark ?></b> <br>
                             </h5>
                             <h6 style="font-weight: normal"><?= $mytask->description ?></h6>
+                            <span class="time"><small><i class="fa fa-tags"></i> <?= $mytask->category ?></small></span>
                             <span class="time"><small><i class="fa fa-user"></i> <?= $mytask->user_from ?></small></span>
                             <span class="time"><small><i class="fa fa-clock"></i> <?= date('d M Y h:i a', strtotime($mytask->updated_at)) ?></small></span>
 
                             <?php
                             if ($mytask->status == 'done') {
                             ?>
-                            <span class="time" style="color: green"><small><i class="fa fa-tag"></i> <?= $mytask->status ?></small></span><br><br>
+                            <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'progress') {
                                 ?>
-                                <span class="time" style="color: blue"><small><i class="fa fa-tag"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'pending') {
                                 ?>
-                                <span class="time" style="color: darkorange"><small><i class="fa fa-tag"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: darkorange"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'rejected') {
                                 ?>
-                                <span class="time" style="color: red"><small><i class="fa fa-tag"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: red"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
@@ -188,31 +189,32 @@
                                 <b><?= $myrequest->remark ?></b> <br>
                             </h5>
                             <h6 style="font-weight: normal"><?= $myrequest->description ?></h6>
+                            <span class="time"><small><i class="fa fa-tags"></i> <?= $myrequest->category ?></small></span>
                             <span class="time"><small><i class="fa fa-user"></i> <?= $myrequest->user_to ?></small></span>
                             <span class="time"><small><i class="fa fa-clock"></i> <?= date('d M Y h:i a', strtotime($myrequest->updated_at)) ?></small></span>
 
                             <?php
                             if ($myrequest->status == 'done') {
                                 ?>
-                                <span class="time" style="color: green"><small><i class="fa fa-tag"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'progress') {
                                 ?>
-                                <span class="time" style="color: blue"><small><i class="fa fa-tag"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'pending') {
                                 ?>
-                                <span class="time" style="color: darkorange"><small><i class="fa fa-tag"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: darkorange"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'rejected') {
                                 ?>
-                                <span class="time" style="color: red"><small><i class="fa fa-tag"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: red"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
 
