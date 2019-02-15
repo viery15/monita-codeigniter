@@ -41,6 +41,7 @@
 
     </div>
     <div class="card-footer">
+        <i class="fa fa-tags" aria-hidden="true"></i> <?= $task->category ?>&nbsp;
         <i class="fa fa-clock" aria-hidden="true"></i> <?= date('d M Y h:i a', strtotime($task->updated_at)) ?> &nbsp;
         <?php
         if ($this->session->nik == $task->user_from) {
@@ -52,7 +53,7 @@
             ?>
             <i class="fa fa-user" aria-hidden="true"></i> <?= $task->user_from ?> &nbsp;
         <?php } ?>
-        <i class="fa fa-tag" aria-hidden="true"></i> <?= ucfirst($task->status) ?>
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= ucfirst($task->status) ?>
     </div>
 </div>
 
