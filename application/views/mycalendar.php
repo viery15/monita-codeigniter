@@ -19,6 +19,7 @@
     <script src="https://code.highcharts.com/gantt/highcharts-gantt.js"></script>
     <script src="https://code.highcharts.com/gantt/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/stock.js"></script>
+
     <?php $this->load->view("_partials/js.php") ?>
     <style type="text/css" >
         #container {
@@ -65,7 +66,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">Search by category</div>
+                                <div class="card-header">Task Filter</div>
                                 <div class="card-body">
                                     <form id="form-monitoring" novalidate="novalidate">
                                         <div class="form-group">
@@ -79,10 +80,20 @@
                                                 <?php } ?>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Date:</label>
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input autocomplete="off" type="text" class="input-sm form-control" id="date_from" />
+                                                <span class="input-group-addon">to</span>
+                                                <input autocomplete="off" type="text" class="input-sm form-control" id="date_to" />
+                                            </div>
+                                        </div>
                                         <div>
                                             <button id="btn-submit" type="button" class="btn btn-md btn-info">
                                                 <span id="payment-button-amount">Submit</span>
                                             </button>
+
+                                            <button id="excel" type="button" class="btn btn-success">Excel</button>
                                         </div>
                                     </form>
                                 </div>
@@ -93,6 +104,7 @@
                         <div class="col-lg-12">
                             <div class="au-card m-b-30">
                                 <div class="au-card-inner">
+
                                     <div id="calendar-content">
                                         <?php $this->load->view("mycalendar_content.php") ?>
                                     </div>
@@ -116,6 +128,8 @@
 
 </html>
 <script type="text/javascript">
+    $('.input-daterange').datepicker({
+    });
 
     $(document).ready(function(){
         $(".select-category").select2({
@@ -130,6 +144,15 @@
                     $("#calendar-content").html(html);
                 }
             });
+        });
+
+//        $("#excel").click(function(){
+//            window.location.href="<?php //echo base_url(); ?>///Mycalendar/excel";
+//        });
+        $("#excel").click(function(){
+            var date_from = $("#date_from").val();
+            var date_to = $("#date_to").val();
+            $.redirect("Mycalendar/excel", {date_from: date_from, date_to: date_to}, "POST");
         });
     });
 </script>

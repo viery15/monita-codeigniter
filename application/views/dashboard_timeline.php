@@ -121,10 +121,15 @@
                         </div>
                     </div>
                 <?php } ?>
-
+                <?php
+                if(count((array)$mytask) == 5){
+                ?>
                 <div class="au-task__footer">
+
                     <button class="au-btn au-btn-load" id="btn-load-task">load more</button>
+
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -236,8 +241,8 @@
                     <?php } ?>
 
                     <?php
-                    if ($myrequest != NULL) {
-                    ?>
+                    if(count((array)$myrequest) >= 5){
+                        ?>
                     <div class="au-task__footer">
                         <button class="au-btn au-btn-load" id="btn-load-request">load more</button>
                     </div>
