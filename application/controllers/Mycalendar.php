@@ -114,14 +114,14 @@ class Mycalendar extends CI_Controller
         $color_progress = array(
             'fill' => array(
                 'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'color' => array('rgb' => '2294fd')
+                'color' => array('rgb' => '56fd22')
             )
         );
 
         $color_done = array(
             'fill' => array(
                 'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'color' => array('rgb' => '56fd22')
+                'color' => array('rgb' => '2294fd')
             )
         );
 
