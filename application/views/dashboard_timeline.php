@@ -391,7 +391,7 @@
     <script>
         $(function () {
             Highcharts.setOptions({
-                colors: ['#50B432', '#308dc5', '#ffff19', '#f00000']
+                colors: ['#308dc5', '#50B432', '#ffff19', '#f00000']
             });
 
             Highcharts.chart('chart-mytask', {
@@ -451,7 +451,7 @@
     <script>
         $(function () {
             Highcharts.setOptions({
-                colors: ['#50B432', '#308dc5', '#ffff19', '#f00000']
+                colors: ['#308dc5', '#50B432', '#ffff19', '#f00000']
             });
 
             Highcharts.chart('chart-myrequest', {
