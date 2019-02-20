@@ -1,3 +1,8 @@
+<?php
+    $count_mytask = count((array)$mytask);
+    $count_myrequest = count((array)$myrequest);
+
+?>
 <div class="row">
     <div class="col-lg-6">
         <div class="au-card m-b-30">
@@ -122,7 +127,7 @@
                     </div>
                 <?php } ?>
                 <?php
-                if(count((array)$mytask) == 5){
+                if($count_mytask >= 5){
                 ?>
                 <div class="au-task__footer">
 
@@ -241,7 +246,7 @@
                     <?php } ?>
 
                     <?php
-                    if(count((array)$myrequest) >= 5){
+                    if($count_myrequest >= 5){
                         ?>
                     <div class="au-task__footer">
                         <button class="au-btn au-btn-load" id="btn-load-request">load more</button>
