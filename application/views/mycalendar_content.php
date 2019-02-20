@@ -5,123 +5,181 @@
  * Date: 2/14/2019
  * Time: 2:34 PM
  */
+
+$day_from = date('j', strtotime($date_from));
+$day_to = date('j', strtotime($date_to));
+///
+$month_from = date('n', strtotime($date_from));
+$month_to = date('n', strtotime($date_to));
+
+$year_from = date('o', strtotime($date_from));
+$year_to = date('o', strtotime($date_to));
 ?>
-<div id="calendar">
+<html>
+    <head>
+        <style type="text/css">
+            .table-scroll {
+                position:relative;
+                max-width:805px;
+                margin:auto;
+                overflow:hidden;
+                border:1px solid #000;
+            }
+            .table-wrap {
+                width:100%;
+                overflow:auto;
+            }
+            .table-scroll table {
+                /*width:100%;*/
+                margin:auto;
+                border-collapse:separate;
+                border-spacing:0;
+            }
+            .table-scroll th, .table-scroll td {
+                padding:5px 10px;
+                border:1px solid #000;
+                background:#fff;
+                white-space:nowrap;
+                vertical-align:top;
+            }
+            .table-scroll thead, .table-scroll tfoot {
+                background:#f9f9f9;
+            }
+            .clone {
+                position:absolute;
+                top:0;
+                left:0;
+                pointer-events:none;
+            }
+            .clone th, .clone td {
+                visibility:hidden
+            }
+            .clone td, .clone th {
+                border-color:transparent
+            }
+            .clone tbody th {
+                visibility:visible;
+                color:red;
+            }
+            .clone .fixed-side {
+                border:1px solid #000;
+                background:#eee;
+                visibility:visible;
+            }
+            .clone thead, .clone tfoot{background:transparent;}
+        </style>
+    </head>
+    <body>
+    <div id="table-scroll" class="table-scroll" style="font-size: 15px">
+        <div class="table-wrap">
+            <?php
+//            print_r($date_to);
+            ?>
+            <table class="main-table">
+                <thead>
+                <tr>
+                    <th class="fixed-side" scope="col" rowspan="2">No</th>
+                    <th class="fixed-side" scope="col" rowspan="2">Category</th>
+                    <th scope="col" rowspan="2">Remark</th>
+                    <th scope="col" rowspan="2">Description</th>
+                    <th scope="col" rowspan="2">Date Start</th>
+                    <th scope="col" rowspan="2">Date End</th>
+                    <th scope="col" rowspan="2">Status</th>
+                    <?php
 
-</div>
+                            for ($m = $month_from; $m <= $month_to; $m++) {
+                                ?>
+                                <?php
+                                if ($m > $month_from && $m < $month_to) {
+                                    $date = new DateTime('2019-' . $m);
+                                    $date->modify('last day of this month');
+                                    $count_date = $date->format('d');
+                                    $colspan = $count_date;
+                                }
+                                if ($month_to == $month_from) {
+                                    $colspan = ($day_to - $day_from) + 1;
+                                }
+                                if ($m == $month_from && $month_to > $month_from) {
+                                    $date = new DateTime('2019-' . $m);
+                                    $date->modify('last day of this month');
+                                    $count_date = $date->format('d');
+                                    $colspan = $count_date;
+                                }
+
+                                if ($m == $month_to && $month_to > $month_from) {
+                                    $colspan = $day_to;
+                                }
+                                if ($m == $month_from && $month_to > $month_from) {
+                                    $date = new DateTime('2019-' . $m);
+                                    $date->modify('last day of this month');
+                                    $count_date = $date->format('d');
+                                    $colspan = ($count_date - $day_from)+1;
+                                }
+                                if ($m == $month_from && $month_to == $month_from) {
+                                    $colspan = $day_to;
+                                }
+                                ?>
+                                <th scope="col" colspan="<?= $colspan ?>" style="text-align: center"><?= date('M Y', strtotime($year_from . '-' . $m)) ?></th>
+                                <?php
+
+                            }
+                    ?>
+                </tr>
+                <tr>
+                    <?php
+                        $real_day_to = $day_to;
+                            for ($m = $month_from; $m <= $month_to; $m++){
+                                if ($m > $month_from && $m < $month_to) {
+                                    $date = new DateTime('2019-' . $m);
+                                    $date->modify('last day of this month');
+                                    $day_to = $date->format('d');
+                                    $day_from = 1;
+                                }
+                                if ($m == $month_from && $month_from < $month_to) {
+                                    $date = new DateTime('2019-' . $m);
+                                    $date->modify('last day of this month');
+                                    $day_to = $date->format('d');
+                                }
+
+                                if ($month_from == $month_to){
+                                    $day_to = $real_day_to;
+                                }
+                                if ($m == $month_to){
+                                    $day_to = $real_day_to;
+                                    $day_from = 1;
+                                }
+                                for ($i=$day_from; $i <= $day_to ; $i++){
+                    ?>
+                                    <td><?= $i ?></td>
+                    <?php
+                                }
+                            }
+                    ?>
+                </tr>
+
+                </thead>
+                <tbody>
+                <?php
+                    $num = 1;
+                    foreach ($task as $task){
+                ?>
+                <tr>
+                    <td class="fixed-side"><?= $num ?></td>
+                    <td class="fixed-side"><?=  $task->category ?></td>
+                    <td ><?=  $task->remark ?></td>
+                    <td><?=  $task->description ?></td>
+                    <td><?=  date('d M Y', strtotime($task->date_from)) ?></td>
+                    <td><?=  date('d M Y', strtotime($task->date_to)) ?></td>
+                    <td><?=  $task->status ?></td>
+                </tr>
+                <?php $num++; } ?>
+            </table>
+        </div>
+    </div>
+    </body>
+</html>
 <script type="text/javascript">
-    // Set to 00:00:00:000 today
-    var today = new Date(),
-        day = 1000 * 60 * 60 * 24,
-        map = Highcharts.map,
-        dateFormat = Highcharts.dateFormat,
-        series,
-        cars;
-
-    // Set to 00:00:00:000 today
-    today.setUTCHours(0);
-    today.setUTCMinutes(0);
-    today.setUTCSeconds(0);
-    today.setUTCMilliseconds(0);
-    today = today.getTime();
-
-    cars = [
-        <?php
-        foreach ($task as $task){
-        $today = date('Y-m-d');
-        $date_from = $task->date_from;
-        $date_to = $task->date_to;
-        $dStart = new DateTime($today);
-        $dEnd  = new DateTime($date_from);
-        $dEnd2  = new DateTime($date_to);
-        $dDiff = $dStart->diff($dEnd);
-        $dDiff2 = $dStart->diff($dEnd2);
-
-        ?>
-        {
-            model: <?php echo json_encode(strtoupper($task->category)) ?>,
-            current: 0,
-            deals: [{
-                rentedTo: <?php echo json_encode(ucfirst($task->remark)) ?>,
-                from: today + <?php echo json_encode($dDiff->days) ?> * day,
-                to: today + <?php echo json_encode($dDiff2->days) ?> * day,
-                status: <?php echo json_encode(ucfirst($task->status)) ?>,
-            }]
-        },
-        <?php } ?>
-    ];
-
-    // Parse car data into series.
-    series = cars.map(function (car, i) {
-        var data = car.deals.map(function (deal) {
-            return {
-                id: 'deal-' + i,
-                rentedTo: deal.rentedTo,
-                start: deal.from,
-                end: deal.to,
-                status: deal.status,
-                y: i
-            };
-        });
-        return {
-            name: car.model,
-            data: data,
-            current: car.deals[car.current]
-        };
-    });
-
-    Highcharts.ganttChart('calendar', {
-        series: series,
-        title: {
-            text: 'My Task Calendar'
-        },
-        tooltip: {
-            pointFormat: '<span>Title: {point.rentedTo}</span><br/><span>From: {point.start:%e %b %Y}</span><br/><span>To: {point.end:%e %b %Y}</span><br/><span>Status: {point.status}</span>'
-        },
-        navigator: {
-            enabled: true,
-            liveRedraw: true,
-            series: {
-                type: 'gantt',
-                pointPlacement: 0.5,
-                pointPadding: 0.25
-            },
-            yAxis: {
-                min: 0,
-                max: 3,
-                reversed: true,
-                categories: []
-            }
-        },
-        scrollbar: {
-            enabled: true
-        },
-        rangeSelector: {
-            enabled: true,
-            selected: 0
-        },
-        xAxis: {
-            currentDateIndicator: true
-        },
-        yAxis: {
-            type: 'category',
-            grid: {
-                columns: [{
-                    title: {
-                        text: 'Category'
-                    },
-                    categories: map(series, function (s) {
-                        return s.name;
-                    })
-                }, {
-                    title: {
-                        text: 'Title'
-                    },
-                    categories: map(series, function (s) {
-                        return s.current.rentedTo;
-                    })
-                }]
-            }
-        }
+    jQuery(document).ready(function() {
+        jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
     });
 </script>

@@ -138,8 +138,12 @@
 
         $("#btn-submit").click(function(){
             var category = $("#category-form option:selected").val();
+            var date_from = $("#date_from").val();
+            var date_to = $("#date_to").val();
             $.ajax({
-                url : "<?php echo base_url(); ?>/Mycalendar/search/"+category,
+                url : "<?php echo base_url(); ?>/Mycalendar/search/",
+                type : 'post',
+                data : {'category':category, 'date_from':date_from, 'date_to': date_to},
                 success : function (html) {
                     $("#calendar-content").html(html);
                 }

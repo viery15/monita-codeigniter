@@ -80,6 +80,18 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function searchCalendar()
+    {
+        $post = $this->input->post();
+
+        $this->db->where('date_from >=', $post['date_from']);
+        $this->db->where('date_to <=', $post['date_to']);
+        $this->db->where('category', $post['category']);
+        $this->db->order_by('updated_at','DESC');
+        $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
     public function getTask()
     {
         $this->db->order_by('updated_at','DESC');
@@ -93,7 +105,7 @@ class Task_model extends CI_Model
         $date_to = $this->input->post('date_to');
 
         $this->db->where('date_from >=', $date_from);
-//        $this->db->where('date_to <=', $date_to);
+        $this->db->where('date_to <=', $date_to);
         $this->db->order_by('updated_at','DESC');
         $this->db->where('user_to', $this->session->nik);
         return $this->db->get($this->_table)->result();

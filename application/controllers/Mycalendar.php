@@ -32,11 +32,13 @@ class Mycalendar extends CI_Controller
         $this->load->view("mycalendar",$data);
     }
 
-    public function search($category)
+    public function search()
     {
-        $data["task"] = $this->task_model->getByCategory($category);
+        $post = $this->input->post();
+        $data["task"] = $this->task_model->searchCalendar();
+        $data["date_from"] = $post['date_from'];
+        $data["date_to"] = $post['date_to'];
 
-//        print_r($data);
         $this->load->view("mycalendar_content",$data);
     }
 
