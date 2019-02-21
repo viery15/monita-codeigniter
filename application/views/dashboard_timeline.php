@@ -53,14 +53,14 @@
                     if ($mytask->status == 'progress') {
 
                     ?>
-                    <div class="au-task__item au-task__item--primary">
+                    <div class="au-task__item au-task__item--success">
                     <?php } ?>
 
                     <?php
                     if ($mytask->status == 'done') {
 
                     ?>
-                    <div class="au-task__item au-task__item--success">
+                    <div class="au-task__item au-task__item--primary">
                     <?php } ?>
 
                     <?php
@@ -89,13 +89,13 @@
                             <?php
                             if ($mytask->status == 'done') {
                             ?>
-                            <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                            <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'progress') {
                                 ?>
-                                <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
@@ -170,14 +170,14 @@
         if ($myrequest->status == 'progress') {
 
         ?>
-        <div class="au-task__item au-task__item--primary">
+        <div class="au-task__item au-task__item--success">
             <?php } ?>
 
             <?php
             if ($myrequest->status == 'done') {
 
             ?>
-            <div class="au-task__item au-task__item--success">
+            <div class="au-task__item au-task__item--primary">
                 <?php } ?>
 
                 <?php
@@ -206,13 +206,13 @@
                             <?php
                             if ($myrequest->status == 'done') {
                                 ?>
-                                <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'progress') {
                                 ?>
-                                <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
