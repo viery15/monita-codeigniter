@@ -83,7 +83,7 @@
 
     $(function () {
         Highcharts.setOptions({
-            colors: ['#50B432', '#308dc5',]
+            colors: ['#308dc5', '#50B432',]
         });
 
         Highcharts.chart('container', {
