@@ -102,14 +102,10 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="au-card m-b-30">
-                                <div class="au-card-inner">
+                            <div id="calendar-content">
 
-                                    <div id="calendar-content">
-                                        <?php $this->load->view("mycalendar_content.php") ?>
-                                    </div>
-                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -150,13 +146,11 @@
             });
         });
 
-//        $("#excel").click(function(){
-//            window.location.href="<?php //echo base_url(); ?>///Mycalendar/excel";
-//        });
         $("#excel").click(function(){
             var date_from = $("#date_from").val();
             var date_to = $("#date_to").val();
-            $.redirect("Mycalendar/excel", {date_from: date_from, date_to: date_to}, "POST");
+            var category = $("#category-form option:selected").val();
+            $.redirect("Mycalendar/excel", {date_from: date_from, date_to: date_to, category:category}, "POST");
         });
     });
 </script>
