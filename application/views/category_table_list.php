@@ -59,7 +59,7 @@ $date_now = date('d M Y');
                     type: 'post',
                     data: {'id': id},
                     success: function (a) {
-                        alert("Delete user sukses");
+                        alert("Delete successful");
                         $("#category-table-list").html(a);
                     }
                 });
