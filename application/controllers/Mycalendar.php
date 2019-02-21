@@ -39,6 +39,7 @@ class Mycalendar extends CI_Controller
         $data["date_from"] = $post['date_from'];
         $data["date_to"] = $post['date_to'];
 
+//        echo $data['date_from'] .' - '. $data['date_to'];
         $this->load->view("mycalendar_content",$data);
     }
 
@@ -51,8 +52,8 @@ class Mycalendar extends CI_Controller
         $month_from = date('n', strtotime($date_from));
         $month_to = date('n', strtotime($date_to));
 
-        $year_from = date('o', strtotime($date_from));
-        $year_to = date('o', strtotime($date_to));
+        $year_from = date('Y', strtotime($date_from));
+        $year_to = date('Y', strtotime($date_to));
 
         $task = $this->task_model->getTaskByDate();
 
