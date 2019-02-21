@@ -16,10 +16,6 @@
     <title>My Calendar</title>
     <?php $this->load->view("_partials/head.php") ?>
 
-    <script src="https://code.highcharts.com/gantt/highcharts-gantt.js"></script>
-    <script src="https://code.highcharts.com/gantt/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/stock.js"></script>
-
     <?php $this->load->view("_partials/js.php") ?>
     <style type="text/css" >
         #container {

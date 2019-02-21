@@ -1,6 +1,6 @@
 
 <script src="<?php echo base_url('assets/jquery-3.2.1.min.js') ?>"></script>
-<script src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
+<script src="<?php echo base_url('js/jquery.redirect.js') ?>"></script>
 <!-- Bootstrap JS-->
 <script src="<?php echo base_url('assets/bootstrap-4.1/popper.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/bootstrap-4.1/bootstrap.min.js') ?>"></script>
