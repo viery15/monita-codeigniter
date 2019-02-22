@@ -82,11 +82,8 @@ $year_to = date('Y', strtotime($date_to));
                         <tr>
                             <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">No</th>
                             <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">Category</th>
-                            <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">Remark</th>
-                            <th style="vertical-align: middle" scope="col" rowspan="2">Description</th>
-                            <th style="vertical-align: middle" scope="col" rowspan="2">Date Start</th>
-                            <th style="vertical-align: middle" scope="col" rowspan="2">Date End</th>
-                            <th style="vertical-align: middle" scope="col" rowspan="2">Status</th>
+                            <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">Title</th>
+                            <th style="vertical-align: middle" scope="col" rowspan="2">Info</th>
                             <?php
                             $real_month_to = $month_to;
                             $real_month_from = $month_from;
@@ -282,13 +279,10 @@ $year_to = date('Y', strtotime($date_to));
                         }
                         ?>
                         <tr>
-                            <td class="fixed-side"><?= $num ?></td>
-                            <td class="fixed-side"><?=  strtoupper($task->category) ?></td>
-                            <td class="fixed-side"><?=  ucfirst($task->remark) ?></td>
-                            <td><?=  ucfirst($task->description) ?></td>
-                            <td><?=  date('d M Y', strtotime($task->date_from)) ?></td>
-                            <td><?=  date('d M Y', strtotime($task->date_to)) ?></td>
-                            <td><?= ucfirst($task->status) ?></td>
+                            <td class="fixed-side" style="color: <?= $color ?>"><?= $num ?></td>
+                            <td class="fixed-side" style="color: <?= $color ?>"><?=  strtoupper($task->category) ?></td>
+                            <td class="fixed-side" style="color: <?= $color ?>"><?=  ucfirst($task->remark) ?></td>
+                            <td style="color: <?= $color ?>"><button id="<?= $task->id ?>" class="btn btn-info btn-sm btn-detail"><i class="fa fa-eye"></i></button></td>
                             <?php
                             for ($i=0; $i < count($data_date); $i++){
                                 ?>
@@ -321,5 +315,9 @@ $year_to = date('Y', strtotime($date_to));
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
+    });
+
+    $(".btn-detail").click(function(){
+       alert("ok");
     });
 </script>

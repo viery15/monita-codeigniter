@@ -291,7 +291,7 @@ class Mycalendar extends CI_Controller
                         }
 //
                         if ($i <= $day_end && $year_end > $year_start && $y == $year_end && $m == $month_end){
-                           
+
                             if ($data->status == 'pending') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
                             }
