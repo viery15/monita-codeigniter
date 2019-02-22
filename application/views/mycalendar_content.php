@@ -248,8 +248,13 @@ $year_to = date('Y', strtotime($date_to));
                                         $data_date[$ii] = date('d-m-Y', strtotime($i.'-'.$m.'-'.$y));
                                         $ii++;
                                         ?>
-                                        <td><?= $i ?></td>
                                         <?php
+                                        if (date('D', strtotime($i.'-'.$m.'-'.$y)) == 'Sun' || date('D', strtotime($i.'-'.$m.'-'.$y)) == 'Sat'){
+                                        ?>
+                                        <td style="background-color: red;color:white"><?= $i ?></td>
+                                        <?php } else {?>
+                                            <td><?= $i ?></td>
+                                        <?php }
                                     }
                                     if ($m == $month_to && $y != $year_to){
                                         $month_from = 1;
@@ -294,7 +299,12 @@ $year_to = date('Y', strtotime($date_to));
 
                                     <td style="background-color: <?= $color ?>"></td>
 
-                                <?php } else { ?>
+                                <?php }
+                                elseif (date('D',strtotime($data_date[$i])) == 'Sun' || date('D',strtotime($data_date[$i])) == 'Sat') {
+
+                                ?>
+                                    <td style="background-color: red"></td>
+                                <?php }else { ?>
                                     <td></td>
                                     <?php
                                 } }$num++; }
