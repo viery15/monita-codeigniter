@@ -190,6 +190,9 @@ class Mycalendar extends CI_Controller
                         ->setCellValue($j . '6', $i);
                     $excel->getActiveSheet()->getStyle($j . '6')->applyFromArray($style_col);
                     $excel->getActiveSheet()->getColumnDimension($j)->setWidth(5);
+                    if (date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sat' || date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sun') {
+                        $excel->getActiveSheet()->getStyle($j . '6')->applyFromArray($color_rejected);
+                    }
 
                     $first_row = 7;
                     foreach ($task as $data) {
@@ -201,6 +204,10 @@ class Mycalendar extends CI_Controller
 
                         $year_start = date('o', strtotime($data->date_from));
                         $year_end = date('o', strtotime($data->date_to));
+
+                        if (date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sat' || date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sun') {
+                            $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
+                        }
 
                         if ($i >= $day_start && $i <= $day_end && $m >= $month_start && $m <= $month_end && $y >= $year_start && $y <= $year_end) {
                             if ($data->status == 'pending') {
@@ -218,6 +225,7 @@ class Mycalendar extends CI_Controller
                         }
 
                         if ($i >= $day_start && $month_end > $m && $month_start == $m && $y >= $year_start && $y <= $year_end) {
+
                             if ($data->status == 'pending') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
                             }
@@ -233,6 +241,7 @@ class Mycalendar extends CI_Controller
                         }
 
                         if ($i <= $day_end && $month_end == $m && $month_start < $m && $y >= $year_start && $y <= $year_end) {
+
                             if ($data->status == 'pending') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
                             }
@@ -250,6 +259,7 @@ class Mycalendar extends CI_Controller
 
                         //CONFIGURE YEAR
                         if ($i >= $day_start && $year_end > $y && $year_start == $y && $m == $month_start){
+
                             if ($data->status == 'pending') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
                             }
@@ -265,6 +275,7 @@ class Mycalendar extends CI_Controller
                         }
 
                         if ($year_end > $year_start && $y == $year_end && $m < $month_end){
+
                             if ($data->status == 'pending') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
                             }
@@ -280,6 +291,7 @@ class Mycalendar extends CI_Controller
                         }
 //
                         if ($i <= $day_end && $year_end > $year_start && $y == $year_end && $m == $month_end){
+                           
                             if ($data->status == 'pending') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
                             }
