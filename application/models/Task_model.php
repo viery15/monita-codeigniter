@@ -86,7 +86,9 @@ class Task_model extends CI_Model
 
         $this->db->where('date_from >=', $post['date_from']);
         $this->db->where('date_to <=', $post['date_to']);
-        $this->db->where('category', $post['category']);
+        if ($post['category'] != 'all'){
+            $this->db->where('category', $post['category']);
+        }
         $this->db->order_by('updated_at','DESC');
         $this->db->where('user_to', $this->session->nik);
         return $this->db->get($this->_table)->result();

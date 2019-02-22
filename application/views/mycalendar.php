@@ -69,6 +69,7 @@
                                             <label for="cc-payment" class="control-label mb-1">Category:</label>
                                             <select class="select-category" id="category-form" name="category" required>
                                                 <option disabled selected>Select Category</option>
+                                                <option value="all">All Category</option>
                                                 <?php
                                                 foreach ($category as $category) {
                                                     ?>
