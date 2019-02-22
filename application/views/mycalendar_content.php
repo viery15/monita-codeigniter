@@ -309,7 +309,31 @@ $year_to = date('Y', strtotime($date_to));
                 </div>
             </div>
         </div>
+        <br>
+        
+        <div class="row">
+            <div class="col-md-2">
+                <span style="background-color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Weekend
+            </div>
+            <div class="col-md-2">
+                <span style="background-color: #2294fd">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Done
+            </div>
+            <div class="col-md-2">
+                <span style="background-color: yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Pending
+            </div>
+            <div class="col-md-2">
+                <span style="background-color: greenyellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Progress
+            </div>
+            <div class="col-md-2">
+                <span style="background-color: saddlebrown">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Cancelled
+            </div>
+            <div class="col-md-2">
+                <span style="background-color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Rejected
+            </div>
+
+        </div>
     </div>
+
     </body>
 </html>
 <script type="text/javascript">
@@ -318,6 +342,7 @@ $year_to = date('Y', strtotime($date_to));
     });
 
     $(".btn-detail").click(function(){
-       alert("ok");
+        var id = $(this).attr('id');
+       alert(id);
     });
 </script>
