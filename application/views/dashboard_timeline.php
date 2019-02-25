@@ -71,6 +71,13 @@
                     <?php } ?>
 
                     <?php
+                    if ($mytask->status == 'canceled') {
+
+                    ?>
+                    <div class="au-task__item au-task__item--danger">
+                    <?php } ?>
+
+                    <?php
                     if ($mytask->status == 'rejected') {
 
                     ?>
@@ -99,6 +106,12 @@
                             <?php } ?>
 
                             <?php
+                            if ($mytask->status == 'canceled') {
+                                ?>
+                                <span class="time" style="color: saddlebrown"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                            <?php } ?>
+
+                            <?php
                             if ($mytask->status == 'pending') {
                                 ?>
                                 <span class="time" style="color: darkorange"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
@@ -121,6 +134,7 @@
                             if ($mytask->status == 'progress') {
                                 ?>
                                 <button id="<?= $mytask->id ?>" class="btn btn-success btn-sm btn-done"><i class="fa fa-check-circle"></i> Done</button>
+                                <button id="<?= $mytask->id ?>" class="btn btn-danger btn-sm btn-cancel" data-toggle="modal" data-target="#modal-cancel"><i class="fa fa-close"></i> Cancel</button>
                             <?php } ?>
                             <button id="<?= $mytask->id ?>" class="btn btn-info btn-sm btn-comment" data-toggle="modal" data-target="#modal-comment"><i class="fa fa-comments"></i> Comment</button>
                         </div>
@@ -179,6 +193,13 @@
                 <?php } ?>
 
                 <?php
+                if ($myrequest->status == 'canceled') {
+
+                ?>
+                <div class="au-task__item au-task__item--danger">
+                    <?php } ?>
+
+                <?php
                 if ($myrequest->status == 'pending') {
 
                 ?>
@@ -205,6 +226,12 @@
                             if ($myrequest->status == 'done') {
                                 ?>
                                 <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                            <?php } ?>
+
+                            <?php
+                            if ($myrequest->status == 'canceled') {
+                                ?>
+                                <span class="time" style="color: saddlebrown"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
@@ -268,6 +295,11 @@
 </div>
 
     <script>
+        $('.btn-cancel').click(function(){
+            $("#reason").val('');
+            id_task = $(this).attr('id');
+        });
+
         $("#btn-load-request").click(function(){
             window.location.href="<?php echo base_url() ?>myrequest";
         });

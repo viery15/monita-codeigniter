@@ -49,6 +49,7 @@
                 $('#modal-loading').modal('toggle');
                 alert("Data canceled successful");
                 $("#mytask-table-list").html(a);
+                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
             }
         });
     })

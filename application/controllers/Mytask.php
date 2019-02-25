@@ -279,7 +279,6 @@ class Mytask extends CI_Controller
 
         $this->sendmail($email);
 
-        $data["mytask"] = $this->task_model->getTask();
         $this->load->view("mytask_table_list", $data);
     }
 
