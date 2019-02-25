@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">Employee Task Monitoring</div>
+                                <div class="card-header">Employee To Monitoring</div>
                                 <div class="card-body">
                                     <form id="form-monitoring" novalidate="novalidate">
                                         <div class="form-group">
@@ -60,6 +60,18 @@
                                                     <option value="<?= $user->nik?>"><?= $user->nik ?></option>
                                                 <?php } ?>
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1">Filter by:</label><br>
+                                            <label class="radio-inline">
+                                                <input class="type" value="all" type="radio" name="radio" checked>All &nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input class="type" value="mytask" type="radio" name="radio">Only mytask &nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input class="type" value="myrequest" type="radio" name="radio">Only myrequest
+                                            </label>
                                         </div>
                                         <div>
                                             <button id="btn-submit" type="button" class="btn btn-md btn-info">
@@ -111,8 +123,10 @@
 
         $("#btn-submit").click(function(){
             var nik = $("#nik-form option:selected").val();
+            var type = $(".type:checked").val();
            $.ajax({
                url : "<?php echo base_url(); ?>/Monitoring/search/"+nik,
+               data : {'nik':nik,'type':type},
                success : function (html) {
                    $("#content-monitoring").html(html);
                }
