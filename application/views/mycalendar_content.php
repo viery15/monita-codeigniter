@@ -310,7 +310,7 @@ $year_to = date('Y', strtotime($date_to));
             </div>
         </div>
         <br>
-
+        
         <div class="row">
             <div class="col-md-2">
                 <span style="background-color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Weekend

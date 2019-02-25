@@ -64,20 +64,6 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
-    public function getUserMonitoring()
-    {
-        $this->db->distinct();
-        $this->db->select('nik');
-        $this->db->from('monita.users');
-        $this->db->group_start()
-            ->where('tasks.user_to',$this->session->nik)
-            ->or_where('tasks.user_from',$this->session->nik)
-        ->group_end();
-        $this->db->where('nik !=',$this->session->nik);
-        $this->db->join('monita.tasks', 'monita.users.nik = monita.tasks.user_to OR monita.users.nik = monita.tasks.user_from');
-        return $this->db->get()->result();
-    }
-
     public function getTaskCalender(){
         $this->db->where('user_to', $this->session->nik);
         $this->db->where('status', 'progress');
