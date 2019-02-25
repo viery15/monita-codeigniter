@@ -113,12 +113,12 @@ if(isset($id)) {
             alert("All required fields cannot be empty!");
         }
         else {
-            if(testEmail.test(email)) {
+            if (testEmail.test(email)) {
                 $.ajax({
-                    url : "<?php echo base_url(); ?>/Users/update",
-                    type : 'post',
-                    data : $("#form-user").serialize(),
-                    success : function (a) {
+                    url: "<?php echo base_url(); ?>/Users/update",
+                    type: 'post',
+                    data: $("#form-user").serialize(),
+                    success: function (a) {
                         alert("Data updated successful");
                         $("#form-user")[0].reset();
                         $('#modal-user').modal('hide');
@@ -129,5 +129,6 @@ if(isset($id)) {
             else {
                 alert("The email address is not valid");
             }
+        }
     });
 </script>
