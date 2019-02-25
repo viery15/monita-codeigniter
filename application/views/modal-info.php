@@ -29,14 +29,14 @@
         <div class="col-md-6">
             <div class="au-card recent-report" style="height: 10%; padding-top: 1%;padding-bottom: 9%;margin-bottom: 0px">
                 <div class="au-card-inner">
-                    Title : <?= $task->remark ?>
+                    Title : <?= ucfirst($task->remark) ?>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="au-card recent-report" style="height: 10%; padding-top: 1%;padding-bottom: 9%;margin-bottom: 0px">
                 <div class="au-card-inner">
-                    Status : <?= $task->status ?>
+                    Status : <?= ucfirst($task->status) ?>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="au-card recent-report" style="padding-top: 2%;margin-bottom: 3%">
                 <div class="au-card-inner">
                     Description :<br>
-                    <?= $task->description ?>
+                    <?= ucfirst($task->description) ?>
                 </div>
             </div>
         </div>
