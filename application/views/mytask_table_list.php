@@ -34,6 +34,7 @@
                     if ($task->status == 'progress') {
                 ?>
                 <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check-square"></i></button>
+                <button data-toggle="modal" data-target="#modal-cancel" title="Cancel" type="button" class="btn btn-danger btn-cancel" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
                 <?php } ?>
 
                 <?php
@@ -159,6 +160,11 @@ $date_now = date('d M Y');
         $('.btn-comment').click(function(){
             var id = $(this).attr('id');
             $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
+        });
+
+        $('.btn-cancel').click(function(){
+            $("#reason").val('');
+            id_task = $(this).attr('id');
         });
     });
 </script>

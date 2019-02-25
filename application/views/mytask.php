@@ -79,7 +79,10 @@
 
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
+
+<!--MODAL-->
 <?php $this->load->view("loading-modal.php") ?>
+<?php $this->load->view("modal-cancel.php") ?>
 </body>
 
 </html>

@@ -96,6 +96,16 @@ class Notification_model extends CI_Model
         $this->db->insert($this->_table, $data);
     }
 
+    public function cancel($post){
+        $data['id_task'] = $post->id;
+        $data['user_target'] = $post->user_from;
+        $data['user_from'] = $post->user_to;
+        $data['type'] = 'cancel';
+        $data['created_at'] = date('m-d-Y H:i:s');
+
+        $this->db->insert($this->_table, $data);
+    }
+
     public function done($post){
         $data['id_task'] = $post->id;
         $data['user_target'] = $post->user_from;

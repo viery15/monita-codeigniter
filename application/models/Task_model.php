@@ -284,6 +284,16 @@ class Task_model extends CI_Model
         $this->db->update($this->_table);
     }
 
+    public function cancel()
+    {
+        $post = $this->input->post();
+
+        $this->db->set('status', 'canceled');
+        $this->db->set('updated_at', date("m-d-Y H:i:s"));
+        $this->db->where('id', $post['id']);
+        $this->db->update($this->_table);
+    }
+
     public function done()
     {
         $date =

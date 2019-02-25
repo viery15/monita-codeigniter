@@ -61,17 +61,34 @@ class Mytask extends CI_Controller
             $this->email->subject('MONITA - Rejected Request');
         }
 
-        $this->email->message(
-            'Your request detail : <br><br><table>'.
-            '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
-            '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td>'.
-            '<tr><td>Assigned to</td> <td>:</td> <td>'. $email['from'] . '</td>'.
-            '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td>'.
-            '</table><br><br>'.
-            'The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
-            'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
-            'do not reply this email.'
-        );
+        if ($email['type'] == "cancel") {
+            $this->email->subject('MONITA - Canceled Request');
+            $this->email->message(
+                'Your request detail : <br><br><table>'.
+                '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
+                '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td></tr>'.
+                '<tr><td>Assigned to</td> <td>:</td> <td>'. $email['from'] . '</td></tr>'.
+                '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td></tr>'.
+                '<tr><td>Cancel reason</td> <td>:</td> <td>'. $email['reason'] . '</td></tr>'.
+                '</table><br><br>'.
+                '<br>The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
+                'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
+                'do not reply this email.'
+            );
+        }
+        else {
+            $this->email->message(
+                'Your request detail : <br><br><table>'.
+                '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
+                '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td>'.
+                '<tr><td>Assigned to</td> <td>:</td> <td>'. $email['from'] . '</td>'.
+                '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td>'.
+                '</table><br><br>'.
+                'The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
+                'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
+                'do not reply this email.'
+            );
+        }
 
         if($this->email->send()){
             echo "email sukses";
@@ -234,6 +251,31 @@ class Mytask extends CI_Controller
         $email['description'] = $data['task']->description;
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
+
+        $this->sendmail($email);
+
+        $data["mytask"] = $this->task_model->getTask();
+        $this->load->view("mytask_table_list", $data);
+    }
+
+    public function cancel(){
+        $post = $this->input->post();
+        $this->task_model->cancel();
+        $data["task"] = $this->task_model->getById($post['id']);
+        $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
+
+        $this->notification_model->cancel($data['task']);
+
+        $email['destination'] = $data['user']->email;
+        $email['type'] = "cancel";
+        $email['from'] = $data['task']->user_to;
+        $email['task_id'] = $data['task']->id;
+        $email['date_from'] = $data['task']->date_from;
+        $email['date_to'] = $data['task']->date_to;
+        $email['description'] = $data['task']->description;
+        $email['status'] = $data['task']->status;
+        $email['title'] = $data['task']->remark;
+        $email['reason'] = $post['reason'];
 
         $this->sendmail($email);
 
