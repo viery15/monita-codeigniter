@@ -279,7 +279,14 @@ class Mytask extends CI_Controller
 
         $this->sendmail($email);
 
-        $this->load->view("mytask_table_list", $data);
+        if ($post['page'] == 'page detail') {
+            $data["mytask"] = $this->task_model->getTask();
+            $this->load->view("task_page_content", $data);
+        }
+
+        else {
+            $this->load->view("mytask_table_list", $data);
+        }
     }
 
     public function reject2(){

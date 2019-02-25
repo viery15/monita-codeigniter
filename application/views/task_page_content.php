@@ -31,6 +31,7 @@
         if ($task->status == 'progress' && $task->user_to == $this->session->nik) {
             ?>
             <button id="<?= $task->id ?>" type="button" class="btn-done btn btn-sm btn-success"><i class="fa fa-check-circle"></i> Done</button>
+            <button id="<?= $task->id ?>" class="btn btn-danger btn-sm btn-cancel" data-toggle="modal" data-target="#modal-cancel"><i class="fa fa-close"></i> Cancel</button>
         <?php } ?>
 
         <?php
@@ -58,6 +59,12 @@
 </div>
 
 <script>
+    $('.btn-cancel').click(function(){
+        $("#reason").val('');
+        id_task = $(this).attr('id');
+        page = 'page detail';
+    });
+
     $('.btn-delete').click(function(){
         var id = $(this).attr('id');
         if (confirm('Are you sure you want to delete this?')) {

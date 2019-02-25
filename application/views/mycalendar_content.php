@@ -277,6 +277,9 @@ $year_to = date('Y', strtotime($date_to));
                         if ($task->status == 'rejected'){
                             $color = '#FF0000';
                         }
+                        if ($task->status == 'canceled'){
+                            $color = 'saddlebrown';
+                        }
                         ?>
                         <tr>
                             <td class="fixed-side" style="color: <?= $color ?>"><?= $num ?></td>

@@ -31,6 +31,7 @@
 </div>
 <script>
     var id_task;
+    var page = '';
     $("#btn-cancel").click(function(){
         $(".close").click();
         var reason = $("#reason").val();
@@ -40,16 +41,22 @@
             type: 'post',
             data: {
                 'id': id_task,
-                'reason': reason
+                'reason': reason,
+                'page': page
             },
             beforeSend: function () {
                 $('#loading').click();
             },
             success: function (a) {
+                if (page == 'page detail') {
+                    $("#task-content").html(a);
+                }
+                else {
+                    $("#mytask-table-list").html(a);
+                    $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
+                }
                 $('#modal-loading').modal('toggle');
                 alert("Data canceled successful");
-                $("#mytask-table-list").html(a);
-                $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
             }
         });
     })
