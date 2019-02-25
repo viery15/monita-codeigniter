@@ -154,6 +154,11 @@
                                             ?>
                                             <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success btn-notif" style="cursor:pointer;">
                                             <?php } ?>
+                                            <?php
+                                            if ($req->type == 'cancel'){
+                                            ?>
+                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--danger btn-notif" style="cursor:pointer;">
+                                            <?php } ?>
 
                                             <?php
                                             if ($req->type == 'comment request'){
@@ -167,6 +172,12 @@
                                                         if ($req->type == 'approve'){
                                                             ?>
                                                             <a href="#">Your request has been approved by <?= $req->user_from ?></a>
+                                                        <?php } ?>
+
+                                                        <?php
+                                                        if ($req->type == 'cancel'){
+                                                            ?>
+                                                            <a href="#">Your request has been canceled by <?= $req->user_from ?></a>
                                                         <?php } ?>
 
                                                         <?php

@@ -48,6 +48,14 @@ $data = $this->ci->notification_model->getByUserTarget();
                                 <?php } ?>
 
                                 <?php
+                                if ($data->type == 'cancel') {
+                                    ?>
+                                    <div class="bg-c2 img-cir img-40">
+                                        <i class="fa fa-close"></i>
+                                    </div>
+                                <?php } ?>
+
+                                <?php
                                 if ($data->type == 'reject') {
                                     ?>
                                     <div class="bg-c2 img-cir img-40">
@@ -74,6 +82,12 @@ $data = $this->ci->notification_model->getByUserTarget();
                                     if ($data->type == 'comment task') {
                                         ?>
                                         <p><?= $data->user_from ?> comment on your task </p>
+                                    <?php } ?>
+
+                                    <?php
+                                    if ($data->type == 'cancel') {
+                                        ?>
+                                        <p><?= $data->user_from ?> cancel your request </p>
                                     <?php } ?>
 
                                     <?php
