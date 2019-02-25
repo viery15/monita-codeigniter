@@ -79,9 +79,14 @@
             </div>
         </div>
         <div class="col-md-6">
-            <button type="button" class="btn btn-primary" style="width: 49%"><i class="fa fa-cogs"></i> Manage</button>
+            <button id="<?= $task->id ?>" type="button" class="manage btn btn-primary" style="width: 49%"><i class="fa fa-cogs"></i> Manage</button>
             <button type="button" class="btn btn-danger" style="width: 49%"><i class="fa fa-close"></i> Close</button>
         </div>
     </div>
-
 </div>
+<script>
+    $(".manage").click(function(){
+        var id = $(this).attr('id');
+        $.redirect("task/"+id, {}, "POST" , "_blank");
+    });
+</script>
