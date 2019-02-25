@@ -130,9 +130,7 @@
                 if($count_mytask >= 5){
                 ?>
                 <div class="au-task__footer">
-
                     <button class="au-btn au-btn-load" id="btn-load-task">load more</button>
-
                 </div>
                 <?php } ?>
             </div>

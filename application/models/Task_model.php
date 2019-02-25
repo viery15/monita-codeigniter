@@ -201,17 +201,77 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
-    public function getProgress($nik)
+    public function getCountTaskDone(){
+        $post = $this->input->post();
+
+        $this->db->where('user_from', $post['nik']);
+        $this->db->where('status', 'done');
+
+        return $this->db->count_all_results($this->_table);
+    }
+
+    public function getCountTaskProgress(){
+        $post = $this->input->post();
+
+        $this->db->where('user_from', $post['nik']);
+        $this->db->where('status', 'progress');
+
+        return $this->db->count_all_results($this->_table);
+    }
+
+    public function getCountRequestDone(){
+        $post = $this->input->post();
+
+        $this->db->where('user_to', $post['nik']);
+        $this->db->where('status', 'done');
+
+        return $this->db->count_all_results($this->_table);
+    }
+
+    public function getCountRequestProgress(){
+        $post = $this->input->post();
+
+        $this->db->where('user_to', $post['nik']);
+        $this->db->where('status', 'progress');
+
+        return $this->db->count_all_results($this->_table);
+    }
+
+    public function getProgress()
     {
-        $this->db->where('user_to', $nik);
+        $post = $this->input->post();
+        $type = $post['type'];
+        if ($type == 'all') {
+            $this->db->where('user_to', $post['nik']);
+            $this->db->or_where('user_from', $post['nik']);
+        }
+        if ($type == 'mytask') {
+            $this->db->where('user_from', $post['nik']);
+        }
+        if ($type == 'myrequest') {
+            $this->db->where('user_to', $post['nik']);
+        }
+
         $this->db->where('status', 'progress');
 
         return $this->db->get($this->_table)->result();
     }
 
-    public function getDone($nik)
+    public function getDone()
     {
-        $this->db->where('user_to', $nik);
+        $post = $this->input->post();
+        $type = $post['type'];
+        if ($type == 'all') {
+            $this->db->where('user_to', $post['nik']);
+            $this->db->or_where('user_from', $post['nik']);
+        }
+        if ($type == 'mytask') {
+            $this->db->where('user_from', $post['nik']);
+        }
+        if ($type == 'myrequest') {
+            $this->db->where('user_to', $post['nik']);
+        }
+
         $this->db->where('status', 'done');
 
         return $this->db->get($this->_table)->result();
@@ -219,7 +279,7 @@ class Task_model extends CI_Model
 
     public function getCountProgress($nik){
         $this->db->where('user_to', $nik);
-        $this->db->where('status', 'done');
+        $this->db->where('status', 'progress');
 
         $this->db->count_all_results($this->_table);
     }

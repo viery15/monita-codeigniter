@@ -9,6 +9,9 @@
 
 ?>
 <div class="row">
+    <?php
+    if ($type != 'all') {
+    ?>
     <div class="col-lg-12">
         <div class="au-card m-b-30">
             <div class="au-card-inner">
@@ -17,9 +20,36 @@
                     $count_progress = count((array)$progress);
                 ?>
                 <div id="container" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
+
             </div>
         </div>
     </div>
+    <?php } else {?>
+        <div class="col-lg-6">
+            <div class="au-card m-b-30">
+                <div class="au-card-inner">
+                    <?php
+                    $count_done = count((array)$done);
+                    $count_progress = count((array)$progress);
+                    ?>
+                    <div id="mytask" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="au-card m-b-30">
+                <div class="au-card-inner">
+                    <?php
+                    $count_done = count((array)$done);
+                    $count_progress = count((array)$progress);
+                    ?>
+                    <div id="myrequest" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
+
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 </div>
 
 <div class="row">
@@ -57,10 +87,11 @@
                     ?>
                     <tr>
                         <td><?= date('d M Y', strtotime($progress->date_from))  ?></td>
-                        <td><?= strtoupper($done->category) ?></td>
+                        <td><?= strtoupper($progress->category) ?></td>
                         <td><?= ucfirst($progress->remark) ?></td>
                         <td><?= ucfirst($progress->description)  ?></td>
                         <td><?= ucfirst($progress->user_from)  ?></td>
+                        <td><?= ucfirst($progress->user_to)  ?></td>
                         <td><?= ucfirst($progress->status)  ?></td>
                     </tr>
                 <?php } ?>
@@ -127,6 +158,111 @@
                 }, {
                     name: 'On Progress',
                     y: <?php echo json_encode(count($progress),JSON_NUMERIC_CHECK) ?>,
+                }]
+            }]
+        });
+    });
+</script>
+
+
+<script>
+    $(function () {
+        Highcharts.setOptions({
+            colors: ['#308dc5', '#50B432',]
+        });
+
+        Highcharts.chart('mytask', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: <?= $this->session->nik ?>+'\'s Tasks From '+ <?= $nik ?>
+            },
+
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    size: 200,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b> : ' + this.point.y + ' ('+ Math.round(this.percentage*100)/100 + ' %)';
+                        },
+                        distance: 1,
+
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Count',
+                colorByPoint: true,
+                data: [{
+                    name: 'Done',
+                    y: <?php echo json_encode($count_task_done,JSON_NUMERIC_CHECK) ?>,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'On Progress',
+                    y: <?php echo json_encode($count_task_progress,JSON_NUMERIC_CHECK) ?>,
+                }]
+            }]
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        Highcharts.setOptions({
+            colors: ['#308dc5', '#50B432',]
+        });
+
+        Highcharts.chart('myrequest', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: <?= $this->session->nik ?>+'\'s Requests To '+ <?= $nik ?>
+            },
+
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    size: 200,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b> : ' + this.point.y + ' ('+ Math.round(this.percentage*100)/100 + ' %)';
+                        },
+                        distance: 1,
+
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Count',
+                colorByPoint: true,
+                data: [{
+                    name: 'Done',
+                    y: <?php echo json_encode($count_request_done,JSON_NUMERIC_CHECK) ?>,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'On Progress',
+                    y: <?php echo json_encode($count_request_progress,JSON_NUMERIC_CHECK) ?>,
                 }]
             }]
         });

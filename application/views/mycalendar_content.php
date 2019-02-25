@@ -266,7 +266,7 @@ $year_to = date('Y', strtotime($date_to));
                         $num = 1;
                         foreach ($task as $task){
                         if ($task->status == 'progress'){
-                            $color = '#56fd22';
+                            $color = '#48ad28';
                         }
                         if ($task->status == 'pending'){
                             $color = '#fbfd22';
@@ -322,7 +322,7 @@ $year_to = date('Y', strtotime($date_to));
                 <span style="background-color: yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Pending
             </div>
             <div class="col-md-2">
-                <span style="background-color: greenyellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Progress
+                <span style="background-color: #48ad28">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Progress
             </div>
             <div class="col-md-2">
                 <span style="background-color: saddlebrown">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Cancelled

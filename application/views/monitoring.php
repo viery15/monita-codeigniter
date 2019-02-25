@@ -125,8 +125,9 @@
             var nik = $("#nik-form option:selected").val();
             var type = $(".type:checked").val();
            $.ajax({
-               url : "<?php echo base_url(); ?>/Monitoring/search/"+nik,
+               url : "<?php echo base_url(); ?>/Monitoring/search/",
                data : {'nik':nik,'type':type},
+               type : 'post',
                success : function (html) {
                    $("#content-monitoring").html(html);
                }

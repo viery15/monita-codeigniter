@@ -26,12 +26,18 @@ class Monitoring extends CI_Controller {
         $this->load->view("monitoring",$data);
     }
 
-    public function search($nik) {
-        $data['progress'] = $this->task_model->getProgress($nik);
-        $data['done'] = $this->task_model->getDone($nik);
-//        $data['count_progress'] = $this->task_model->getCountProgress($nik);
-//        $data['count_done'] = $this->task_model->getCountDone($nik);
-        $data['nik'] = $nik;
+    public function search() {
+        $post = $this->input->post();
+        $data['progress'] = $this->task_model->getProgress();
+        $data['done'] = $this->task_model->getDone();
+        $data['nik'] = $post['nik'];
+        $data['type'] = $post['type'];
+
+        $data['count_task_done'] = $this->task_model->getCountTaskDone();
+        $data['count_task_progress'] = $this->task_model->getCountTaskProgress();
+
+        $data['count_request_done'] = $this->task_model->getCountRequestDone();
+        $data['count_request_progress'] = $this->task_model->getCountRequestProgress();
 
         $this->load->view("monitoring_content",$data);
     }
