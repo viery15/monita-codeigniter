@@ -285,7 +285,7 @@ $year_to = date('Y', strtotime($date_to));
                             <td class="fixed-side" style="color: <?= $color ?>"><?= $num ?></td>
                             <td class="fixed-side" style="color: <?= $color ?>"><?=  strtoupper($task->category) ?></td>
                             <td class="fixed-side" style="color: <?= $color ?>"><?=  ucfirst($task->remark) ?></td>
-                            <td style="color: <?= $color ?>"><button id="<?= $task->id ?>" class="btn btn-info btn-sm btn-detail"><i class="fa fa-eye"></i></button></td>
+                            <td style="color: <?= $color ?>"><button type="button" id="<?= $task->id ?>" data-toggle="modal" data-target="#modal-info" class="btn btn-info btn-sm btn-detail"><i class="fa fa-eye"></i></button></td>
                             <?php
                             for ($i=0; $i < count($data_date); $i++){
                                 ?>
@@ -336,7 +336,6 @@ $year_to = date('Y', strtotime($date_to));
 
         </div>
     </div>
-
     </body>
 </html>
 <script type="text/javascript">
@@ -346,6 +345,6 @@ $year_to = date('Y', strtotime($date_to));
 
     $(".btn-detail").click(function(){
         var id = $(this).attr('id');
-       alert(id);
+        $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
     });
 </script>

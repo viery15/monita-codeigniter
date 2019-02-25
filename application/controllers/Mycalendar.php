@@ -43,6 +43,12 @@ class Mycalendar extends CI_Controller
         $this->load->view("mycalendar_content",$data);
     }
 
+    public function info($id){
+        $data['task'] = $this->task_model->getById($id);
+
+        $this->load->view("modal-info",$data);
+    }
+
     public function excel(){
         $date_from = $this->input->post('date_from');
         $date_to = $this->input->post('date_to');

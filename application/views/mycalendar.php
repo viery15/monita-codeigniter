@@ -117,6 +117,22 @@
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
 
+<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Task Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modal-info-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
