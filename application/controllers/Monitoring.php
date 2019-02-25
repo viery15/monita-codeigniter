@@ -20,7 +20,9 @@ class Monitoring extends CI_Controller {
 
     public function index()
     {
-        $data["users"] = $this->user_model->getAll();
+        $data["users"] = $this->task_model->getUserMonitoring();
+//        $data["users2"] = $this->task_model->getUserMonitoring2();
+//        print_r($data);
         $this->load->view("monitoring",$data);
     }
 

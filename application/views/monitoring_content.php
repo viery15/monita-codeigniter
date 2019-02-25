@@ -33,6 +33,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assign From</th>
+                    <th scope="col">Assign To</th>
                     <th scope="col">Status</th>
                 </tr>
                 </thead>
@@ -46,6 +47,7 @@
                     <td><?= ucfirst($done->remark) ?></td>
                     <td><?= ucfirst($done->description)  ?></td>
                     <td><?= ucfirst($done->user_from)  ?></td>
+                    <td><?= ucfirst($done->user_to)  ?></td>
                     <td><?= ucfirst($done->status)  ?></td>
                 </tr>
                 <?php } ?>
@@ -70,6 +72,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Assign From</th>
+                    <th scope="col">Assign To</th>
                     <th scope="col">Status</th>
                 </tr>
                 </tfoot>
