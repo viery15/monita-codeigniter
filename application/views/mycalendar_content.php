@@ -282,9 +282,9 @@ $year_to = date('Y', strtotime($date_to));
                         }
                         ?>
                         <tr>
-                            <td class="fixed-side" style="color: <?= $color ?>"><?= $num ?></td>
-                            <td class="fixed-side" style="color: <?= $color ?>"><?=  strtoupper($task->category) ?></td>
-                            <td class="fixed-side" style="color: <?= $color ?>"><?=  ucfirst($task->remark) ?></td>
+                            <td class="fixed-side" ><?= $num ?></td>
+                            <td class="fixed-side" ><?=  strtoupper($task->category) ?></td>
+                            <td class="fixed-side" ><?=  ucfirst($task->remark) ?></td>
                             <td style="color: <?= $color ?>"><button type="button" id="<?= $task->id ?>" data-toggle="modal" data-target="#modal-info" class="btn btn-info btn-sm btn-detail"><i class="fa fa-eye"></i></button></td>
                             <?php
                             for ($i=0; $i < count($data_date); $i++){
