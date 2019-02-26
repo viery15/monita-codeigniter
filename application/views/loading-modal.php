@@ -11,10 +11,10 @@
 </button>
 
 <div style="padding-top:15%;" class="modal fade" id="modal-loading" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Loading...</h3>
+                <h4>Loading...</h4>
             </div>
             <div class="modal-body">
                 <div class="progress mb-3">
