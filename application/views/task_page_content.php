@@ -31,7 +31,7 @@
         if ($task->status == 'progress' && $task->user_to == $this->session->nik) {
             ?>
             <button id="<?= $task->id ?>" type="button" class="btn-done btn btn-sm btn-success"><i class="fa fa-check-circle"></i> Done</button>
-            <button id="<?= $task->id ?>" class="btn btn-danger btn-sm btn-cancel" data-toggle="modal" data-target="#modal-cancel"><i class="fa fa-close"></i> Cancel</button>
+            <button id="<?= $task->id ?>" class="btn btn-danger btn-sm btn-cancel"><i class="fa fa-close"></i> Cancel</button>
         <?php } ?>
 
         <?php
@@ -59,11 +59,34 @@
 </div>
 
 <script>
-    $('.btn-cancel').click(function(){
-        $("#reason").val('');
-        id_task = $(this).attr('id');
-        page = 'page detail';
-    });
+    $(".btn-cancel").click(function(){
+        $(".close").click();
+        var id_task = $(this).attr('id');
+        var page = 'page detail';
+        if (confirm('Are you sure you want to cancel this?')) {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Mytask/cancel",
+                type: 'post',
+                data: {
+                    'id': id_task,
+                    'page': page
+                },
+                beforeSend: function () {
+                    $('#loading').click();
+                },
+                success: function (a) {
+                    if (page == 'page detail') {
+                        $("#task-content").html(a);
+                    }
+                    else {
+                        $("#mytask-table-list").html(a);
+                    }
+                    $('#modal-loading').modal('toggle');
+                    alert("Data canceled successful");
+                }
+            });
+        }
+    })
 
     $('.btn-delete').click(function(){
         var id = $(this).attr('id');

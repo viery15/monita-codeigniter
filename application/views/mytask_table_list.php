@@ -34,7 +34,7 @@
                     if ($task->status == 'progress') {
                 ?>
                 <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check-square"></i></button>
-                <button data-toggle="modal" data-target="#modal-cancel" title="Cancel" type="button" class="btn btn-danger btn-cancel" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
+                <button title="Cancel" type="button" class="btn btn-danger btn-cancel" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
                 <?php } ?>
 
                 <?php
@@ -161,10 +161,34 @@ $date_now = date('d M Y');
                     $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
                 });
 
-                $('.btn-cancel').click(function(){
-                    $("#reason").val('');
-                    id_task = $(this).attr('id');
-                });
+                $(".btn-cancel").click(function(){
+                    $(".close").click();
+                    var id_task = $(this).attr('id');
+                    var page = '';
+                    if (confirm('Are you sure you want to cancel this?')) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>/Mytask/cancel",
+                            type: 'post',
+                            data: {
+                                'id': id_task,
+                                'page': page
+                            },
+                            beforeSend: function () {
+                                $('#loading').click();
+                            },
+                            success: function (a) {
+                                if (page == 'page detail') {
+                                    $("#task-content").html(a);
+                                }
+                                else {
+                                    $("#mytask-table-list").html(a);
+                                }
+                                $('#modal-loading').modal('toggle');
+                                alert("Data canceled successful");
+                            }
+                        });
+                    }
+                })
             }
         });
     });

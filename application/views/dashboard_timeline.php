@@ -134,7 +134,7 @@
                             if ($mytask->status == 'progress') {
                                 ?>
                                 <button id="<?= $mytask->id ?>" class="btn btn-success btn-sm btn-done"><i class="fa fa-check-circle"></i> Done</button>
-                                <button id="<?= $mytask->id ?>" class="btn btn-danger btn-sm btn-cancel" data-toggle="modal" data-target="#modal-cancel"><i class="fa fa-close"></i> Cancel</button>
+                                <button id="<?= $mytask->id ?>" class="btn btn-danger btn-sm btn-cancel"><i class="fa fa-close"></i> Cancel</button>
                             <?php } ?>
                             <button id="<?= $mytask->id ?>" class="btn btn-info btn-sm btn-comment" data-toggle="modal" data-target="#modal-comment"><i class="fa fa-comments"></i> Comment</button>
                         </div>
@@ -295,10 +295,29 @@
 </div>
 
     <script>
-        $('.btn-cancel').click(function(){
-            $("#reason").val('');
-            id_task = $(this).attr('id');
-        });
+        $(".btn-cancel").click(function(){
+            $(".close").click();
+            var id_task = $(this).attr('id');
+            var page = '';
+            if (confirm('Are you sure you want to cancel this?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Mytask/cancel",
+                    type: 'post',
+                    data: {
+                        'id': id_task,
+                        'page': page
+                    },
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
+                    success: function (a) {
+                        $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
+                        $('#modal-loading').modal('toggle');
+                        alert("Data canceled successful");
+                    }
+                });
+            }
+        })
 
         $("#btn-load-request").click(function(){
             window.location.href="<?php echo base_url() ?>myrequest";

@@ -63,32 +63,20 @@ class Mytask extends CI_Controller
 
         if ($email['type'] == "cancel") {
             $this->email->subject('MONITA - Canceled Request');
-            $this->email->message(
-                'Your request detail : <br><br><table>'.
-                '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
-                '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td></tr>'.
-                '<tr><td>Assigned to</td> <td>:</td> <td>'. $email['from'] . '</td></tr>'.
-                '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td></tr>'.
-                '<tr><td>Cancel reason</td> <td>:</td> <td>'. $email['reason'] . '</td></tr>'.
-                '</table><br><br>'.
-                '<br>The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
-                'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
-                'do not reply this email.'
-            );
         }
-        else {
-            $this->email->message(
-                'Your request detail : <br><br><table>'.
-                '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
-                '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td>'.
-                '<tr><td>Assigned to</td> <td>:</td> <td>'. $email['from'] . '</td>'.
-                '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td>'.
-                '</table><br><br>'.
-                'The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
-                'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
-                'do not reply this email.'
-            );
-        }
+
+        $this->email->message(
+            'Your request detail : <br><br><table>'.
+            '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
+            '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td>'.
+            '<tr><td>Assigned to</td> <td>:</td> <td>'. $email['from'] . '</td>'.
+            '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td>'.
+            '</table><br><br>'.
+            'The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
+            'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
+            'do not reply this email.'
+        );
+
 
         if($this->email->send()){
             echo "email sukses";
@@ -275,12 +263,11 @@ class Mytask extends CI_Controller
         $email['description'] = $data['task']->description;
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
-        $email['reason'] = $post['reason'];
 
         $this->sendmail($email);
+        $data["mytask"] = $this->task_model->getTask();
 
         if ($post['page'] == 'page detail') {
-            $data["mytask"] = $this->task_model->getTask();
             $this->load->view("task_page_content", $data);
         }
 
