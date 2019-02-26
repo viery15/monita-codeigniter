@@ -38,7 +38,7 @@
                                 <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
                             </div>
                             <br>
-                            <button id="btn-login" class="au-btn au-btn--block au-btn--green m-b-20" type="button">sign in</button>
+                            <button id="btn-login" class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
                         </form>
                     </div>
                 </div>
