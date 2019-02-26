@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <br><br>
+                                <br>
                                 <button type="button" class="btn btn-info btn-create-req" data-toggle="modal" data-target="#modal-request"><i class="fa fa-plus"></i> Create New Request</button>
                                 <br><br>
                                 <div id="myrequest-table-list">

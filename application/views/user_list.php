@@ -41,7 +41,7 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="table-responsive">
-                                <br><br>
+                                <br>
                                 <button type="button" class="btn btn-info btn-create" data-toggle="modal" data-target="#modal-user"><i class="fa fa-plus"></i> Create New User</button>
                                 <br><br>
                                 <div id="user-table-list">
