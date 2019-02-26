@@ -13,7 +13,7 @@
                 </li>
                 <li class="<?php echo $this->uri->segment(1) == 'mycalendar' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>mycalendar">
-                        <i class="fas fa-calendar-alt"></i>My Calendar</a>
+                        <i class="fas fa-calendar-alt"></i> My Calendar</a>
                 </li>
                 <li class="<?php echo $this->uri->segment(1) == 'mytask' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>mytask"><i class="fas fa-list-alt"></i> My Task</a>
@@ -30,11 +30,11 @@
                 ?>
                 <li class="<?php echo $this->uri->segment(1) == 'category' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>category">
-                    <i class="fas fa-tag"></i>Category</a>
+                    <i class="fas fa-tag"></i> Category</a>
                 </li>
                 <li class="<?php echo $this->uri->segment(1) == 'users' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>users">
-                    <i class="fas fa-user"></i>Users</a>
+                    <i class="fas fa-user"></i> Users</a>
                 </li>
                 <?php } ?>
             </ul>
