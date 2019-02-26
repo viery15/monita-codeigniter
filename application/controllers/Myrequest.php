@@ -33,7 +33,7 @@ class Myrequest extends CI_Controller
         $config['smtp_port'] = '465';
         $config['smtp_timeout'] = '7';
         $config['smtp_user'] = 'vierydarmawan3@gmail.com';
-        $config['smtp_pass'] = 'mendol817';
+        $config['smtp_pass'] = 'Mendol817';
         $config['charset'] = 'utf-8';
         $config['newline'] = "\r\n";
         $config['mailtype'] = 'html';
