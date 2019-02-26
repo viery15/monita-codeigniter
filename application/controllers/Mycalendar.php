@@ -236,6 +236,21 @@ class Mycalendar extends CI_Controller
                             }
                         }
 
+                        if ($m > $month_start && $m < $month_end && $y == $year_end && $year_end == $year_start) {
+                            if ($data->status == 'pending') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_pending);
+                            }
+                            if ($data->status == 'done') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_done);
+                            }
+                            if ($data->status == 'progress') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_progress);
+                            }
+                            if ($data->status == 'rejected') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
+                            }
+                        }
+
                         if ($i >= $day_start && $month_end > $m && $month_start == $m && $y >= $year_start && $y <= $year_end) {
 
                             if ($data->status == 'pending') {
@@ -332,6 +347,7 @@ class Mycalendar extends CI_Controller
                         $last_col = $col_from;
                     }
                 }
+
                 if ($m == $month_to && $y != $year_to) {
                     $month_from = 1;
                 }
