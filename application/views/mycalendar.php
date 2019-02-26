@@ -70,7 +70,7 @@
                                                 <div class="form-group">
                                                     <label for="cc-payment" class="control-label mb-1">Category:</label>
                                                     <select class="select-category" id="category-form" name="category" required>
-                                                        <option disabled selected>Select Category</option>
+                                                        <option value="" disabled selected>Select Category</option>
                                                         <option value="all">All Category</option>
                                                         <?php
                                                         foreach ($category as $category) {
@@ -153,15 +153,20 @@
         $("#btn-submit").click(function(){
             var category = $("#category-form option:selected").val();
             var date_range = $('input[name="daterange"]:eq(0)').val();
-            var date_to = $("#date_to").val();
-            $.ajax({
-                url : "<?php echo base_url(); ?>/Mycalendar/search/",
-                type : 'post',
-                data : {'category':category, 'date_range':date_range},
-                success : function (html) {
-                    $("#calendar-content").html(html);
-                }
-            });
+
+            if(category == '') {
+                alert("All required fields cannot be empty!");
+            }
+            else {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Mycalendar/search/",
+                    type: 'post',
+                    data: {'category': category, 'date_range': date_range},
+                    success: function (html) {
+                        $("#calendar-content").html(html);
+                    }
+                });
+            }
         });
 
         $("#excel").click(function(){
