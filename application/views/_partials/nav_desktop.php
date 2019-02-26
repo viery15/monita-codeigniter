@@ -75,42 +75,42 @@ $data = $this->ci->notification_model->getByUserTarget();
                                     <?php
                                     if ($data->type == 'new') {
                                     ?>
-                                    <p>You got a new task from <?= $data->user_from ?></p>
+                                    <p><?= $data->user_from ?> sent you new reuqest </p>
                                     <?php } ?>
 
                                     <?php
                                     if ($data->type == 'comment task') {
                                         ?>
-                                        <p><?= $data->user_from ?> comment on your task </p>
+                                        <p><?= $data->user_from ?> commented your task </p>
                                     <?php } ?>
 
                                     <?php
                                     if ($data->type == 'cancel') {
                                         ?>
-                                        <p><?= $data->user_from ?> cancel your request </p>
+                                        <p><?= $data->user_from ?> canceled your request </p>
                                     <?php } ?>
 
                                     <?php
                                     if ($data->type == 'comment request') {
                                         ?>
-                                        <p><?= $data->user_from ?> comment on your request </p>
+                                        <p><?= $data->user_from ?> commented your request </p>
                                     <?php } ?>
 
                                     <?php
                                     if ($data->type == 'done') {
                                         ?>
-                                        <p>Your request to <?= $data->user_from ?> is complete</p>
+                                        <p><?= $data->user_from ?> completed your request</p>
                                     <?php } ?>
 
                                     <?php
                                     if ($data->type == 'reject') {
                                         ?>
-                                        <p>Your request has been rejected by <?= $data->user_from ?></p>
+                                        <p><?= $data->user_from ?> rejected your request </p>
                                     <?php } ?>
                                     <?php
                                     if ($data->type == 'approve') {
                                         ?>
-                                        <p>Your request has been approved by <?= $data->user_from ?></p>
+                                        <p><?= $data->user_from ?> approved your request </p>
                                     <?php } ?>
                                     <span class="date"><?= date('d M Y H:i a', strtotime($data->created_at)) ?></span>
                                 </div>
