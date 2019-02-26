@@ -34,3 +34,4 @@
 <script src="<?php echo base_url('js/moment.min.js') ?>"></script>
 <script src="<?php echo base_url('js/bootstrap.min.js') ?>"></script>
 <script src="<?php echo base_url('js/bootstrap-datetimepicker.min.js') ?>"></script>
+<script src="<?php echo base_url('js/daterangepicker.js') ?>"></script>
