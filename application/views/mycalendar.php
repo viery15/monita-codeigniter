@@ -65,32 +65,38 @@
                                 <div class="card-header">Task Filter</div>
                                 <div class="card-body">
                                     <form id="form-monitoring" novalidate="novalidate">
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Category:</label>
-                                            <select class="select-category" id="category-form" name="category" required>
-                                                <option disabled selected>Select Category</option>
-                                                <option value="all">All Category</option>
-                                                <?php
-                                                foreach ($category as $category) {
-                                                    ?>
-                                                    <option value="<?= $category->label?>"><?= $category->name ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="cc-payment" class="control-label mb-1">Date:</label>
-                                            <div class="input-daterange input-group" id="datepicker">
-                                                <input autocomplete="off" type="text" class="input-sm form-control" id="date_from" />
-                                                <span class="input-group-addon">to</span>
-                                                <input autocomplete="off" type="text" class="input-sm form-control" id="date_to" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Category:</label>
+                                                    <select class="select-category" id="category-form" name="category" required>
+                                                        <option disabled selected>Select Category</option>
+                                                        <option value="all">All Category</option>
+                                                        <?php
+                                                        foreach ($category as $category) {
+                                                            ?>
+                                                            <option value="<?= $category->label?>"><?= $category->name ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1">Date Period:</label>
+                                                    <input id="daterange" style="padding:0.5%" class="form-control" type="text" name="daterange" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <button id="btn-submit" type="button" class="btn btn-md btn-info">
-                                                <span id="payment-button-amount">Submit</span>
-                                            </button>
 
-                                            <button id="excel" type="button" class="btn btn-success">Excel</button>
+                                        <div class="row">
+                                            <div class="col-md-12 text-right">
+                                                <button id="btn-submit" type="button" class="btn btn-md btn-info">
+                                                    <span id="payment-button-amount">Submit</span>
+                                                </button>
+
+                                                <button id="excel" type="button" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Excel</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -137,8 +143,7 @@
 
 </html>
 <script type="text/javascript">
-    $('.input-daterange').datepicker({
-    });
+    $('input[name="daterange"]:eq(0)').daterangepicker();
 
     $(document).ready(function(){
         $(".select-category").select2({
@@ -147,12 +152,12 @@
 
         $("#btn-submit").click(function(){
             var category = $("#category-form option:selected").val();
-            var date_from = $("#date_from").val();
+            var date_range = $('input[name="daterange"]:eq(0)').val();
             var date_to = $("#date_to").val();
             $.ajax({
                 url : "<?php echo base_url(); ?>/Mycalendar/search/",
                 type : 'post',
-                data : {'category':category, 'date_from':date_from, 'date_to': date_to},
+                data : {'category':category, 'date_range':date_range},
                 success : function (html) {
                     $("#calendar-content").html(html);
                 }
@@ -160,10 +165,9 @@
         });
 
         $("#excel").click(function(){
-            var date_from = $("#date_from").val();
-            var date_to = $("#date_to").val();
+            var date_range = $('input[name="daterange"]:eq(0)').val();
             var category = $("#category-form option:selected").val();
-            $.redirect("Mycalendar/excel", {date_from: date_from, date_to: date_to, category:category}, "POST");
+            $.redirect("Mycalendar/excel", {date_range: date_range, category:category}, "POST");
         });
     });
 </script>

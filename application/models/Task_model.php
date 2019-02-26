@@ -97,9 +97,12 @@ class Task_model extends CI_Model
     public function searchCalendar()
     {
         $post = $this->input->post();
+        $date = explode(" - ",$post['date_range']);
+        $date_from = $date[0];
+        $date_to = $date[1];
 
-        $this->db->where('date_from >=', $post['date_from']);
-        $this->db->where('date_to <=', $post['date_to']);
+        $this->db->where('date_from >=', $date_from);
+        $this->db->where('date_to <=', $date_to);
         if ($post['category'] != 'all'){
             $this->db->where('category', $post['category']);
         }
@@ -117,8 +120,10 @@ class Task_model extends CI_Model
 
     public function getTaskByDate()
     {
-        $date_from = $this->input->post('date_from');
-        $date_to = $this->input->post('date_to');
+        $post = $this->input->post();
+        $date = explode(" - ",$post['date_range']);
+        $date_from = $date[0];
+        $date_to = $date[1];
         $category = $this->input->post('category');
 
         $this->db->where('date_from >=', $date_from);

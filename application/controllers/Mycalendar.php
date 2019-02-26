@@ -36,10 +36,13 @@ class Mycalendar extends CI_Controller
     {
         $post = $this->input->post();
         $data["task"] = $this->task_model->searchCalendar();
-        $data["date_from"] = $post['date_from'];
-        $data["date_to"] = $post['date_to'];
+        $date = explode(" - ",$post['date_range']);
+        $date_from = $date[0];
+        $date_to = $date[1];
 
-//        echo $data['date_from'] .' - '. $data['date_to'];
+        $data["date_from"] = $date_from;
+        $data["date_to"] = $date_to;
+
         $this->load->view("mycalendar_content",$data);
     }
 
@@ -50,8 +53,11 @@ class Mycalendar extends CI_Controller
     }
 
     public function excel(){
-        $date_from = $this->input->post('date_from');
-        $date_to = $this->input->post('date_to');
+        $post = $this->input->post();
+        $date = explode(" - ",$post['date_range']);
+        $date_from = $date[0];
+        $date_to = $date[1];
+
         $day_from = date('j', strtotime($date_from));
         $day_to = date('j', strtotime($date_to));
         ///
