@@ -33,7 +33,7 @@ class Comment_model extends CI_Model
 
     public function delete($id)
     {
-        return $this->db->delete($this->_table, array("task_id" => $id));
+        return $this->db->delete($this->_table, array("id" => $id));
     }
 
     public function save()

@@ -19,6 +19,11 @@ foreach ($comment as $comment){
                     ?>
                     <br><br>Attachments :<br><i class="fa fa-file"></i> <a href="<?php echo site_url('Myrequest/download/'.$comment->attachment) ?>"><?= $comment->attachment ?></a>
                 <?php } ?>
+                <?php
+                if ($comment->user_comment == $this->session->nik || $task->user_from == $this->session->nik){
+                    ?>
+                    <button id="<?= $comment->id ?>" class="pull-right btn btn-default btn-sm btn-delete-comment"><i class="fa fa-trash"></i></button>
+                <?php } ?>
             </p>
         </div>
     </div>
@@ -41,6 +46,26 @@ foreach ($comment as $comment){
     </div>
 </div>
 <script type="text/javascript">
+
+    $(".btn-delete-comment").click(function(){
+        var id_comment = $(this).attr('id');
+        var idtask = <?= $task->id ?>;
+        if (confirm('Are you sure you want to delete this comment ?')) {
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Myrequest/deletecomment2",
+                type: 'post',
+                data: {
+                    'id': id_comment,
+                    'task_id': idtask
+                },
+                success: function (e) {
+                    alert("Data deleted successful");
+                    $('#comment-section').html(e);
+                }
+            });
+        }
+    });
+
     $(".submit-comment").click(function(){
         id = $(this).attr("id");
         var comment = $("#text-comment").val();

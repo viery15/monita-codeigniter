@@ -147,7 +147,28 @@ class Myrequest extends CI_Controller
         $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
 
         $this->load->view("myrequest_form_comment", $data);
+    }
 
+    public function deletecomment(){
+        $post = $this->input->post();
+
+        $this->comment_model->delete($post['id']);
+
+        $data["task"] = $this->task_model->getById($post['task_id']);
+        $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+
+        $this->load->view("myrequest_form_comment", $data);
+    }
+
+    public function deletecomment2(){
+        $post = $this->input->post();
+
+        $this->comment_model->delete($post['id']);
+
+        $data["task"] = $this->task_model->getById($post['task_id']);
+        $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+
+        $this->load->view("comment_page", $data);
     }
 
     public function submitcomment2(){
