@@ -81,90 +81,91 @@ $date_now = date('d M Y');
                 },
                 title: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 filename: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
-            }]
-        });
-
-        $('.btn-delete').click(function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure you want to delete this?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Mytask/delete",
-                    type: 'post',
-                    data: {'id': id},
-                    success: function (a) {
-                        alert("Data deleted successful");
-                        $('#modal-task').modal('hide');
-                        $("#mytask-table-list").html(a);
+            }],
+            "fnDrawCallback": function( oSettings ) {
+                $('.btn-delete').click(function(){
+                    var id = $(this).attr('id');
+                    if (confirm('Are you sure you want to delete this?')) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>/Mytask/delete",
+                            type: 'post',
+                            data: {'id': id},
+                            success: function (a) {
+                                alert("Data deleted successful");
+                                $('#modal-task').modal('hide');
+                                $("#mytask-table-list").html(a);
+                            }
+                        });
                     }
                 });
-            }
-        });
 
-        $('.btn-approve').click(function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure you want to approve this?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Mytask/approve",
-                    type: 'post',
-                    data: {'id': id},
-                    beforeSend: function () {
-                        $('#loading').click();
-                    },
-                    success: function (a) {
-                        $('#modal-loading').modal('toggle');
-                        alert("Data approved successful");
-                        $("#mytask-table-list").html(a);
+                $('.btn-approve').click(function(){
+                    var id = $(this).attr('id');
+                    if (confirm('Are you sure you want to approve this?')) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>/Mytask/approve",
+                            type: 'post',
+                            data: {'id': id},
+                            beforeSend: function () {
+                                $('#loading').click();
+                            },
+                            success: function (a) {
+                                $('#modal-loading').modal('toggle');
+                                alert("Data approved successful");
+                                $("#mytask-table-list").html(a);
+                            }
+                        });
                     }
                 });
-            }
-        });
 
-        $('.btn-done').click(function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure done with this request?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Mytask/done",
-                    type: 'post',
-                    data: {'id': id},
-                    beforeSend: function () {
-                        $('#loading').click();
-                    },
-                    success: function (a) {
-                        $('#modal-loading').modal('toggle');
-                        alert("Success");
-                        $("#mytask-table-list").html(a);
+                $('.btn-done').click(function(){
+                    var id = $(this).attr('id');
+                    if (confirm('Are you sure done with this request?')) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>/Mytask/done",
+                            type: 'post',
+                            data: {'id': id},
+                            beforeSend: function () {
+                                $('#loading').click();
+                            },
+                            success: function (a) {
+                                $('#modal-loading').modal('toggle');
+                                alert("Success");
+                                $("#mytask-table-list").html(a);
+                            }
+                        });
                     }
                 });
-            }
-        });
 
-        $('.btn-reject').click(function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure you want to reject this?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Mytask/reject",
-                    type: 'post',
-                    data: {'id': id},
-                    beforeSend: function () {
-                        $('#loading').click();
-                    },
-                    success: function (a) {
-                        $('#modal-loading').modal('toggle');
-                        alert("Data rejected successful");
-                        $("#mytask-table-list").html(a);
+                $('.btn-reject').click(function(){
+                    var id = $(this).attr('id');
+                    if (confirm('Are you sure you want to reject this?')) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>/Mytask/reject",
+                            type: 'post',
+                            data: {'id': id},
+                            beforeSend: function () {
+                                $('#loading').click();
+                            },
+                            success: function (a) {
+                                $('#modal-loading').modal('toggle');
+                                alert("Data rejected successful");
+                                $("#mytask-table-list").html(a);
+                            }
+                        });
                     }
                 });
+
+                $('.btn-comment').click(function(){
+                    var id = $(this).attr('id');
+                    $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
+                });
+
+                $('.btn-cancel').click(function(){
+                    $("#reason").val('');
+                    id_task = $(this).attr('id');
+                });
             }
-        });
-
-        $('.btn-comment').click(function(){
-            var id = $(this).attr('id');
-            $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
-        });
-
-        $('.btn-cancel').click(function(){
-            $("#reason").val('');
-            id_task = $(this).attr('id');
         });
     });
 </script>

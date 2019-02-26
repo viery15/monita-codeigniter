@@ -269,7 +269,7 @@ $year_to = date('Y', strtotime($date_to));
                             $color = '#48ad28';
                         }
                         if ($task->status == 'pending'){
-                            $color = '#fbfd22';
+                            $color = '#ccce0f';
                         }
                         if ($task->status == 'done'){
                             $color = '#2294fd';
@@ -322,7 +322,7 @@ $year_to = date('Y', strtotime($date_to));
                 <span style="background-color: #2294fd">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Done
             </div>
             <div class="col-md-2">
-                <span style="background-color: yellow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Pending
+                <span style="background-color: #ccce0f">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Pending
             </div>
             <div class="col-md-2">
                 <span style="background-color: #48ad28">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Progress
