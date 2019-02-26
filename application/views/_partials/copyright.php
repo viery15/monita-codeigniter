@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="copyright">
-            <p>Copyright © 2019 MONITA. All rights reserved. Template by CoolAdmin.</p>
+            <p>Copyright © 2019 <a href="#">MONITA</a>. All rights reserved. Template by <a href="https://github.com/puikinsh/CoolAdmin" target="_blank">CoolAdmin</a>.</p>
         </div>
     </div>
 </div>
