@@ -12,14 +12,14 @@
         <div class="col-md-6">
             <div class="au-card recent-report" style=" padding-top: 1%;padding-bottom: 9%;margin-bottom: 20px">
                 <div class="au-card-inner">
-                    From : <?= $task->user_from ?>
+                    From :<b> <?= $task->user_from ?> </b>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="au-card recent-report" style=" padding-top: 1%;padding-bottom: 9%;margin-bottom: 20px">
                 <div class="au-card-inner">
-                    To : <?= $task->user_to ?>
+                    To : <b> <?= $task->user_to ?> </b>
                 </div>
             </div>
         </div>
