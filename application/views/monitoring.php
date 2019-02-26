@@ -53,7 +53,7 @@
                                         <div class="form-group">
                                             <label for="cc-payment" class="control-label mb-1">NIK:</label>
                                             <select class="select-nik" id="nik-form" name="user_from" required>
-                                                <option disabled selected>Select NIK</option>
+                                                <option disabled selected value="">Select NIK</option>
                                                 <?php
                                                 foreach ($users as $user) {
                                                     ?>
@@ -124,14 +124,20 @@
         $("#btn-submit").click(function(){
             var nik = $("#nik-form option:selected").val();
             var type = $(".type:checked").val();
-           $.ajax({
-               url : "<?php echo base_url(); ?>/Monitoring/search/",
-               data : {'nik':nik,'type':type},
-               type : 'post',
-               success : function (html) {
-                   $("#content-monitoring").html(html);
-               }
-           });
+
+            if(nik == ''){
+                alert("All required fields cannot be empty!");
+            }
+            else {
+                $.ajax({
+                    url : "<?php echo base_url(); ?>/Monitoring/search/",
+                    data : {'nik':nik,'type':type},
+                    type : 'post',
+                    success : function (html) {
+                        $("#content-monitoring").html(html);
+                    }
+                });
+            }
         });
     });
 </script>
