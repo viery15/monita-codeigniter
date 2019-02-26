@@ -67,28 +67,28 @@ $date_now = date('d M Y');
                 },
                 title: 'List Users (per <?= $date_now ?>)',
                 filename: 'List Users (per <?= $date_now ?>)',
-            }]
-        });
-
-        $('.btn-delete').click(function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure you want to delete this?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Users/delete",
-                    type: 'post',
-                    data: {'id': id},
-                    success: function (a) {
-                        alert("Delete user sukses");
-                        $("#user-table-list").html(a);
+            }],
+            "fnDrawCallback": function( oSettings ) {
+                $('.btn-delete').click(function(){
+                    var id = $(this).attr('id');
+                    if (confirm('Are you sure you want to delete this?')) {
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>/Users/delete",
+                            type: 'post',
+                            data: {'id': id},
+                            success: function (a) {
+                                alert("Delete user sukses");
+                                $("#user-table-list").html(a);
+                            }
+                        });
                     }
                 });
-            }
-        });
 
-        $('.btn-update').click(function(){
-            var id = $(this).attr('id');
-//            alert(id);
-            $('#content-modal').load("<?php echo base_url(); ?>/Users/form_update/"+id);
+                $('.btn-update').click(function(){
+                    var id = $(this).attr('id');
+                    $('#content-modal').load("<?php echo base_url(); ?>/Users/form_update/"+id);
+                });
+            }
         });
     });
 </script>
