@@ -58,10 +58,9 @@ if(isset($task->id)) {
             </div>
 
             <div class="form-group">
-                <label for="nik">Description: <i style="color:red">*</i></label>
-                <input value="<?= $task->description ?>" autocomplete="off" type="text" class="form-control" id="description" name="description" required>
+                <label for="comment">Description:</label>
+                <textarea class="form-control" rows="5" id="description" name="description" required><?= $request->description ?></textarea>
             </div>
-
     </div>
     <div class="modal-footer">
         <button id="update-task" type="submit" class="btn btn-info">Update</button>
@@ -115,8 +114,8 @@ if(isset($task->id)) {
             </div>
 
             <div class="form-group">
-                <label for="nik">Description: <i style="color:red">*</i></label>
-                <input autocomplete="off" type="text" class="form-control" id="description" name="description" required>
+                <label for="comment">Description:</label>
+                <textarea class="form-control" rows="5" id="description" name="description" required></textarea>
             </div>
 
     </div>
