@@ -5,9 +5,35 @@
  * Date: 2/25/2019
  * Time: 9:18 PM
  */
+
+if ($task->status == 'pending') {
+    $color = '#FFFF00';
+    $text_color = 'black';
+}
+
+if ($task->status == 'done') {
+    $color = '#0000FF';
+    $text_color = 'white';
+}
+
+if ($task->status == 'rejected') {
+    $color = '#000000';
+    $text_color = 'white';
+}
+
+if ($task->status == 'progress') {
+    $color = '#35f235';
+    $text_color = 'black';
+}
+
+if ($task->status == 'canceled') {
+    $color = '#D62222';
+    $text_color = 'white';
+}
+
 ?>
 <div class="modal-header">
-    <h4 class="modal-title" id="mediumModalLabel">Task Status : <span style="background: yellow;"><?= $task->status ?></span></h4>
+    <h4 class="modal-title" id="mediumModalLabel">Task Status : <span style="background: <?= $color ?>;color:<?= $text_color ?>"><?= ucfirst($task->status) ?></span></h4>
     <div class="text-right">
         <small>Last updated : <?= date('d M Y H:i',strtotime($task->updated_at)) ?></small>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
