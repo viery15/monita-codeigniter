@@ -238,7 +238,7 @@
                 type: 'pie'
             },
             title: {
-                text: <?= $nik ?> +' Tasks To '+ <?= $this->session->nik ?>
+                text: <?= $nik ?> +' Tasks From '+ <?= $this->session->nik ?>
             },
 
             plotOptions: {
