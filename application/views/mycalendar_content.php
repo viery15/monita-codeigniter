@@ -266,19 +266,19 @@ $year_to = date('Y', strtotime($date_to));
                         $num = 1;
                         foreach ($task as $task){
                         if ($task->status == 'progress'){
-                            $color = '#48ad28';
+                            $color = '#35f235';
                         }
                         if ($task->status == 'pending'){
-                            $color = '#ccce0f';
+                            $color = '#FFFF00';
                         }
                         if ($task->status == 'done'){
-                            $color = '#2294fd';
+                            $color = '#0000FF';
                         }
                         if ($task->status == 'rejected'){
-                            $color = '#FF0000';
+                            $color = '#000000';
                         }
                         if ($task->status == 'canceled'){
-                            $color = 'saddlebrown';
+                            $color = '#D62222';
                         }
                         ?>
                         <tr>
