@@ -285,11 +285,13 @@
         $count_task_pending = count((array)$task_pending);
         $count_task_progress = count((array)$task_progress);
         $count_task_rejected = count((array)$task_rejected);
+        $count_task_canceled = count((array)$task_canceled);
 
         $count_req_done = count((array)$req_done);
         $count_req_pending = count((array)$req_pending);
         $count_req_progress = count((array)$req_progress);
         $count_req_rejected = count((array)$req_rejected);
+        $count_req_canceled = count((array)$req_canceled);
 
         ?>
 </div>
@@ -440,7 +442,7 @@
     <script>
         $(function () {
             Highcharts.setOptions({
-                colors: ['#308dc5', '#50B432', '#ffff19', '#f00000']
+                colors: ['#0000FF', '#35f235', '#FFFF00', '#000000', '#D62222']
             });
 
             Highcharts.chart('chart-mytask', {
@@ -491,6 +493,10 @@
                         {
                             name: 'Unapproved',
                             y: <?php echo json_encode($count_task_rejected,JSON_NUMERIC_CHECK) ?>,
+                        },
+                        {
+                            name: 'Canceled',
+                            y: <?php echo json_encode($count_task_canceled,JSON_NUMERIC_CHECK) ?>,
                         }]
                 }]
             });
@@ -500,7 +506,7 @@
     <script>
         $(function () {
             Highcharts.setOptions({
-                colors: ['#308dc5', '#50B432', '#ffff19', '#f00000']
+                colors: ['#0000FF', '#35f235', '#FFFF00', '#000000', '#D62222']
             });
 
             Highcharts.chart('chart-myrequest', {
@@ -551,6 +557,10 @@
                         {
                             name: 'Unapproved',
                             y: <?php echo json_encode($count_req_rejected,JSON_NUMERIC_CHECK) ?>,
+                        },
+                        {
+                            name: 'Canceled',
+                            y: <?php echo json_encode($count_req_canceled,JSON_NUMERIC_CHECK) ?>,
                         }]
                 }]
             });

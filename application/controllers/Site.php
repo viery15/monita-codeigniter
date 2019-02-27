@@ -42,11 +42,13 @@ class Site extends CI_Controller {
         $data['task_done'] = $this->task_model->getTaskDone();
         $data['task_progress'] = $this->task_model->getTaskProgress();
         $data['task_rejected'] = $this->task_model->getTaskRejected();
+        $data['task_canceled'] = $this->task_model->getTaskCanceled();
 
         $data['req_pending'] = $this->task_model->getReqPending();
         $data['req_done'] = $this->task_model->getReqDone();
         $data['req_progress'] = $this->task_model->getReqProgress();
         $data['req_rejected'] = $this->task_model->getReqRejected();
+        $data['req_canceled'] = $this->task_model->getReqCanceled();
 
         $this->load->view("dashboard_timeline",$data);
     }
@@ -72,11 +74,13 @@ class Site extends CI_Controller {
         $data['task_done'] = $this->task_model->getTaskDone();
         $data['task_progress'] = $this->task_model->getTaskProgress();
         $data['task_rejected'] = $this->task_model->getTaskRejected();
+        $data['task_canceled'] = $this->task_model->getTaskCanceled();
 
         $data['req_pending'] = $this->task_model->getReqPending();
         $data['req_done'] = $this->task_model->getReqDone();
         $data['req_progress'] = $this->task_model->getReqProgress();
         $data['req_rejected'] = $this->task_model->getReqRejected();
+        $data['req_canceled'] = $this->task_model->getReqCanceled();
 
         $this->load->view("dashboard",$data);
     }

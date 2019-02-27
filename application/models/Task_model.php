@@ -165,6 +165,13 @@ class Task_model extends CI_Model
         return $this->db->get($this->_table)->result();
     }
 
+    public function getTaskCanceled()
+    {
+        $this->db->where('status','canceled');
+        $this->db->where('user_to', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
     public function getTaskRejected()
     {
         $this->db->where('status','rejected');
@@ -175,6 +182,13 @@ class Task_model extends CI_Model
     public function getReqPending()
     {
         $this->db->where('status','pending');
+        $this->db->where('user_from', $this->session->nik);
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function getReqCanceled()
+    {
+        $this->db->where('status','canceled');
         $this->db->where('user_from', $this->session->nik);
         return $this->db->get($this->_table)->result();
     }
