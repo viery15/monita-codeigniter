@@ -44,12 +44,10 @@
                         <div class="col-md-12">
                             <div class="overview-wrap">
                                 <h2 class="title-1">Dashboard</h2>
-
                             </div>
                         </div>
                     </div>
-                    <br><br>
-
+                    <br>
                     <div id="timeline-dashboard">
                     <?php $this->load->view("dashboard_timeline.php") ?>
                     </div>
