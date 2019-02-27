@@ -82,6 +82,12 @@
                                         <?php } ?>
 
                                         <?php
+                                        if ($task->type == 'cancel'){
+                                        ?>
+                                        <div id="<?= $task->id_task ?>" class="au-task__item au-task__item--danger btn-notif2" style="cursor:pointer;">
+                                            <?php } ?>
+
+                                        <?php
                                         if ($task->type == 'comment task'){
                                         ?>
                                         <div id="<?= $task->id_task ?>" class="au-task__item au-task__item--success btn-notif2" style="cursor:pointer;">
@@ -92,13 +98,13 @@
                                                     <?php
                                                     if ($task->type == 'new'){
                                                     ?>
-                                                    <a href="#">You got a new task from <?= $task->user_from ?></a>
+                                                    <a href="#"><?= $task->user_from ?> Sent you new request</a>
                                                     <?php } ?>
 
                                                     <?php
                                                     if ($task->type == 'comment task'){
                                                         ?>
-                                                        <a href="#"><?= $task->user_from ?> comment on your task </a>
+                                                        <a href="#"><?= $task->user_from ?> comment your task </a>
                                                     <?php } ?>
                                                 </h5>
                                                 <span class="time"><?= date('d M Y h:i a',strtotime($task->created_at)) ?></span>
@@ -108,11 +114,8 @@
 
                                     </div>
                                 </div>
-
-
                             </div>
                     </div>
-
 <!--                        // NOTIF REQUEST-->
                         <div class="col-lg-6">
                             <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
@@ -154,6 +157,7 @@
                                             ?>
                                             <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success btn-notif" style="cursor:pointer;">
                                             <?php } ?>
+
                                             <?php
                                             if ($req->type == 'cancel'){
                                             ?>
@@ -171,31 +175,31 @@
                                                         <?php
                                                         if ($req->type == 'approve'){
                                                             ?>
-                                                            <a href="#">Your request has been approved by <?= $req->user_from ?></a>
+                                                            <a href="#"><?= $req->user_from ?> approved your request </a>
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'cancel'){
                                                             ?>
-                                                            <a href="#">Your request has been canceled by <?= $req->user_from ?></a>
+                                                            <a href="#"><?= $req->user_from ?> canceled your request</a>
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'reject'){
                                                             ?>
-                                                            <a href="#">Your request has been rejected by <?= $req->user_from ?></a>
+                                                            <a href="#"><?= $req->user_from ?> rejected your request</a>
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'done'){
                                                             ?>
-                                                            <a href="#">Your request to <?= $req->user_from ?> is completed</a>
+                                                            <a href="#"><?= $req->user_from ?> completed your request</a>
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'comment request'){
                                                             ?>
-                                                            <a href="#"><?= $req->user_from ?> comment on your task </a>
+                                                            <a href="#"><?= $req->user_from ?> comment your task </a>
                                                         <?php } ?>
                                                     </h5>
                                                     <span class="time"><?= date('d M Y h:i a',strtotime($req->created_at)) ?></span>
