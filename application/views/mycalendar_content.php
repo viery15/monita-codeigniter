@@ -319,16 +319,16 @@ $year_to = date('Y', strtotime($date_to));
                 <span style="background-color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Weekend
             </div>
             <div class="col-md-2">
-                <span style="background-color: #2294fd">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Done
+                <span style="background-color: #0000FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Done
             </div>
             <div class="col-md-2">
-                <span style="background-color: #ccce0f">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Pending
+                <span style="background-color: #FFFF00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Pending
             </div>
             <div class="col-md-2">
-                <span style="background-color: #48ad28">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Progress
+                <span style="background-color: #35f235">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Progress
             </div>
             <div class="col-md-2">
-                <span style="background-color: saddlebrown">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Cancelled
+                <span style="background-color: #D62222">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Cancelled
             </div>
             <div class="col-md-2">
                 <span style="background-color: black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>  : Rejected
