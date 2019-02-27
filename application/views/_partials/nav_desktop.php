@@ -75,7 +75,7 @@ $data = $this->ci->notification_model->getByUserTarget();
                                     <?php
                                     if ($data->type == 'new') {
                                     ?>
-                                    <p><?= $data->user_from ?> sent you new reuqest </p>
+                                    <p><?= $data->user_from ?> sent you new request </p>
                                     <?php } ?>
 
                                     <?php
