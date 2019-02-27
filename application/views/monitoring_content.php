@@ -128,12 +128,19 @@
                 type: 'pie'
             },
             title: {
-                text: 'Summary of '+ <?= $nik ?>+'\'s Tasks'
+                <?php
+                    if ($type == 'mytask'){
+                ?>
+                text: <?= $nik ?>+' Requests to '+<?= $this->session->nik ?>
+                <?php } else { ?>
+                text: <?= $nik ?>+' Tasks from '+<?= $this->session->nik ?>
+                <?php } ?>
             },
 
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
+                    size: 250,
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
@@ -179,7 +186,7 @@
                 type: 'pie'
             },
             title: {
-                text: <?= $this->session->nik ?>+'\'s Tasks From '+ <?= $nik ?>
+                text: <?= $nik ?> +' Requests To '+ <?= $this->session->nik ?>
             },
 
             plotOptions: {
@@ -231,7 +238,7 @@
                 type: 'pie'
             },
             title: {
-                text: <?= $this->session->nik ?>+'\'s Requests To '+ <?= $nik ?>
+                text: <?= $nik ?> +' Tasks To '+ <?= $this->session->nik ?>
             },
 
             plotOptions: {
