@@ -82,49 +82,47 @@ $date_now = date('d M Y');
                 title: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }],
+        });
 
-            "fnDrawCallback": function( oSettings ) {
-                $('.btn-update').click(function(){
-                    var id = $(this).attr('id');
-                    $('#content-modal').load("<?php echo base_url(); ?>/Myrequest/form_update/"+id);
-                });
+        $("#table-request").on("click", ".btn-update", function(){
+            var id = $(this).attr('id');
+            $('#content-modal').load("<?php echo base_url(); ?>/Myrequest/form_update/"+id);
+        });
 
-                $('.btn-comment').click(function(){
-                    var id = $(this).attr('id');
-                    $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
-                });
+        $("#table-request").on("click", ".btn-comment", function(){
+            var id = $(this).attr('id');
+            $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
+        });
 
-                $('.btn-delete').click(function(){
-                    var id = $(this).attr('id');
-                    if (confirm('Are you sure you want to delete this?')) {
-                        $.ajax({
-                            url: "<?php echo base_url(); ?>/Myrequest/delete",
-                            type: 'post',
-                            data: {'id': id},
-                            success: function (a) {
-                                alert("Data deleted successful");
-                                $("#myrequest-table-list").html(a);
-                            }
-                        });
+        $("#table-request").on("click", ".btn-delete", function(){
+            var id = $(this).attr('id');
+            if (confirm('Are you sure you want to delete this?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Myrequest/delete",
+                    type: 'post',
+                    data: {'id': id},
+                    success: function (a) {
+                        alert("Data deleted successful");
+                        $("#myrequest-table-list").html(a);
                     }
                 });
+            }
+        });
 
-                $('.btn-resend').click(function(){
-                    var id = $(this).attr('id');
-                    if (confirm('Are you sure you want to resend this?')) {
-                        $.ajax({
-                            url: "<?php echo base_url(); ?>/Myrequest/resend",
-                            type: 'post',
-                            data: {'id': id},
-                            beforeSend: function () {
-                                $('#loading').click();
-                            },
-                            success: function (a) {
-                                $('#modal-loading').modal('toggle');
-                                alert("Data resent successful");
-                                $("#myrequest-table-list").html(a);
-                            }
-                        });
+        $("#table-request").on("click", ".btn-resend", function(){
+            var id = $(this).attr('id');
+            if (confirm('Are you sure you want to resend this?')) {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Myrequest/resend",
+                    type: 'post',
+                    data: {'id': id},
+                    beforeSend: function () {
+                        $('#loading').click();
+                    },
+                    success: function (a) {
+                        $('#modal-loading').modal('toggle');
+                        alert("Data resent successful");
+                        $("#myrequest-table-list").html(a);
                     }
                 });
             }
