@@ -6,19 +6,27 @@
  * Time: 3:56 PM
  */
 
+$count_done = 0;
+$count_progress = 0;
+
+if ($type == 'mytask'){
+    $count_done = $count_task_done;
+    $count_progress = $count_task_progress;
+}
+if ($type == 'myrequest'){
+    $count_done = $count_request_done;
+    $count_progress = $count_request_progress;
+}
 
 ?>
 <div class="row">
+
     <?php
     if ($type != 'all') {
     ?>
     <div class="col-lg-12">
         <div class="au-card m-b-30">
             <div class="au-card-inner">
-                <?php
-                    $count_done = count((array)$done);
-                    $count_progress = count((array)$progress);
-                ?>
                 <div id="container" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
 
             </div>
@@ -28,10 +36,6 @@
         <div class="col-lg-6">
             <div class="au-card m-b-30">
                 <div class="au-card-inner">
-                    <?php
-                    $count_done = count((array)$done);
-                    $count_progress = count((array)$progress);
-                    ?>
                     <div id="mytask" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
 
                 </div>
@@ -40,10 +44,6 @@
         <div class="col-lg-6">
             <div class="au-card m-b-30">
                 <div class="au-card-inner">
-                    <?php
-                    $count_done = count((array)$done);
-                    $count_progress = count((array)$progress);
-                    ?>
                     <div id="myrequest" style="min-width: 310px; height: 400px; margin-top: 0 auto"></div>
 
                 </div>
@@ -164,7 +164,7 @@
                     selected: true
                 }, {
                     name: 'On Progress',
-                    y: <?php echo json_encode(count($progress),JSON_NUMERIC_CHECK) ?>,
+                    y: <?php echo json_encode($count_progress,JSON_NUMERIC_CHECK) ?>,
                 }]
             }]
         });
@@ -175,7 +175,7 @@
 <script>
     $(function () {
         Highcharts.setOptions({
-            colors: ['#308dc5', '#50B432',]
+            colors: ['#308dc5', '#50B432']
         });
 
         Highcharts.chart('mytask', {
@@ -227,7 +227,7 @@
 <script>
     $(function () {
         Highcharts.setOptions({
-            colors: ['#308dc5', '#50B432',]
+            colors: ['#308dc5', '#50B432']
         });
 
         Highcharts.chart('myrequest', {
