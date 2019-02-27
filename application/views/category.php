@@ -64,7 +64,9 @@
             <!-- Modal content-->
             <div class="modal-content">
 
-                <div id="content-modal"></div>
+                <div id="content-modal">
+                    <?php $this->load->view("form_category.php") ?>
+                </div>
 
             </div>
 
