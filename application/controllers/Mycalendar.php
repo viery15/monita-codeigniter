@@ -122,25 +122,39 @@ class Mycalendar extends CI_Controller
          $color_pending = array(
             'fill' => array(
                 'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'color' => array('rgb' => 'fbfd22')
+                'color' => array('rgb' => 'FFFF00')
             )
          );
 
         $color_progress = array(
             'fill' => array(
                 'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'color' => array('rgb' => '56fd22')
+                'color' => array('rgb' => '35f235')
             )
         );
 
         $color_done = array(
             'fill' => array(
                 'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'color' => array('rgb' => '2294fd')
+                'color' => array('rgb' => '0000FF')
             )
         );
 
         $color_rejected = array(
+            'fill' => array(
+                'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                'color' => array('rgb' => '000000')
+            )
+        );
+
+        $color_canceled = array(
+            'fill' => array(
+                'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                'color' => array('rgb' => 'D62222')
+            )
+        );
+
+        $color_weekend = array(
             'fill' => array(
                 'type' => PHPExcel_Style_Fill::FILL_SOLID,
                 'color' => array('rgb' => 'FF0000')
@@ -203,7 +217,7 @@ class Mycalendar extends CI_Controller
                     $excel->getActiveSheet()->getStyle($j . '6')->applyFromArray($style_col);
                     $excel->getActiveSheet()->getColumnDimension($j)->setWidth(5);
                     if (date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sat' || date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sun') {
-                        $excel->getActiveSheet()->getStyle($j . '6')->applyFromArray($color_rejected);
+                        $excel->getActiveSheet()->getStyle($j . '6')->applyFromArray($color_weekend);
                     }
 
                     $first_row = 7;
@@ -218,7 +232,7 @@ class Mycalendar extends CI_Controller
                         $year_end = date('o', strtotime($data->date_to));
 
                         if (date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sat' || date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sun') {
-                            $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
+                            $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_weekend);
                         }
 
                         if ($i >= $day_start && $i <= $day_end && $m >= $month_start && $m <= $month_end && $y >= $year_start && $y <= $year_end) {
@@ -234,6 +248,9 @@ class Mycalendar extends CI_Controller
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
                             }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
+                            }
                         }
 
                         if ($m > $month_start && $m < $month_end && $y == $year_end && $year_end == $year_start) {
@@ -248,6 +265,9 @@ class Mycalendar extends CI_Controller
                             }
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
+                            }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
                             }
                         }
 
@@ -265,6 +285,9 @@ class Mycalendar extends CI_Controller
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
                             }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
+                            }
                         }
 
                         if ($i <= $day_end && $month_end == $m && $month_start < $m && $y >= $year_start && $y <= $year_end) {
@@ -280,6 +303,9 @@ class Mycalendar extends CI_Controller
                             }
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
+                            }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
                             }
                         }
 
@@ -299,6 +325,9 @@ class Mycalendar extends CI_Controller
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
                             }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
+                            }
                         }
 
                         if ($year_end > $year_start && $y == $year_end && $m < $month_end){
@@ -315,6 +344,9 @@ class Mycalendar extends CI_Controller
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
                             }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
+                            }
                         }
 //
                         if ($i <= $day_end && $year_end > $year_start && $y == $year_end && $m == $month_end){
@@ -330,6 +362,9 @@ class Mycalendar extends CI_Controller
                             }
                             if ($data->status == 'rejected') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_rejected);
+                            }
+                            if ($data->status == 'canceled') {
+                                $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
                             }
                         }
 
