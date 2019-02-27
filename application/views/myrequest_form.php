@@ -55,12 +55,12 @@ if(isset($request->id)) {
 
             <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
-                <input value="<?= $request->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
+                <input style="padding: 0.5%;" value="<?= $request->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
 
             <div class="form-group">
                 <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="description" name="description" required><?= $request->description ?></textarea>
+                <textarea class="form-control" rows="3" id="description" name="description" required><?= $request->description ?></textarea>
             </div>
 
     </div>
@@ -112,12 +112,12 @@ if(isset($request->id)) {
 
             <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
-                <input autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
+                <input style="padding: 0.5%" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
 
             <div class="form-group">
                 <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="description" name="description" required></textarea>
+                <textarea class="form-control" rows="3" id="description" name="description" required></textarea>
             </div>
 
     </div>
