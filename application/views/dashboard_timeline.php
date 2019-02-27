@@ -96,31 +96,31 @@
                             <?php
                             if ($mytask->status == 'done') {
                             ?>
-                            <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                            <span class="time" style="color: #0000FF"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'progress') {
                                 ?>
-                                <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: #35f235"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'canceled') {
                                 ?>
-                                <span class="time" style="color: saddlebrown"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: #D62222"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'pending') {
                                 ?>
-                                <span class="time" style="color: darkorange"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: #FFFF00"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($mytask->status == 'rejected') {
                                 ?>
-                                <span class="time" style="color: red"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: #000000"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
@@ -225,31 +225,31 @@
                             <?php
                             if ($myrequest->status == 'done') {
                                 ?>
-                                <span class="time" style="color: blue"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: #0000FF"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'canceled') {
                                 ?>
-                                <span class="time" style="color: saddlebrown"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: #D62222"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'progress') {
                                 ?>
-                                <span class="time" style="color: green"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: #35f235"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'pending') {
                                 ?>
-                                <span class="time" style="color: darkorange"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: #FFFF00"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
                             if ($myrequest->status == 'rejected') {
                                 ?>
-                                <span class="time" style="color: red"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: #000000"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
 
