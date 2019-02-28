@@ -67,10 +67,8 @@ $date_now = date('d M Y');
         });
 
         $("#example").on("click", ".btn-update", function(){
-            $('.btn-update').click(function(){
                 var id = $(this).attr('id');
                 $('#content-modal').load("<?php echo base_url(); ?>/Category/form_update/"+id);
-            });
         });
     });
 </script>
