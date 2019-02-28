@@ -10,10 +10,8 @@
     <thead>
     <tr>
         <th>Start Date</th>
-        <th>Assign From</th>
-        <th>Category</th>
         <th>Title</th>
-        <th>Description</th>
+        <th>Assign From</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
@@ -24,26 +22,11 @@
         ?>
         <tr>
             <td><?= date("d M Y", strtotime($task->date_from)) ?></td>
-            <td><?= $task->user_from ?></td>
-            <td><?= ucfirst($task->category) ?></td>
             <td><?= ucfirst($task->remark) ?></td>
-            <td><?= ucfirst($task->description) ?></td>
+            <td><?= $task->user_from ?></td>
             <td><?= ucfirst($task->status) ?></td>
-            <td width="20%">
-                <?php
-                    if ($task->status == 'progress') {
-                ?>
-                <button title="Done" type="button" class="btn btn-success btn-done" id="<?= $task->id ?>"><i class="fa fa-check-square"></i></button>
-                <button title="Cancel" type="button" class="btn btn-danger btn-cancel" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
-                <?php } ?>
-
-                <?php
-                if ($task->status == 'pending') {
-                    ?>
-                    <button title="Approve" type="button" class="btn btn-success btn-approve" id="<?= $task->id ?>"><i class="fa fa-check"></i></button>
-                    <button title="Reject" type="button" class="btn btn-danger btn-reject" id="<?= $task->id ?>"><i class="fa fa-close"></i></button>
-                <?php } ?>
-                <button title="Comment" type="button" class="btn btn-info btn-comment" data-toggle="modal" data-target="#modal-comment" id="<?= $task->id ?>"><i class="fa fa-comments"></i></button>
+            <td>
+                <button title="Info" type="button" class="btn btn-info btn-detail" data-toggle="modal" data-target="#modal-info" id="<?= $task->id ?>"><i class="fa fa-eye"></i></button>
             </td>
         </tr>
     <?php } ?>
@@ -55,6 +38,8 @@ $date_now = date('d M Y');
 ?>
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function(){
+
+
         $('#example').DataTable({
             dom: 'Bfrtip',
 
@@ -117,6 +102,11 @@ $date_now = date('d M Y');
                     }
                 });
             }
+        });
+
+        $("#example").on("click", ".btn-detail", function(){
+            var id = $(this).attr('id');
+            $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
 
         $("#example").on("click", ".btn-done", function(){
