@@ -44,46 +44,46 @@ if ($task->status == 'canceled') {
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
-            <div class="au-card recent-report" style="padding-top: 2%;margin-bottom: 3%;padding-bottom: 3%">
+            <div class="au-card recent-report" style="padding-top: 2%;margin-bottom: 3%;padding-bottom: 3%;margin-top: -2%">
                 <div class="au-card-inner">
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Title : <br>
+                            <b>Title :</b> <br>
                             <?= ucfirst($task->remark) ?>
                         </div>
                     </div>
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Employee from : <br>
+                            <b>Employee from :</b> <br>
                             (name of <?= ucfirst($task->user_from) ?>)
                         </div>
                     </div>
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Employee to : <br>
+                            <b>Employee to :</b> <br>
                             (name of <?= ucfirst($task->user_to) ?> )
                         </div>
                     </div>
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Date from : <br>
+                            <b>Date from :</b> <br>
                             <?= date('d M Y',strtotime($task->date_from)) ?>
                         </div>
                     </div>
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Date to : <br>
+                            <b>Date to :</b> <br>
                             <?= date('d M Y',strtotime($task->date_to)) ?>
                         </div>
                     </div>
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Estimation day : <br>
+                            <b>Estimation day :</b> <br>
                             <?php
                             $start_date1 = date('Y-m-d', strtotime($task->date_from));
                             $end_date1 = date('Y-m-d', strtotime($task->date_to));
@@ -92,13 +92,13 @@ if ($task->status == 'canceled') {
                             $end_date = new DateTime($end_date1);
                             $interval = $start_date->diff($end_date);
                             ?>
-                            <?= $interval->days ?> Days
+                            <?= $interval->days ?>
                         </div>
                     </div>
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
-                            Description : <br>
+                            <b>Description :</b> <br>
                             <?= ucfirst($task->description) ?>
                         </div>
                     </div>

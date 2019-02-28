@@ -244,8 +244,7 @@
                             </div>
                         </div>
                     </div>
-                    <h4>Comments</h4>
-
+                    <h4 style="margin-bottom: -2%">Comments</h4>
                     <div id="comment-section" >
                         <?php $this->load->view("comment_page.php") ?>
                     </div>
@@ -262,11 +261,8 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-
             <div id="content-modal"></div>
-
         </div>
-
     </div>
 </div>
 <?php $this->load->view("loading-modal.php") ?>
