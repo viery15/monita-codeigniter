@@ -114,7 +114,7 @@
                             <?php
                             if ($mytask->status == 'pending') {
                                 ?>
-                                <span class="time" style="color: #FFFF00"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
+                                <span class="time" style="color: #ffa037"><small><i class="fa fa-exclamation-triangle"></i> <?= $mytask->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
@@ -243,7 +243,7 @@
                             <?php
                             if ($myrequest->status == 'pending') {
                                 ?>
-                                <span class="time" style="color: #FFFF00"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
+                                <span class="time" style="color: #ffa037"><small><i class="fa fa-exclamation-triangle"></i> <?= $myrequest->status ?></small></span><br><br>
                             <?php } ?>
 
                             <?php
