@@ -16,6 +16,7 @@ foreach ($comment as $comment){
             <p style="background-color: white"><?= $comment->comment ?>
                 <?php
                 if (isset($comment->attachment)) {
+                    $file = $comment->attachment;
                     ?>
                     <br><br>Attachments :<br><i class="fa fa-file"></i> <a href="<?php echo site_url('Myrequest/download/'.$comment->attachment) ?>"><?= $comment->attachment ?></a>
                 <?php } ?>
@@ -56,7 +57,7 @@ foreach ($comment as $comment){
                 type: 'post',
                 data: {
                     'id': id_comment,
-                    'task_id': idtask
+                    'task_id': idtask,
                 },
                 success: function (e) {
                     alert("Data deleted successful");

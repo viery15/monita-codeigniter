@@ -26,6 +26,14 @@ class Comment_model extends CI_Model
         return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 
+    public function getFile($id)
+    {
+        $this->db->select('attachment');
+        $this->db->from($this->_table);
+        $this->db->where('id',$id);
+        return $this->db->get()->result()->row('attachment');
+    }
+
     public function getByTaskId($id)
     {
         return $this->db->get_where($this->_table, ["task_id" => $id])->result();

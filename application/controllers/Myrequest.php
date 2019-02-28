@@ -149,9 +149,17 @@ class Myrequest extends CI_Controller
         $this->load->view("myrequest_form_comment", $data);
     }
 
+    public function deletefile($file){
+        unlink(FCPATH.'/uploads/'.$file);
+    }
+
     public function deletecomment(){
         $post = $this->input->post();
 
+        $file = $this->comment_model->getById($post['id']);
+        if (isset($file->attachment)) {
+            $this->deletefile($file->attachment);
+        }
         $this->comment_model->delete($post['id']);
 
         $data["task"] = $this->task_model->getById($post['task_id']);
@@ -163,11 +171,14 @@ class Myrequest extends CI_Controller
     public function deletecomment2(){
         $post = $this->input->post();
 
+        $file = $this->comment_model->getById($post['id']);
+        if (isset($file->attachment)) {
+            $this->deletefile($file->attachment);
+        }
         $this->comment_model->delete($post['id']);
 
         $data["task"] = $this->task_model->getById($post['task_id']);
         $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
-
         $this->load->view("comment_page", $data);
     }
 
