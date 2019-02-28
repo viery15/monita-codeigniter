@@ -20,7 +20,7 @@
 <div class="page-wrapper">
     <div class="page-content--bge5">
         <div class="container">
-            <div class="login-wrap" style="max-width: 400px">
+            <div class="login-wrap" style="max-width: 400px;padding-top: 10%">
                 <div class="login-content">
                     <div class="login-logo">
                         <H3>MONITA</H3>
