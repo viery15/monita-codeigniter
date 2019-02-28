@@ -106,7 +106,7 @@ if ($task->status == 'canceled') {
                     <div class="row">
                         <div class="col-md-12">
                             <button id="<?= $task->id ?>" type="button" class="btn-sm manage btn btn-primary" style="width: 49%"><i class="fa fa-cogs"></i> Manage</button>
-                            <button type="button" class="btn-sm btn btn-danger" style="width: 49%"><i class="fa fa-close"></i> Close</button>
+                            <button type="button" class="btn-sm btn btn-danger btn-close" style="width: 49%"><i class="fa fa-close"></i> Close</button>
                         </div>
                     </div>
 
@@ -119,5 +119,9 @@ if ($task->status == 'canceled') {
     $(".manage").click(function(){
         var id = $(this).attr('id');
         $.redirect("task/"+id, {}, "POST" , "_blank");
+    });
+
+    $(".btn-close").click(function(){
+       $("#modal-info").modal("toggle");
     });
 </script>
