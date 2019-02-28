@@ -9,7 +9,7 @@
 
 
 <?php header('Access-Control-Allow-Origin: *'); ?>
-
+<div id="body">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,11 +52,13 @@
 
 <!--                        // NOTIF TASK-->
                         <div class="col-lg-6">
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash"></i> Clear</button>
+                            <br><br>
                             <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-bottom: 10px;padding-top: 10px">
                                     <div class="bg-overlay bg-overlay--blue"></div>
                                     <h3>
-                                        <i class="fa fa-tasks"></i>Notification of My Tasks</h3>
+                                        <i class="fa fa-tasks"></i>My Tasks</h3>
                                 </div>
                                 <div class="au-task js-list-load">
                                     <div class="au-task-list">
@@ -66,7 +68,7 @@
                                             <div  class="au-task__item au-task__item">
                                                 <div class="au-task__item-inner">
                                                     <h5 class="task" style="font-weight: normal;">
-                                                        Notification not found
+                                                        Data not found
                                                     </h5>
                                                 </div>
                                             </div>
@@ -118,11 +120,12 @@
                     </div>
 <!--                        // NOTIF REQUEST-->
                         <div class="col-lg-6">
+                            <button type="button" class="btn-clear-req btn btn-default btn-sm"><i class="fa fa-trash"></i> Clear</button>
+                            <br><br>
                             <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-bottom: 10px;padding-top: 10px">
                                     <div class="bg-overlay bg-overlay--blue"></div>
-                                    <h3>
-                                        <i class="fa fa-tasks"></i>Notification of My Requests</h3>
+                                    <h3> <i class="fa fa-tasks"></i>My Requests</h3>
                                 </div>
                                 <div class="au-task js-list-load">
                                     <div class="au-task-list">
@@ -132,7 +135,7 @@
                                         <div  class="au-task__item au-task__item">
                                             <div class="au-task__item-inner">
                                                 <h5 class="task" style="font-weight: normal;">
-                                                    Notification not found
+                                                    Data not found
                                                 </h5>
                                             </div>
                                         </div>
@@ -167,42 +170,44 @@
                                             <?php
                                             if ($req->type == 'comment request'){
                                             ?>
-                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success btn-notif" style="cursor:pointer;">
+                                            <div id="<?= $req->id_task ?>" class="au-task__item au-task__item--success " style="cursor:pointer;">
                                             <?php } ?>
 
-                                                <div class="au-task__item-inner">
-                                                    <h5 class="task">
+                                                <div id="<?= $req->id_task ?>" class="au-task__item-inner btn-notif" >
+
                                                         <?php
                                                         if ($req->type == 'approve'){
                                                             ?>
-                                                            <a href="#"><?= $req->user_from ?> approved your request </a>
+                                                            <?= $req->user_from ?> approved your request
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'cancel'){
                                                             ?>
-                                                            <a href="#"><?= $req->user_from ?> canceled your request</a>
+                                                            <?= $req->user_from ?> canceled your request
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'reject'){
                                                             ?>
-                                                            <a href="#"><?= $req->user_from ?> rejected your request</a>
+                                                            <?= $req->user_from ?> rejected your request
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'done'){
                                                             ?>
-                                                            <a href="#"><?= $req->user_from ?> completed your request</a>
+                                                            <?= $req->user_from ?> completed your request
                                                         <?php } ?>
 
                                                         <?php
                                                         if ($req->type == 'comment request'){
                                                             ?>
-                                                            <a href="#"><?= $req->user_from ?> comment your task </a>
+                                                            <?= $req->user_from ?> comment your task
                                                         <?php } ?>
-                                                    </h5>
-                                                    <span class="time"><?= date('d M Y h:i a',strtotime($req->created_at)) ?></span>
+
+
+                                                    <button id="<?= $req->id ?>" class="btn-delete pull-right btn btn-default btn-sm" type="button"><i class="fa fa-trash"></i></button>
+                                                    <span class="time pull-right"><small><?= date('d M Y h:i a',strtotime($req->created_at)) ?>&nbsp;&nbsp;</small></span>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -247,4 +252,17 @@
         var id = $(this).attr('id');
         window.location.href = "<?php echo base_url()?>task/"+id;
     });
+
+    $(".btn-clear-req").click(function(){
+        if (confirm('Are you sure you want to clear request notification?')) {
+            $.ajax({
+                url: "<?php echo base_url()?>mytask/clearnotifreq",
+                type: 'pos',
+                success: function (a) {
+                    $("#body").html(a);
+                }
+            });
+        }
+    });
 </script>
+</div>

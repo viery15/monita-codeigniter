@@ -145,4 +145,8 @@ class Notification_model extends CI_Model
 
         $this->db->insert($this->_table, $data);
     }
+
+    public function clearReq(){
+        return $this->db->delete($this->_table, array("task_id" => $id));
+    }
 }

@@ -328,4 +328,9 @@ class Mytask extends CI_Controller
         $data["mytask"] = $this->task_model->getTask();
         $this->load->view("mytask_table_list", $data);
     }
+
+    public function clearnotifreq(){
+        $this->notification_model->clearReq();
+        redirect('site/notification');
+    }
 }
