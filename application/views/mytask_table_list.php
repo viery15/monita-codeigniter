@@ -10,8 +10,12 @@
     <thead>
     <tr>
         <th>Start Date</th>
+        <th style="display: none;">End Date</th>
+        <th>Category</th>
         <th>Title</th>
+        <th style="display: none;">Description</th>
         <th>Assign From</th>
+        <th style="display: none;">Assign To</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
@@ -46,8 +50,12 @@
         ?>
         <tr>
             <td><?= date("d M Y", strtotime($task->date_from)) ?></td>
+            <td style="display: none;"><?= date("d M Y", strtotime($task->date_to)) ?></td>
+            <td><?= strtoupper($task->category) ?></td>
             <td><?= ucfirst($task->remark) ?></td>
+            <td style="display: none;"><?= ucfirst($task->description) ?></td>
             <td><?= $task->user_from ?></td>
+            <td style="display: none;"><?= $task->user_to ?></td>
             <td><button class="btn btn-sm" type="button" style="background-color: <?= $color ?>;color: <?= $text_color ?>"><?= $task->status ?></button></td>
             <td>
                 <button title="Info" type="button" class="btn btn-info btn-detail" data-toggle="modal" data-target="#modal-info" id="<?= $task->id ?>"><i class="fa fa-eye"></i></button>
@@ -62,8 +70,6 @@ $date_now = date('d M Y');
 ?>
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function(){
-
-
         $('#example').DataTable({
             dom: 'Bfrtip',
 
@@ -71,7 +77,7 @@ $date_now = date('d M Y');
                 extend: 'pdf',
                 title: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 customize: function ( doc ) {
                     doc.content[1].table.widths = [
@@ -86,11 +92,11 @@ $date_now = date('d M Y');
             }, {
                 extend: 'excel',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 title: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 filename: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
-            }],
+            }]
         });
 
         $('.btn-delete').click(function(){
