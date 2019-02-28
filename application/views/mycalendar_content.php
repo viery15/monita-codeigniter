@@ -291,16 +291,16 @@ $year_to = date('Y', strtotime($date_to));
                                 ?>
 
                                 <?php
-                                if (strtotime($data_date[$i]) >= strtotime($task->date_from) && strtotime($data_date[$i]) <= strtotime($task->date_to)){
+                                if (date('D',strtotime($data_date[$i])) == 'Sun' || date('D',strtotime($data_date[$i])) == 'Sat'){
                                     ?>
+                                    <td style="background-color: red"></td>
 
-                                    <td style="background-color: <?= $color ?>"></td>
 
                                 <?php }
-                                elseif (date('D',strtotime($data_date[$i])) == 'Sun' || date('D',strtotime($data_date[$i])) == 'Sat') {
+                                elseif (strtotime($data_date[$i]) >= strtotime($task->date_from) && strtotime($data_date[$i]) <= strtotime($task->date_to)) {
 
                                 ?>
-                                    <td style="background-color: red"></td>
+                                    <td style="background-color: <?= $color ?>"></td>
                                 <?php }else { ?>
                                     <td></td>
                                     <?php
@@ -335,7 +335,14 @@ $year_to = date('Y', strtotime($date_to));
             </div>
 
         </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12" style="color: red">
+                * The work days is excluded leave and national holiday
+            </div>
+        </div>
     </div>
+
     </body>
 </html>
 <script type="text/javascript">

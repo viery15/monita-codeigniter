@@ -13,7 +13,7 @@ foreach ($comment as $comment){
     <div class="media comment-box" style="width: 100%;margin-bottom: -20px">
         <div class="media-body">
             <h4 class="media-heading"><?= $comment->user_comment ?> <small class="text-muted"> - <?= date('d M Y h:i a', strtotime($comment->created_at)) ?></small></h4>
-            <p style="background-color: white"><?= $comment->comment ?>
+            <p style="background-color: white"><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($comment->comment))); ?>
                 <?php
                 if (isset($comment->attachment)) {
                     $file = $comment->attachment;

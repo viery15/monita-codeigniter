@@ -64,6 +64,8 @@ class Comment_model extends CI_Model
             }
             $post['user_comment'] = $this->session->nik;
             $post['created_at'] = date('m-d-Y H:i:s');
+//            $comment = ereg_replace( "\n",'|', $post['comment']);
+//            $post['comment'] = $comment;
 
             $this->db->insert($this->_table, $post);
 //        }

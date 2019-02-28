@@ -21,10 +21,17 @@
         <?php } ?>
 
         <?php
-        if ($task->status == 'pending' && $task->user_from == $this->session->nik) {
+        if ($task->status == 'pending' && $task->user_from == $this->session->nik && $this->session->role != 'admin') {
             ?>
             <button type="button" id="<?= $task->id ?>" class="btn-update btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-request"><i class="fa fa-pencil-square"></i> Update</button>
             <button type="button" id="<?= $task->id ?>" class="btn-delete btn btn-sm btn-danger"><i class="fa fa-close"></i> Delete</button>
+        <?php } ?>
+
+        <?php
+        if ($task->status == 'pending' && 'admin' == $this->session->role) {
+            ?>
+            <button type="button" id="<?= $task->id ?>" class="btn-approve btn btn-sm btn-success"><i class="fa fa-check"></i> Approve</button>
+            <button type="button" id="<?= $task->id ?>" class="btn-reject btn btn-sm btn-danger"><i class="fa fa-close"></i> Reject</button>
         <?php } ?>
 
         <?php
@@ -35,9 +42,29 @@
         <?php } ?>
 
         <?php
+        if ($task->status == 'progress' && 'admin' == $this->session->role && $task->user_to != $this->session->nik) {
+            ?>
+            <button id="<?= $task->id ?>" type="button" class="btn-done btn btn-sm btn-success"><i class="fa fa-check-circle"></i> Done</button>
+            <button id="<?= $task->id ?>" class="btn btn-danger btn-sm btn-cancel"><i class="fa fa-close"></i> Cancel</button>
+        <?php } ?>
+
+        <?php
         if ($task->status == 'rejected' && $task->user_from == $this->session->nik) {
             ?>
             <button id="<?= $task->id ?>" type="button" class="btn-resend btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Resend Request</button>
+        <?php } ?>
+
+        <?php
+        if ($task->status == 'rejected' && 'admin' == $this->session->role && $task->user_to != $this->session->nik) {
+            ?>
+            <button id="<?= $task->id ?>" type="button" class="btn-resend btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Resend Request</button>
+        <?php } ?>
+
+        <?php
+        if ('admin' == $this->session->role) {
+            ?>
+            <button type="button" id="<?= $task->id ?>" class="btn-update btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-request"><i class="fa fa-pencil-square"></i> Update</button>
+            <button type="button" id="<?= $task->id ?>" class="btn-delete btn btn-sm btn-danger"><i class="fa fa-close"></i> Delete</button>
         <?php } ?>
 
     </div>
@@ -53,6 +80,11 @@
         if ($this->session->nik == $task->user_to) {
             ?>
             <i class="fa fa-user" aria-hidden="true"></i> <?= $task->user_from ?> &nbsp;
+        <?php } ?>
+        <?php
+        if ($this->session->nik != $task->user_to && $this->session->nik != $task->user_from && $this->session->role == 'admin') {
+            ?>
+            <i class="fa fa-user" aria-hidden="true"></i> <?= $task->user_from ?> -> <?= $task->user_to ?> &nbsp;
         <?php } ?>
         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= ucfirst($task->status) ?>
     </div>

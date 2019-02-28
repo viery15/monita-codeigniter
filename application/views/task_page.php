@@ -228,9 +228,14 @@
                                     My Request
                                     <?php } ?>
                                     <?php
-                                    if ($this->session->nik != $task->user_from){
+                                    if ($this->session->nik == $task->user_to){
                                         ?>
                                         My Task
+                                    <?php } ?>
+                                    <?php
+                                    if ($this->session->nik != $task->user_from && $this->session->nik != $task->user_to && $this->session->role == 'admin'){
+                                        ?>
+                                    Manage Employee Task
                                     <?php } ?>
                                 </h2>
                             </div>

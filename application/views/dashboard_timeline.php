@@ -24,7 +24,7 @@
 <!--    TIMELINE MY TASKS-->
     <div class="col-lg-6">
         <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-            <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-top: 30px;padding-bottom: 30px">
+            <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-top: 10px;padding-bottom: 10px">
                 <div class="bg-overlay bg-overlay--blue"></div>
                 <h3>
                     <i class="fa fa-tasks"></i>MY TASKS</h3>
@@ -154,7 +154,7 @@
 <!--    TIMELINE MY REQUESTS-->
 <div class="col-lg-6">
 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-    <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-bottom: 30px;padding-top: 30px">
+    <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-bottom: 10px;padding-top: 10px">
         <div class="bg-overlay bg-overlay--blue"></div>
         <h3>
             <i class="fa fa-tasks"></i>MY REQUESTS</h3>

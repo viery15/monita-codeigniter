@@ -48,6 +48,12 @@ if ($task->status == 'canceled') {
                 <div class="au-card-inner">
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
+                            <b>Category :</b> <br>
+                            <?= ucfirst($task->category) ?>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 2%">
+                        <div class="col-md-12">
                             <b>Title :</b> <br>
                             <?= ucfirst($task->remark) ?>
                         </div>

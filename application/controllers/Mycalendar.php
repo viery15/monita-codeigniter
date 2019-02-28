@@ -231,9 +231,7 @@ class Mycalendar extends CI_Controller
                         $year_start = date('o', strtotime($data->date_from));
                         $year_end = date('o', strtotime($data->date_to));
 
-                        if (date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sat' || date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sun') {
-                            $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_weekend);
-                        }
+
 
                         if ($i >= $day_start && $i <= $day_end && $m >= $month_start && $m <= $month_end && $y >= $year_start && $y <= $year_end) {
                             if ($data->status == 'pending') {
@@ -366,6 +364,9 @@ class Mycalendar extends CI_Controller
                             if ($data->status == 'canceled') {
                                 $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_canceled);
                             }
+                        }
+                        if (date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sat' || date('D',strtotime($i.'-'.$m.'-'.$y)) == 'Sun') {
+                            $excel->getActiveSheet()->getStyle($j . $first_row)->applyFromArray($color_weekend);
                         }
 
                         $excel->getActiveSheet()->getStyle($j.$first_row)->applyFromArray($style_row);

@@ -19,3 +19,4 @@ $route['monitoring'] = 'monitoring/index';
 $route['mycalendar'] = 'mycalendar';
 $route['category'] = 'category';
 $route['notification'] = 'site/notification';
+$route['manage_task'] = 'manage/index';

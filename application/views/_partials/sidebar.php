@@ -23,11 +23,15 @@
                 </li>
                 <li class="<?php echo $this->uri->segment(1) == 'monitoring' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>monitoring">
-                    <i class="fas fa-laptop"></i>Monitoring</a>
+                    <i class="fas fa-laptop"></i>Task Monitor</a>
                 </li>
                 <?php
                 if ($this->session->role == 'admin') {
                 ?>
+                <li class="<?php echo $this->uri->segment(1) == 'category' ? 'active': '' ?>">
+                    <a href="<?php echo base_url(); ?>manage_task">
+                        <i class="fas fa-th-large"></i> Manage Task</a>
+                </li>
                 <li class="<?php echo $this->uri->segment(1) == 'category' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>category">
                     <i class="fas fa-tag"></i> Category</a>
