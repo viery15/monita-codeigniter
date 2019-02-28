@@ -26,7 +26,7 @@ if(isset($request->id)) {
     <div class="modal-body">
         <form id="form-request" name="form-user">
             <input type="hidden" class="form-control" id="user_from" name="user_from" value="<?= $this->session->nik ?>">
-            <input type="hidden" class="form-control" id="status" name="status" value="pending">
+            <input type="hidden" class="form-control" id="status" name="status" value="<?= $request->status ?>">
             <input type="hidden" class="form-control" name="id" value="<?= $request->id ?>">
             <!--            <input type="hidden" class="form-control" id="status" name="status" value="pending">-->
             <div class="form-group">
