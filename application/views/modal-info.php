@@ -83,6 +83,21 @@ if ($task->status == 'canceled') {
 
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
+                            Estimation day : <br>
+                            <?php
+                            $start_date1 = date('Y-m-d', strtotime($task->date_from));
+                            $end_date1 = date('Y-m-d', strtotime($task->date_to));
+
+                            $start_date = new DateTime($start_date1);
+                            $end_date = new DateTime($end_date1);
+                            $interval = $start_date->diff($end_date);
+                            ?>
+                            <?= $interval->days ?> Days
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 2%">
+                        <div class="col-md-12">
                             Description : <br>
                             <?= ucfirst($task->description) ?>
                         </div>
