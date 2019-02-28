@@ -44,7 +44,7 @@ if ($task->status == 'canceled') {
 <div class="modal-body">
     <div class="row">
         <div class="col-md-12">
-            <div class="au-card recent-report" style="padding-top: 2%;margin-bottom: 3%">
+            <div class="au-card recent-report" style="padding-top: 2%;margin-bottom: 3%;padding-bottom: 3%">
                 <div class="au-card-inner">
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
