@@ -20,24 +20,22 @@
 <div class="page-wrapper">
     <div class="page-content--bge5">
         <div class="container">
-            <div class="login-wrap">
+            <div class="login-wrap" style="max-width: 400px">
                 <div class="login-content">
                     <div class="login-logo">
-                        <H2>MONITA</H2><br>
+                        <H3>MONITA</H3>
                         (Monitoring Task Application)
                     </div>
                     <div class="login-form">
                         <form id="form-login" method="post">
                             <div class="form-group">
-                                <label>NIK</label>
-                                <input class="au-input au-input--full" type="text" name="nik" autocomplete="off" placeholder="NIK">
+                                <label>NIK:</label>
+                                <input style="padding: 0.5%" class="form-control" type="text" name="nik" autocomplete="off">
                             </div>
-                            <br>
                             <div class="form-group">
-                                <label>Password</label>
-                                <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                <label>Password:</label>
+                                <input style="padding: 0.5%" class="form-control" type="password" name="password">
                             </div>
-                            <br>
                             <button id="btn-login" class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
                         </form>
                     </div>
@@ -46,9 +44,7 @@
         </div>
         <?php $this->load->view("_partials/copyright.php") ?>
     </div>
-
 </div>
-
 
 <!-- Jquery JS-->
 <?php $this->load->view("_partials/js.php") ?>
