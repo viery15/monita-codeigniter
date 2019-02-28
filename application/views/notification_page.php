@@ -52,7 +52,7 @@
 
 <!--                        // NOTIF TASK-->
                         <div class="col-lg-6">
-                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash"></i> Clear</button>
+                            <button type="button" class="btn-clear-task btn btn-default btn-sm"><i class="fa fa-trash"></i> Clear</button>
                             <br><br>
                             <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
                                 <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');padding-bottom: 10px;padding-top: 10px">
@@ -84,12 +84,6 @@
                                         <?php } ?>
 
                                         <?php
-                                        if ($task->type == 'cancel'){
-                                        ?>
-                                        <div id="<?= $task->id_task ?>" class="au-task__item au-task__item--danger btn-notif2" style="cursor:pointer;">
-                                            <?php } ?>
-
-                                        <?php
                                         if ($task->type == 'comment task'){
                                         ?>
                                         <div id="<?= $task->id_task ?>" class="au-task__item au-task__item--success btn-notif2" style="cursor:pointer;">
@@ -109,7 +103,7 @@
                                                         <a href="#"><?= $task->user_from ?> comment your task </a>
                                                     <?php } ?>
                                                 </h5>
-                                                <span class="time"><?= date('d M Y h:i a',strtotime($task->created_at)) ?></span>
+                                                <span class="time pull-right"><small><?= date('d M Y h:i a',strtotime($task->created_at)) ?>&nbsp;&nbsp;</small></span>
                                             </div>
                                         </div>
                                         <?php } ?>
@@ -204,9 +198,6 @@
                                                             ?>
                                                             <?= $req->user_from ?> comment your task
                                                         <?php } ?>
-
-
-                                                    <button id="<?= $req->id ?>" class="btn-delete pull-right btn btn-default btn-sm" type="button"><i class="fa fa-trash"></i></button>
                                                     <span class="time pull-right"><small><?= date('d M Y h:i a',strtotime($req->created_at)) ?>&nbsp;&nbsp;</small></span>
                                                 </div>
                                             </div>
@@ -259,7 +250,19 @@
                 url: "<?php echo base_url()?>mytask/clearnotifreq",
                 type: 'pos',
                 success: function (a) {
-                    $("#body").html(a);
+                    window.location.href = "<?php echo base_url()?>notification";
+                }
+            });
+        }
+    });
+
+    $(".btn-clear-task").click(function(){
+        if (confirm('Are you sure you want to clear task notification?')) {
+            $.ajax({
+                url: "<?php echo base_url()?>mytask/clearnotiftask",
+                type: 'pos',
+                success: function (a) {
+                    window.location.href = "<?php echo base_url()?>notification";
                 }
             });
         }

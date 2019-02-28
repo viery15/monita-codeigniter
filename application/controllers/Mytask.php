@@ -333,4 +333,9 @@ class Mytask extends CI_Controller
         $this->notification_model->clearReq();
         redirect('site/notification');
     }
+
+    public function clearnotiftask(){
+        $this->notification_model->clearTask();
+        redirect('site/notification');
+    }
 }

@@ -147,6 +147,19 @@ class Notification_model extends CI_Model
     }
 
     public function clearReq(){
-        return $this->db->delete($this->_table, array("task_id" => $id));
+        $this->db->where('type','approve');
+        $this->db->or_where('type','reject');
+        $this->db->or_where('type','done');
+        $this->db->or_where('type','cancel');
+        $this->db->or_where('type','comment request');
+        $this->db->where('user_target',$this->session->nik);
+        return $this->db->delete($this->_table);
+    }
+
+    public function clearTask(){
+        $this->db->where('type','new');
+        $this->db->or_where('type','comment task');
+        $this->db->where('user_target',$this->session->nik);
+        return $this->db->delete($this->_table);
     }
 }
