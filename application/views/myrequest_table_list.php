@@ -10,12 +10,10 @@
     <thead id="table-myrequest">
     <tr>
         <th>Start Date</th>
-        <th>Assign To</th>
-        <th>Category</th>
         <th>Title</th>
-        <th>Description</th>
+        <th>Assign To</th>
         <th>Status</th>
-        <th width="21%">Action</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -24,25 +22,11 @@
         ?>
         <tr>
             <td><?= date("d M Y", strtotime($request->date_from)) ?></td>
-            <td><?= $request->user_to ?></td>
-            <td><?= strtoupper($request->category) ?></td>
             <td><?= ucfirst($request->remark) ?></td>
-            <td><?= ucfirst($request->description) ?></td>
+            <td><?= $request->user_to ?></td>
             <td><?= ucfirst($request->status) ?></td>
             <td >
-                <?php
-                    if ($request->status == "pending") {
-                ?>
-                    <button title="Update" type="button" class="btn btn-warning btn-update" data-toggle="modal" data-target="#modal-request" id="<?= $request->id ?>"><i class="fa fa-pencil-square-o"></i></button>
-                    <button title="Delete" type="button" class="btn btn-danger btn-delete" id="<?= $request->id ?>"><i class="fa fa-trash"></i></button>
-                <?php } ?>
-
-                <?php
-                if ($request->status == "rejected") {
-                    ?>
-                    <button title="Resend Request" type="button" class="btn btn-warning btn-resend" id="<?= $request->id ?>"><i class="fa fa-refresh"></i></button>
-                <?php } ?>
-                <button title="Comment" type="button" class="btn btn-info btn-comment" data-toggle="modal" data-target="#modal-comment" id="<?= $request->id ?>"><i class="fa fa-comments"></i></button>
+                <button title="Info" type="button" class="btn btn-info btn-detail" data-toggle="modal" data-target="#modal-info" id="<?= $request->id ?>"><i class="fa fa-eye"></i></button>
             </td>
         </tr>
     <?php } ?>
@@ -92,6 +76,11 @@ $date_now = date('d M Y');
         $("#table-request").on("click", ".btn-comment", function(){
             var id = $(this).attr('id');
             $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
+        });
+
+        $("#table-request").on("click", ".btn-detail", function(){
+            var id = $(this).attr('id');
+            $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
 
         $("#table-request").on("click", ".btn-delete", function(){

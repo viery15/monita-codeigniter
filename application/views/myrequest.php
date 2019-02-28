@@ -88,6 +88,17 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div id="modal-info-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <?php $this->load->view("loading-modal.php") ?>
 <!-- Jquery JS-->
 <script src="<?php echo base_url('js/main.js') ?>"></script>
