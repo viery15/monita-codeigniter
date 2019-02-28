@@ -19,12 +19,36 @@
     <tbody>
     <?php
     foreach ($myrequest as $request){
+        if ($request->status == 'pending') {
+            $color = '#FFFF00';
+            $text_color = 'black';
+        }
+
+        if ($request->status == 'done') {
+            $color = '#0000FF';
+            $text_color = 'white';
+        }
+
+        if ($request->status == 'rejected') {
+            $color = '#000000';
+            $text_color = 'white';
+        }
+
+        if ($request->status == 'progress') {
+            $color = '#35f235';
+            $text_color = 'black';
+        }
+
+        if ($request->status == 'canceled') {
+            $color = '#D62222';
+            $text_color = 'white';
+        }
         ?>
         <tr>
             <td><?= date("d M Y", strtotime($request->date_from)) ?></td>
             <td><?= ucfirst($request->remark) ?></td>
             <td><?= $request->user_to ?></td>
-            <td><?= ucfirst($request->status) ?></td>
+            <td><button class="btn btn-sm" type="button" style="background-color: <?= $color ?>;color: <?= $text_color ?>"><?= $request->status ?></button></td>
             <td >
                 <button title="Info" type="button" class="btn btn-info btn-detail" data-toggle="modal" data-target="#modal-info" id="<?= $request->id ?>"><i class="fa fa-eye"></i></button>
             </td>
