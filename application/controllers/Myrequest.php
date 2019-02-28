@@ -102,6 +102,7 @@ class Myrequest extends CI_Controller
     public function form_update2($id){
         $data["request"] = $this->task_model->getById($id);
         $data["users"] = $this->user_model->getUserAssign();
+        $data["category"] = $this->category_model->getAll();
 
         $this->load->view("myrequest_form2", $data);
     }

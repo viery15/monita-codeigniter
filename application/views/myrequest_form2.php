@@ -20,7 +20,7 @@
 if(isset($request->id)) {
     ?>
     <div class="modal-header">
-        Update User #<?= $request->id ?>
+        Update Request #<?= $request->id ?>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
@@ -39,7 +39,7 @@ if(isset($request->id)) {
             </div>
             <div class="form-group">
                 <label for="role">Assign To: <i style="color:red">*</i></label>
-                <select class="form-control select-nik" id="user_to" name="user_to" required>
+                <select style="padding-top: 0.5%;padding-bottom: 0.5%" class="form-control select-nik" id="user_to" name="user_to" required>
                     <option disabled selected>Select NIK</option>
                     <?php
                     foreach ($users as $user) {
@@ -48,15 +48,26 @@ if(isset($request->id)) {
                     <?php } ?>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="role">Category: <i style="color:red">*</i></label>
+                <select class="form-control select-category" id="category" name="category" required>
+                    <option disabled selected>Select Category</option>
+                    <?php
+                    foreach ($category as $category) {
+                        ?>
+                        <option value="<?= $category->label ?>"<?=$request->category == $category->label ? ' selected="selected"' : '';?>><?= $category->label ?></option>
+                    <?php } ?>
+                </select>
+            </div>
 
             <div class="form-group">
                 <label for="nik">Title: <i style="color:red">*</i></label>
-                <input value="<?= $request->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
+                <input style="padding-top: 0.5%;padding-bottom: 0.5%" value="<?= $request->remark ?>" autocomplete="off" type="text" class="form-control" id="remark" name="remark" required>
             </div>
 
             <div class="form-group">
                 <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="description" name="description" required><?= $request->description ?></textarea>
+                <textarea class="form-control" rows="3" id="description" name="description" required><?= $request->description ?></textarea>
             </div>
 
     </div>
@@ -117,6 +128,9 @@ if(isset($request->id)) {
     $(".select-nik").select2({
         width: 'resolve' // need to override the changed default
     });
+    $("#category").select2({
+        width: 'resolve' // need to override the changed default
+    });
     $('.input-daterange input').each(function() {
         $(this).datepicker();
     });
@@ -143,7 +157,8 @@ if(isset($request->id)) {
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_to").children("option:selected").val();
-        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+        var category = $("#category").children("option:selected").val();
+        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "" || category == "") {
             alert("All required fields cannot be empty!");
         }
         else {
