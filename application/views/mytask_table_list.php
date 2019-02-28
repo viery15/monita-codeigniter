@@ -80,13 +80,13 @@ $date_now = date('d M Y');
                     columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 customize: function ( doc ) {
-                    doc.content[1].table.widths = [
-                        '20%',
-                        '20%',
-                        '20%',
-                        '20%',
-                        '20%'
-                    ]
+//                    doc.content[1].table.widths = [
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%'
+//                    ]
                 },
                 filename: 'Tasks of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }, {

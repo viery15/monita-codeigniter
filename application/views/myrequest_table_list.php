@@ -10,7 +10,11 @@
     <thead id="table-myrequest">
     <tr>
         <th>Start Date</th>
+        <th style="display: none;">End Date</th>
+        <th>Category</th>
         <th>Title</th>
+        <th style="display: none;">Description</th>
+        <th style="display: none;">Assign From</th>
         <th>Assign To</th>
         <th>Status</th>
         <th>Action</th>
@@ -46,7 +50,11 @@
         ?>
         <tr>
             <td><?= date("d M Y", strtotime($request->date_from)) ?></td>
+            <td style="display: none;"><?= date("d M Y", strtotime($request->date_to)) ?></td>
+            <td><?= strtoupper($request->category) ?></td>
             <td><?= ucfirst($request->remark) ?></td>
+            <td style="display: none;"><?= ucfirst($request->description) ?></td>
+            <td style="display: none;"><?= $request->user_from ?></td>
             <td><?= $request->user_to ?></td>
             <td><button class="btn btn-sm" type="button" style="background-color: <?= $color ?>;color: <?= $text_color ?>"><?= $request->status ?></button></td>
             <td >
@@ -70,22 +78,22 @@ $date_now = date('d M Y');
                 extend: 'pdf',
                 title: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 customize: function ( doc ) {
-                    doc.content[1].table.widths = [
-                        '20%',
-                        '20%',
-                        '20%',
-                        '20%',
-                        '20%'
-                    ]
+//                    doc.content[1].table.widths = [
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%'
+//                    ]
                 },
                 filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }, {
                 extend: 'excel',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 title: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
                 filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
