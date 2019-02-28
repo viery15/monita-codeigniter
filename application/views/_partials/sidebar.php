@@ -28,7 +28,7 @@
                 <?php
                 if ($this->session->role == 'admin') {
                 ?>
-                <li class="<?php echo $this->uri->segment(1) == 'category' ? 'active': '' ?>">
+                <li class="<?php echo $this->uri->segment(1) == 'manage_task' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>manage_task">
                         <i class="fas fa-th-large"></i> Manage Task</a>
                 </li>
