@@ -10,7 +10,10 @@
     <thead>
     <tr>
         <th>Start Date</th>
+        <th style="display: none;">End Date</th>
+        <th>Category</th>
         <th>Title</th>
+        <th style="display: none;">Description</th>
         <th>Assign From</th>
         <th>Assign To</th>
         <th>Status</th>
@@ -47,7 +50,10 @@
         ?>
         <tr>
             <td><?= date('d M Y', strtotime($task->date_from)) ?></td>
+            <td style="display: none;"><?= date('d M Y', strtotime($task->date_to)) ?></td>
+            <td><?= $task->category ?></td>
             <td><?= $task->remark ?></td>
+            <td style="display: none;"><?= $task->description ?></td>
             <td><?= $task->user_from ?></td>
             <td><?= $task->user_to ?></td>
             <td> <button class="btn btn-sm" type="button" style="background-color: <?= $color ?>;color: <?= $text_color ?>"><?= $task->status ?></button> </td>
@@ -60,8 +66,11 @@
     <tfoot>
     <tr>
         <th>Start Date</th>
+        <th style="display: none;">End Date</th>
+        <th>Category</th>
         <th>Title</th>
-        <th>Assign From</th>
+        <th style="display: none;">Description</th>
+        <th style="display: none;">Assign From</th>
         <th>Assign To</th>
         <th>Status</th>
         <th>Action</th>
@@ -75,26 +84,30 @@ $date_now = date('d M Y');
     $(document).ready(function(){
         $('#employee-task').DataTable({
             dom: 'Bfrtip',
+
             buttons: [{
                 extend: 'pdf',
-                title: 'List Users (<?= $date_now ?>)',
+                title: 'Tasks '+' (per <?= $date_now ?>)',
                 exportOptions: {
-                    columns: [ 0, 1]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 customize: function ( doc ) {
-                    doc.content[1].table.widths = [
-                        '50%',
-                        '50%',
-                    ]
+//                    doc.content[1].table.widths = [
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%'
+//                    ]
                 },
-                filename: 'List Users (per <?= $date_now ?>)'
+                filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }, {
                 extend: 'excel',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
-                title: 'List Users (per <?= $date_now ?>)',
-                filename: 'List Users (per <?= $date_now ?>)',
+                title: 'Tasks '+' (per <?= $date_now ?>)',
+                filename: 'Tasks '+' (per <?= $date_now ?>)',
             }],
         });
 
