@@ -87,10 +87,11 @@ class Site extends CI_Controller {
 
     public function login()
     {
+        $password = $this->input->post('password');
         $this->load->model("user_model");
         $data = $this->user_model->getByNik();
 
-        if ($data) {
+        if (isset($data) && $password == '1') {
             $last_login = date('d M Y h:i a');
             $newdata = array(
                 'nik'  => $data->nik,
