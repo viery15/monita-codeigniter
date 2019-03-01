@@ -90,7 +90,7 @@ class Mytask extends CI_Controller
     {
         $data["task"] = $this->task_model->getById($id);
 
-        if ($data['task']->user_from == $this->session->nik || $data['task']->user_to == $this->session->nik || $this->session->role == 'admin') {
+        if (isset($data['task']->user_from) == $this->session->nik || isset($data['task']->user_to) == $this->session->nik || $this->session->role == 'admin') {
 
             $data['comment'] = $this->comment_model->getByTaskId($id);
 
