@@ -59,10 +59,10 @@ class Myrequest extends CI_Controller
         );
 
         if($this->email->send()){
-            echo "email sukses";
+
         }
         else {
-            echo "gagal";
+
         }
     }
 
