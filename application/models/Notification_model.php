@@ -49,7 +49,7 @@ class Notification_model extends CI_Model
 
     public function getByTaskId($id)
     {
-        return $this->db->get_where($this->_table, ["task_id" => $id])->result();
+        return $this->db->get_where($this->_table, ["id_task" => $id])->result();
     }
 
     public function getByUserTarget()
@@ -61,7 +61,7 @@ class Notification_model extends CI_Model
 
     public function delete($id)
     {
-        return $this->db->delete($this->_table, array("task_id" => $id));
+        return $this->db->delete($this->_table, array("id_task" => $id));
     }
 
     public function save($task_id)

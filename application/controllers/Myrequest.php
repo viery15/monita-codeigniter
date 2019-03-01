@@ -68,8 +68,10 @@ class Myrequest extends CI_Controller
 
     public function delete(){
         $id = $this->input->post('id');
-        $this->task_model->delete($id);
         $this->comment_model->delete($id);
+        $this->notification_model->delete($id);
+        $this->task_model->delete($id);
+
 
         $data["myrequest"] = $this->task_model->getRequest();
         $this->load->view("myrequest_table_list", $data);
@@ -77,8 +79,10 @@ class Myrequest extends CI_Controller
 
     public function delete2(){
         $id = $this->input->post('id');
-        $this->task_model->delete($id);
         $this->comment_model->delete($id);
+        $this->notification_model->delete($id);
+        $this->task_model->delete($id);
+
 
 //        $data["myrequest"] = $this->task_model->getRequest();
 //        $this->load->view("myrequest_table_list", $data);
