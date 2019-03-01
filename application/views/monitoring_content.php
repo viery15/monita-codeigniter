@@ -59,6 +59,7 @@ if ($type == 'myrequest'){
                 <thead>
                 <tr>
                     <th scope="col">Start Date</th>
+                    <th style="display: none;" scope="col">End Date</th>
                     <th scope="col">Category</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
@@ -73,6 +74,7 @@ if ($type == 'myrequest'){
                 ?>
                 <tr>
                     <td><?= date('d M Y', strtotime($done->date_from))  ?></td>
+                    <td style="display: none"><?= date('d M Y', strtotime($done->date_to))  ?></td>
                     <td><?= strtoupper($done->category) ?></td>
                     <td><?= ucfirst($done->remark) ?></td>
                     <td><?= ucfirst($done->description)  ?></td>
@@ -87,6 +89,7 @@ if ($type == 'myrequest'){
                     ?>
                     <tr>
                         <td><?= date('d M Y', strtotime($progress->date_from))  ?></td>
+                        <td style="display: none"><?= date('d M Y', strtotime($progress->date_to))  ?></td>
                         <td><?= strtoupper($progress->category) ?></td>
                         <td><?= ucfirst($progress->remark) ?></td>
                         <td><?= ucfirst($progress->description)  ?></td>
@@ -99,6 +102,7 @@ if ($type == 'myrequest'){
                 <tfoot>
                 <tr>
                     <th scope="col">Start Date</th>
+                    <th style="display: none" scope="col">End Date</th>
                     <th scope="col">Category</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
@@ -111,9 +115,37 @@ if ($type == 'myrequest'){
         </div>
     </div>
 </div>
-
+<?php
+$date_now = date('d M Y');
+?>
 <script>
-    $('#list-data').DataTable();
+    $('#list-data').DataTable({
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'pdf',
+            title: 'Tasks List (per <?= $date_now ?>)',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
+            },
+            customize: function ( doc ) {
+//                    doc.content[1].table.widths = [
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%',
+//                        '20%'
+//                    ]
+            },
+            filename: 'Tasks List (per <?= $date_now ?>)',
+        }, {
+            extend: 'excel',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
+            },
+            title: 'Tasks List (per <?= $date_now ?>)',
+            filename: 'Tasks List (per <?= $date_now ?>)',
+        }]
+    });
 
     $(function () {
         Highcharts.setOptions({
