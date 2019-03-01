@@ -46,28 +46,7 @@ $date_now = date('d M Y');
 <script type="text/javascript">
     $(document).ready(function(){
         $('#example').DataTable({
-            dom: 'Bfrtip',
-            buttons: [{
-                extend: 'pdf',
-                title: 'List Users (<?= $date_now ?>)',
-                exportOptions: {
-                    columns: [ 0, 1]
-                },
-                customize: function ( doc ) {
-                    doc.content[1].table.widths = [
-                        '50%',
-                        '50%',
-                    ]
-                },
-                filename: 'List Users (per <?= $date_now ?>)'
-            }, {
-                extend: 'excel',
-                exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4]
-                },
-                title: 'List Users (per <?= $date_now ?>)',
-                filename: 'List Users (per <?= $date_now ?>)',
-            }],
+
         });
 
         $("#example").on("click", ".btn-delete", function(){
