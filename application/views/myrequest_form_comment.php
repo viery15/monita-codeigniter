@@ -198,7 +198,7 @@
         <div class="media comment-box" style="width: 100%">
             <div class="media-body">
                 <h4 class="media-heading"><?= $comment->user_comment ?> <small class="text-muted"> - <?= date("d M Y H:i a", strtotime($comment->created_at)) ?></small></h4>
-                <p><?= $comment->comment ?>
+                <p><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($comment->comment))); ?>
                     <?php
                         if (isset($comment->attachment)) {
                     ?>
