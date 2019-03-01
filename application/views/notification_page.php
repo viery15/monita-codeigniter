@@ -90,19 +90,19 @@
                                         <?php } ?>
 
                                             <div class="au-task__item-inner">
-                                                <h5 class="task">
+
                                                     <?php
                                                     if ($task->type == 'new'){
                                                     ?>
-                                                    <a href="#"><?= $task->user_from ?> Sent you new request</a>
+                                                    <?= $task->user_from ?> Sent you new request
                                                     <?php } ?>
 
                                                     <?php
                                                     if ($task->type == 'comment task'){
                                                         ?>
-                                                        <a href="#"><?= $task->user_from ?> comment your task </a>
+                                                        <?= $task->user_from ?> comment your task
                                                     <?php } ?>
-                                                </h5>
+
                                                 <span class="time pull-right"><small><?= date('d M Y h:i a',strtotime($task->created_at)) ?>&nbsp;&nbsp;</small></span>
                                             </div>
                                         </div>
