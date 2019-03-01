@@ -59,7 +59,7 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
-                <label for="comment">Description:</label>
+                <label for="comment">Description: <i style="color:red">*</i></label>
                 <textarea class="form-control" rows="3" id="description" name="description" required><?= $request->description ?></textarea>
             </div>
 
@@ -116,7 +116,7 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
-                <label for="comment">Description:</label>
+                <label for="comment">Description: <i style="color:red">*</i></label>
                 <textarea class="form-control" rows="3" id="description" name="description" required></textarea>
             </div>
 
@@ -157,6 +157,7 @@ if(isset($request->id)) {
                 data: $("#form-request").serialize(),
                 beforeSend: function () {
                     $('#modal-request').modal('hide');
+                    $('#modal-task').modal('hide');
                     $('#loading').click();
                 },
                 success: function (a) {
@@ -164,7 +165,6 @@ if(isset($request->id)) {
                     alert("Data saved successful");
                     $("#form-request")[0].reset();
                     $("#myrequest-table-list").html(a);
-                    $('#modal-task').modal('hide');
                     $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                 }
             });

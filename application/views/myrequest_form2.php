@@ -66,7 +66,7 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
-                <label for="comment">Description:</label>
+                <label for="comment">Description: <i style="color:red">*</i></label>
                 <textarea class="form-control" rows="3" id="description" name="description" required><?= $request->description ?></textarea>
             </div>
 
@@ -111,7 +111,7 @@ if(isset($request->id)) {
             </div>
 
             <div class="form-group">
-                <label for="comment">Description:</label>
+                <label for="comment">Description: <i style="color:red">*</i></label>
                 <textarea class="form-control" rows="5" id="description" name="description" required></textarea>
             </div>
 
