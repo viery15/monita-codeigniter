@@ -267,15 +267,20 @@
             var formData = new FormData(form);
             formData.append('task_id', id);
             $.ajax({
-                url: "<?php echo base_url(); ?>/myrequest/submitcomment",
-                type: 'post',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (e) {
-                    $('#content-modal-comment').html(e);
+              url: "<?php echo base_url(); ?>/myrequest/submitcomment2",
+              type: 'post',
+              data: formData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              success: function (e) {
+                if (e.type == "error") {
+                  alert(e.msg);
                 }
+                else {
+                  $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/comment_list_dashboard/"+e.task_id);
+                }
+              }
             });
         }
     });

@@ -147,16 +147,43 @@ class Myrequest extends CI_Controller
     }
 
     public function submitcomment(){
+        // $post = $this->input->post();
+        //
+        // $this->comment_model->save();
+        //
+        // $data["task"] = $this->task_model->getById($post['task_id']);
+        // $this->notification_model->comment($data['task']);
+        //
+        // $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+        //
+        // $this->load->view("myrequest_form_comment", $data);
+
+        header('Content-type: application/json');
+
         $post = $this->input->post();
 
-        $this->comment_model->save();
+        if ($_FILES['attachment']['size'] > 20755230) {
+          $response = array(
+            'msg' => 'File too large (maksimum : 20 MB)',
+            'type' => 'error'
+          );
 
-        $data["task"] = $this->task_model->getById($post['task_id']);
-        $this->notification_model->comment($data['task']);
+          echo json_encode($response);
+        }
+        else {
+          $this->comment_model->save();
 
-        $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+          $data["task"] = $this->task_model->getById($post['task_id']);
+          $this->notification_model->comment($data['task']);
 
-        $this->load->view("myrequest_form_comment", $data);
+          $response = array(
+            'msg' => 'Comment submited',
+            'type' => 'Success',
+            'task_id' => $post['task_id']
+          );
+
+          echo json_encode($response);
+        }
     }
 
     public function deletefile($file){
@@ -193,17 +220,46 @@ class Myrequest extends CI_Controller
     }
 
     public function submitcomment2(){
+        header('Content-type: application/json');
+
         $post = $this->input->post();
 
-        $this->comment_model->save();
+        if ($_FILES['attachment']['size'] > 20755230) {
+          $response = array(
+            'msg' => 'File too large (maksimum : 20 MB)',
+            'type' => 'error'
+          );
 
-        $data["task"] = $this->task_model->getById($post['task_id']);
-        $this->notification_model->comment($data['task']);
+          echo json_encode($response);
+        }
+        else {
+          $this->comment_model->save();
 
-        $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
+          $data["task"] = $this->task_model->getById($post['task_id']);
+          $this->notification_model->comment($data['task']);
 
-        $this->load->view("comment_page", $data);
+          $response = array(
+            'msg' => 'Comment submited',
+            'type' => 'Success',
+            'task_id' => $post['task_id']
+          );
 
+          echo json_encode($response);
+        }
+    }
+
+    public function comment_list($task_id){
+      $data["comment"] = $this->comment_model->getByTaskId($task_id);
+      $data["task"] = $this->task_model->getById($task_id);
+
+      $this->load->view("comment_page", $data);
+    }
+
+    public function comment_list_dashboard($task_id){
+      $data["comment"] = $this->comment_model->getByTaskId($task_id);
+      $data["task"] = $this->task_model->getById($task_id);
+
+      $this->load->view("myrequest_form_comment", $data);
     }
 
     public function resend(){

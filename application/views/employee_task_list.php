@@ -130,7 +130,5 @@ $date_now = date('d M Y');
             var id = $(this).attr('id');
             $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
-
-      
     });
 </script>

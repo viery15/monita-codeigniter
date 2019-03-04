@@ -85,7 +85,12 @@ foreach ($comment as $comment){
                 contentType: false,
                 processData: false,
                 success: function (e) {
-                    $('#comment-section').html(e);
+                  if (e.type == "error") {
+                    alert(e.msg);
+                  }
+                  else {
+                    $('#comment-section').load("<?php echo base_url(); ?>/Myrequest/comment_list/"+e.task_id);
+                  }
                 }
             });
         }
