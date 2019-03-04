@@ -98,8 +98,8 @@ class Task_model extends CI_Model
     {
         $post = $this->input->post();
         $date = explode(" - ",$post['date_range']);
-        $date_from = $date[0];
-        $date_to = $date[1];
+        $date_from = date('Y m d', strtotime($date[0]));
+        $date_to = date('Y m d', strtotime($date[1]));
 
         $this->db->where('date_from >=', $date_from);
         $this->db->where('date_to <=', $date_to);
@@ -122,8 +122,10 @@ class Task_model extends CI_Model
     {
         $post = $this->input->post();
         $date = explode(" - ",$post['date_range']);
-        $date_from = $date[0];
-        $date_to = $date[1];
+
+        $date_from = date('Y-m-d', strtotime($date[0]));
+        $date_to = date('Y-m-d', strtotime($date[1]));
+
         $category = $this->input->post('category');
 
         $this->db->where('date_from >=', $date_from);
