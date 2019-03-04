@@ -105,7 +105,8 @@ if ($task->status == 'canceled') {
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
                             <b>Description :</b> <br>
-                            <?= ucfirst($task->description) ?>
+
+                            <?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($task->description))) ?>
                         </div>
                     </div>
 

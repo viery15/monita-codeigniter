@@ -12,7 +12,8 @@
 <div class="card">
     <div class="card-header"><b><?= $task->remark ?></b></div>
     <div class="card-body">
-        <?= $task->description ?> <br><br>
+        <?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($task->description))) ?>
+        <br><br>
         <?php
         if ($task->status == 'pending' && $task->user_to == $this->session->nik) {
             ?>

@@ -190,7 +190,7 @@
     <?php
         if (!isset($comment[0])) {
     ?>
-    No Comment Found
+    No Data Found
     <?php } ?>
     <?php
     foreach ($comment as $comment) {

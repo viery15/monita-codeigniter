@@ -77,7 +77,7 @@ if ($type == 'myrequest'){
                     <td style="display: none"><?= date('d M Y', strtotime($done->date_to))  ?></td>
                     <td><?= strtoupper($done->category) ?></td>
                     <td><?= ucfirst($done->remark) ?></td>
-                    <td><?= ucfirst($done->description)  ?></td>
+                    <td><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($done->description))) ?></td>
                     <td><?= ucfirst($done->user_from)  ?></td>
                     <td><?= ucfirst($done->user_to)  ?></td>
                     <td><?= ucfirst($done->status)  ?></td>
@@ -92,7 +92,7 @@ if ($type == 'myrequest'){
                         <td style="display: none"><?= date('d M Y', strtotime($progress->date_to))  ?></td>
                         <td><?= strtoupper($progress->category) ?></td>
                         <td><?= ucfirst($progress->remark) ?></td>
-                        <td><?= ucfirst($progress->description)  ?></td>
+                        <td><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($progress->description))) ?></td>
                         <td><?= ucfirst($progress->user_from)  ?></td>
                         <td><?= ucfirst($progress->user_to)  ?></td>
                         <td><?= ucfirst($progress->status)  ?></td>
