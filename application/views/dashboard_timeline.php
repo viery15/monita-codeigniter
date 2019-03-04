@@ -88,7 +88,7 @@
                             <h5 class="task">
                                 <b><?= $mytask->remark ?></b> <br>
                             </h5>
-                            <h6 style="font-weight: normal"><?= $mytask->description ?></h6>
+                            <h6 style="font-weight: normal"><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($mytask->description))); ?></h6>
                             <span class="time"><small><i class="fa fa-tags"></i> <?= $mytask->category ?></small></span>
                             <span class="time"><small><i class="fa fa-user"></i> <?= $mytask->user_from ?></small></span>
                             <span class="time"><small><i class="fa fa-clock"></i> <?= date('d M Y h:i a', strtotime($mytask->updated_at)) ?></small></span>
@@ -217,7 +217,7 @@
                             <h5 class="task">
                                 <b><?= $myrequest->remark ?></b> <br>
                             </h5>
-                            <h6 style="font-weight: normal"><?= $myrequest->description ?></h6>
+                            <h6 style="font-weight: normal"><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($myrequest->description))); ?></h6>
                             <span class="time"><small><i class="fa fa-tags"></i> <?= $myrequest->category ?></small></span>
                             <span class="time"><small><i class="fa fa-user"></i> <?= $myrequest->user_to ?></small></span>
                             <span class="time"><small><i class="fa fa-clock"></i> <?= date('d M Y h:i a', strtotime($myrequest->updated_at)) ?></small></span>
