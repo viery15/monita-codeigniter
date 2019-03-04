@@ -23,9 +23,9 @@ if(isset($task->id)) {
             <div class="form-group">
                 <label for="nik">Date: <i style="color:red">*</i></label>
                 <div class="input-group input-daterange">
-                    <input style="background-color: white" type="text" value="<?= $task->date_from ?>" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
-                    <div class="input-group-addon">to</div>
-                    <input style="background-color: white" type="text" id="date_to" value="<?= $task->date_to ?>" name="date_to" class="form-control" autocomplete="off" readonly>
+                    <input style="height:28px;background-color: white" type="text" value="<?= $task->date_from ?>" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
+                    <div class="input-group-addon" style="padding:4px;height:28px;width:32px">to</div>
+                    <input style="height:28px;background-color: white" type="text" id="date_to" value="<?= $task->date_to ?>" name="date_to" class="form-control" autocomplete="off" readonly>
                 </div>
             </div>
             <div class="form-group">
@@ -79,9 +79,9 @@ if(isset($task->id)) {
             <div class="form-group">
                 <label for="nik">Date: <i style="color:red">*</i></label>
                 <div class="input-group input-daterange">
-                    <input style="background-color: white" type="text" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
-                    <div class="input-group-addon">to</div>
-                    <input style="background-color: white" type="text" id="date_to" name="date_to" class="form-control" autocomplete="off" readonly>
+                    <input style="height:28px;background-color: white" type="text" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
+                    <div class="input-group-addon" style="padding:4px;height:28px;width:32px">to</div>
+                    <input style="height:28px;background-color: white" type="text" id="date_to" name="date_to" class="form-control" autocomplete="off" readonly>
                 </div>
             </div>
             <div class="form-group">
