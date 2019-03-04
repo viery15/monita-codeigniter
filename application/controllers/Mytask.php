@@ -101,6 +101,11 @@ class Mytask extends CI_Controller
         }
     }
 
+    public function mytask_table_list(){
+      $data["mytask"] = $this->task_model->getTask();
+      $this->load->view("mytask_table_list", $data);
+    }
+
     public function delete(){
         $id = $this->input->post('id');
         $this->task_model->delete($id);

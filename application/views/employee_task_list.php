@@ -130,5 +130,10 @@ $date_now = date('d M Y');
             var id = $(this).attr('id');
             $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
+
+        $('#modal-info').on('hidden.bs.modal', function () {
+            var id = $(this).attr('id');
+            $("#manage-table-list").load("<?php echo base_url(); ?>/manage/table_list/");
+        });
     });
 </script>

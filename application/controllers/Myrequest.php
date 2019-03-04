@@ -66,6 +66,11 @@ class Myrequest extends CI_Controller
         }
     }
 
+    public function myrequest_table_list(){
+      $data["myrequest"] = $this->task_model->getRequest();
+      $this->load->view("myrequest_table_list", $data);
+    }
+
     public function delete(){
         $id = $this->input->post('id');
         $this->comment_model->deleteByTaskId($id);

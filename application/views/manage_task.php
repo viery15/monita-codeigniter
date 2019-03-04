@@ -51,7 +51,7 @@
                             <div class="table-responsive">
                                 <br>
                                 <br>
-                                <div id="user-table-list">
+                                <div id="manage-table-list">
                                     <?php $this->load->view("employee_task_list.php") ?>
                                 </div>
                             </div>
@@ -90,4 +90,3 @@
         });
     });
 </script>
-

@@ -24,6 +24,11 @@ class Manage extends CI_Controller {
         $this->load->view("manage_task",$data);
     }
 
+    public function table_list(){
+      $data["tasks"] = $this->task_model->getAll();
+      $this->load->view("employee_task_list",$data);
+    }
+
     public function search() {
         $post = $this->input->post();
         $data['progress'] = $this->task_model->getProgress();

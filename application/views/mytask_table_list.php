@@ -139,6 +139,11 @@ $date_now = date('d M Y');
             $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
 
+        $('#modal-info').on('hidden.bs.modal', function () {
+            var id = $(this).attr('id');
+            $("#mytask-table-list").load("<?php echo base_url(); ?>/Mytask/mytask_table_list/");
+        });
+
         $("#example").on("click", ".btn-done", function(){
             var id = $(this).attr('id');
             if (confirm('Are you sure done with this request?')) {
