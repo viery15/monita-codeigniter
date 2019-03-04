@@ -115,10 +115,7 @@ $date_now = date('d M Y');
             $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
 
-        $('#modal-info').on('hidden.bs.modal', function () {
-            var id = $(this).attr('id');
-            $("#myrequest-table-list").load("<?php echo base_url(); ?>/Myrequest/myrequest_table_list/");
-        });
+        
 
         $("#table-request").on("click", ".btn-delete", function(){
             var id = $(this).attr('id');
