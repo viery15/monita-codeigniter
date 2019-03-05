@@ -333,7 +333,8 @@ class Task_model extends CI_Model
 
         $post['created_at'] = date("Y-m-d H:i:s");
         $post['updated_at'] = date("Y-m-d H:i:s");
-        // $post['date_from'] = date("Y-m-d H:i:s", strtotime($post['date']));
+        $post['date_from'] = date("Y-m-d H:i:s", strtotime($post['date_from']));
+        $post['date_to'] = date("Y-m-d H:i:s", strtotime($post['date_to']));
         $this->db->insert($this->_table,$post);
         $insert_id = $this->db->insert_id();
         return $insert_id;
@@ -351,7 +352,7 @@ class Task_model extends CI_Model
         $this->user_to = $post["user_to"];
         $this->remark = $post["remark"];
         $this->description = $post["description"];
-        $this->updated_at = date('m-d-Y H:i:s');
+        $this->updated_at = date("Y-m-d H:i:s");
 
         $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
@@ -361,7 +362,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'progress');
-        $this->db->set('updated_at', date("m-d-Y H:i:s"));
+        $this->db->set('updated_at', date("Y-m-d H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
@@ -371,7 +372,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'canceled');
-        $this->db->set('updated_at', date("m-d-Y H:i:s"));
+        $this->db->set('updated_at', date("Y-m-d H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
@@ -382,7 +383,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'done');
-        $this->db->set('updated_at', date("m-d-Y H:i:s"));
+        $this->db->set('updated_at', date("Y-m-d H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
@@ -392,7 +393,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'rejected');
-        $this->db->set('updated_at', date("m-d-Y H:i:s"));
+        $this->db->set('updated_at', date("Y-m-d H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
@@ -402,7 +403,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->set('status', 'pending');
-        $this->db->set('updated_at', date("m-d-Y H:i:s"));
+        $this->db->set('updated_at', date("Y-m-d H:i:s"));
         $this->db->where('id', $post['id']);
         $this->db->update($this->_table);
     }
