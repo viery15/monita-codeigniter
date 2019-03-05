@@ -87,7 +87,24 @@
             ?>
             <i class="fa fa-user" aria-hidden="true"></i> <?= $task->user_from ?> -> <?= $task->user_to ?> &nbsp;
         <?php } ?>
-        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= ucfirst($task->status) ?>
+        <?php
+          if ($task->status == 'progress'){
+              $color = '#35f235';
+          }
+          if ($task->status == 'pending'){
+              $color = '#FFFF00';
+          }
+          if ($task->status == 'done'){
+              $color = '#0000FF';
+          }
+          if ($task->status == 'rejected'){
+              $color = '#000000';
+          }
+          if ($task->status == 'canceled'){
+              $color = '#D62222';
+          }
+        ?>
+        <span style="color:<?= $color ?>"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= ucfirst($task->status) ?></span>
     </div>
 </div>
 
