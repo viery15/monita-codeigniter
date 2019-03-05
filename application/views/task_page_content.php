@@ -90,21 +90,26 @@
         <?php
           if ($task->status == 'progress'){
               $color = '#35f235';
+              $font_color = "black";
           }
           if ($task->status == 'pending'){
               $color = '#FFFF00';
+              $font_color = "black";
           }
           if ($task->status == 'done'){
               $color = '#0000FF';
+              $font_color = "white";
           }
           if ($task->status == 'rejected'){
               $color = '#000000';
+              $font_color = "black";
           }
           if ($task->status == 'canceled'){
               $color = '#D62222';
+              $font_color = "black";
           }
         ?>
-        <button style="background-color:<?= $color ?>" class="btn btn-sm" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><?= ucfirst($task->status) ?></button>
+        <button style="background-color:<?= $color ?>; color:<?= $font_color ?>" class="btn btn-sm" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><?= ucfirst($task->status) ?></button>
     </div>
 </div>
 
