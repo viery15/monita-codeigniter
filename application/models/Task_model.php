@@ -73,6 +73,10 @@ class Task_model extends CI_Model
             ->where('tasks.user_to',$this->session->nik)
             ->or_where('tasks.user_from',$this->session->nik)
         ->group_end();
+        $this->db->group_start()
+            ->where('tasks.status','progress')
+            ->or_where('tasks.status','done')
+        ->group_end();
         $this->db->where('nik !=',$this->session->nik);
         $this->db->join('monita.tasks', 'monita.users.nik = monita.tasks.user_to OR monita.users.nik = monita.tasks.user_from');
         return $this->db->get()->result();
@@ -226,6 +230,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->where('user_from', $post['nik']);
+        $this->db->where('user_to', $this->session->nik);
         $this->db->where('status', 'done');
 
         return $this->db->count_all_results($this->_table);
@@ -235,6 +240,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->where('user_from', $post['nik']);
+        $this->db->where('user_to', $this->session->nik);
         $this->db->where('status', 'progress');
 
         return $this->db->count_all_results($this->_table);
@@ -244,6 +250,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->where('user_to', $post['nik']);
+        $this->db->where('user_from', $this->session->nik);
         $this->db->where('status', 'done');
 
         return $this->db->count_all_results($this->_table);
@@ -253,6 +260,7 @@ class Task_model extends CI_Model
         $post = $this->input->post();
 
         $this->db->where('user_to', $post['nik']);
+        $this->db->where('user_from', $this->session->nik);
         $this->db->where('status', 'progress');
 
         return $this->db->count_all_results($this->_table);
@@ -263,14 +271,23 @@ class Task_model extends CI_Model
         $post = $this->input->post();
         $type = $post['type'];
         if ($type == 'all') {
-            $this->db->where('user_to', $post['nik']);
-            $this->db->or_where('user_from', $post['nik']);
+            $this->db->group_start()
+                ->where('user_to', $this->session->nik)
+                ->or_where('user_from', $this->session->nik)
+            ->group_end();
+
+            $this->db->group_start()
+                ->where('user_to', $post['nik'])
+                ->or_where('user_from', $post['nik'])
+            ->group_end();
         }
         elseif ($type == 'mytask') {
             $this->db->where('user_from', $post['nik']);
+            $this->db->where('user_to', $this->session->nik);
         }
         elseif ($type == 'myrequest') {
             $this->db->where('user_to', $post['nik']);
+            $this->db->where('user_from', $this->session->nik);
         }
 
         $this->db->where('status', 'progress');
@@ -283,14 +300,22 @@ class Task_model extends CI_Model
         $post = $this->input->post();
         $type = $post['type'];
         if ($type == 'all') {
-            $this->db->where('user_to', $post['nik']);
-            $this->db->or_where('user_from', $post['nik']);
+          $this->db->group_start()
+              ->where('user_to', $this->session->nik)
+              ->or_where('user_from', $this->session->nik)
+          ->group_end();
+          $this->db->group_start()
+              ->where('user_to', $post['nik'])
+              ->or_where('user_from', $post['nik'])
+          ->group_end();
         }
         elseif ($type == 'mytask') {
             $this->db->where('user_from', $post['nik']);
+            $this->db->where('user_to', $this->session->nik);
         }
         elseif ($type == 'myrequest') {
             $this->db->where('user_to', $post['nik']);
+            $this->db->where('user_from', $this->session->nik);
         }
 
         $this->db->where('status', 'done');
