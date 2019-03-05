@@ -101,7 +101,7 @@ if(isset($request->id)) {
             <div class="form-group">
                 <label for="role">Category: <i style="color:red">*</i></label>
                 <select class="form-control select-category" id="category" name="category" required>
-                    <option disabled selected>Select Category</option>
+                    <option disabled selected value="">Select Category</option>
                     <?php
                     foreach ($category as $category) {
                         ?>
