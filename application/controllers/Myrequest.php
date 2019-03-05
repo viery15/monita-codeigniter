@@ -49,7 +49,7 @@ class Myrequest extends CI_Controller
         $this->email->message(
             'Your request detail : <br><br><table>'.
             '<tr><td>Title</td> <td>:</td> <td>' . $email['title'] . '</td></tr>'.
-            '<tr><td>Description</td> <td>:</td> <td>' . $email['description']. '</td>'.
+            '<tr><td valign="top">Description</td> <td valign="top">:</td> <td valign="top">' . nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($email['description']))). '</td>'.
             '<tr><td>Assigned from</td> <td>:</td> <td>'. $email['from'] . '</td>'.
             '<tr><td>Date</td> <td>:</td> <td>'. date('d M Y', strtotime($email['date_from'])) . ' - ' . date('d M Y', strtotime($email['date_to'])). '</td>'.
             '</table><br><br>'.
