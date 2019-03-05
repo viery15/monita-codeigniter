@@ -104,7 +104,7 @@
               $color = '#D62222';
           }
         ?>
-        <span style="color:<?= $color ?>"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= ucfirst($task->status) ?></span>
+        <button style="background-color:<?= $color ?>" class="btn btn-sm" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><?= ucfirst($task->status) ?></button>
     </div>
 </div>
 
