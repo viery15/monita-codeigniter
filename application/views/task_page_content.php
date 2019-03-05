@@ -56,6 +56,13 @@
         <?php } ?>
 
         <?php
+        if ($task->status == 'canceled' && $task->user_from == $this->session->nik) {
+            ?>
+            <button id="<?= $task->id ?>" type="button" class="btn-resend btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Resend Request</button>
+        <?php } ?>
+
+
+        <?php
         if ($task->status == 'rejected' && 'admin' == $this->session->role && $task->user_to != $this->session->nik) {
             ?>
             <button id="<?= $task->id ?>" type="button" class="btn-resend btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Resend Request</button>
@@ -102,11 +109,11 @@
           }
           if ($task->status == 'rejected'){
               $color = '#000000';
-              $font_color = "black";
+              $font_color = "white";
           }
           if ($task->status == 'canceled'){
               $color = '#D62222';
-              $font_color = "black";
+              $font_color = "white";
           }
         ?>
         <button style="background-color:<?= $color ?>; color:<?= $font_color ?>" class="btn btn-sm" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><?= ucfirst($task->status) ?></button>
