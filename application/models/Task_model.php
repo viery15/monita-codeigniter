@@ -266,10 +266,10 @@ class Task_model extends CI_Model
             $this->db->where('user_to', $post['nik']);
             $this->db->or_where('user_from', $post['nik']);
         }
-        if ($type == 'mytask') {
+        elseif ($type == 'mytask') {
             $this->db->where('user_from', $post['nik']);
         }
-        if ($type == 'myrequest') {
+        elseif ($type == 'myrequest') {
             $this->db->where('user_to', $post['nik']);
         }
 
@@ -286,10 +286,10 @@ class Task_model extends CI_Model
             $this->db->where('user_to', $post['nik']);
             $this->db->or_where('user_from', $post['nik']);
         }
-        if ($type == 'mytask') {
+        elseif ($type == 'mytask') {
             $this->db->where('user_from', $post['nik']);
         }
-        if ($type == 'myrequest') {
+        elseif ($type == 'myrequest') {
             $this->db->where('user_to', $post['nik']);
         }
 

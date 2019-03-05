@@ -261,7 +261,7 @@
                             <?php } ?>
 
                             <?php
-                            if ($myrequest->status == 'rejected') {
+                            if ($myrequest->status == 'rejected' || $myrequest->status == 'canceled') {
                                 ?>
                                 <button id="<?= $myrequest->id ?>" class="btn btn-warning btn-sm btn-resend"><i class="fa fa-refresh"></i> Resend</button>
                             <?php } ?>
