@@ -53,7 +53,8 @@
 <!-- end document-->
 
 <script type="text/javascript" language="JavaScript">
-    $("#btn-login").click(function(){
+    $("#form-login").submit(function(){
+        event.preventDefault();
         $.ajax({
             url : "<?php echo base_url(); ?>/Site/login",
             type : "post",
