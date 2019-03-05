@@ -106,7 +106,7 @@ class Task_model extends CI_Model
         $date_to = date('Y m d', strtotime($date[1]));
 
         $this->db->where('date_from >=', $date_from);
-        $this->db->where('date_to <=', $date_to);
+        // $this->db->where('date_to <=', $date_to);
         if ($post['category'] != 'all'){
             $this->db->where('category', $post['category']);
         }
@@ -133,7 +133,7 @@ class Task_model extends CI_Model
         $category = $this->input->post('category');
 
         $this->db->where('date_from >=', $date_from);
-        $this->db->where('date_to <=', $date_to);
+        // $this->db->where('date_to <=', $date_to);
         if ($category != 'all'){
             $this->db->where('category', $category);
         }
