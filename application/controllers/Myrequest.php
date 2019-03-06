@@ -59,10 +59,10 @@ class Myrequest extends CI_Controller
         );
 
         if($this->email->send()){
-
+          return "Email sent";
         }
         else {
-
+          return "Failed to send email";
         }
     }
 
@@ -123,6 +123,18 @@ class Myrequest extends CI_Controller
         $this->load->view("myrequest_form_comment", $data);
     }
 
+    public function emailConnection(){
+      $connected = @fsockopen("www.gmail.com", 80);
+
+      if ($connected){
+          $is_conn = true;
+          fclose($connected);
+      }else{
+          $is_conn = false;
+      }
+      return $is_conn;
+    }
+
     public function create(){
         $task_id = $this->task_model->save();
         $this->notification_model->save($task_id);
@@ -140,10 +152,27 @@ class Myrequest extends CI_Controller
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
 
-        $this->sendmail($email);
+        $email_connection = $this->emailConnection();
+        if ($email_connection == 'true') {
+          $return = $this->sendmail($email);
+        }
+        else {
+          $return = "Failed to send email";
+        }
 
-        $data["myrequest"] = $this->task_model->getRequest();
-        $this->load->view("myrequest_table_list", $data);
+        $response = array(
+          'msg' => 'Data Saved successful',
+          'msg_email' => $return
+        );
+
+        echo json_encode($response);
+
+
+    }
+
+    public function loadRequestTable(){
+      $data["myrequest"] = $this->task_model->getRequest();
+      $this->load->view("myrequest_table_list", $data);
     }
 
     public function submitcomment(){

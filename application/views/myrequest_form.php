@@ -155,16 +155,17 @@ if(isset($request->id)) {
                 url: "<?php echo base_url(); ?>/Myrequest/create",
                 type: 'post',
                 data: $("#form-request").serialize(),
+                dataType : 'json',
                 beforeSend: function () {
                     $('#modal-request').modal('hide');
                     $('#modal-task').modal('hide');
                     $('#loading').click();
                 },
                 success: function (a) {
+                    alert(a.msg + " and " + a.msg_email);
                     $('#modal-loading').modal('toggle');
-                    alert("Data saved successful");
                     $("#form-request")[0].reset();
-                    $("#myrequest-table-list").html(a);
+                    $("#myrequest-table-list").load("<?php echo base_url(); ?>/Myrequest/loadRequestTable");
                     $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                 }
             });
