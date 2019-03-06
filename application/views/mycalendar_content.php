@@ -6,311 +6,84 @@
  * Time: 2:34 PM
  */
 
-$day_from = date('j', strtotime($date_from));
-$day_to = date('j', strtotime($date_to));
-///
-$month_from = date('n', strtotime($date_from));
-$month_to = date('n', strtotime($date_to));
 
-$year_from = date('Y', strtotime($date_from));
-$year_to = date('Y', strtotime($date_to));
 ?>
 <html>
     <head>
-        <style type="text/css">
-            .table-scroll {
-                position:relative;
-                /*max-width:805px;*/
-                margin:auto;
-                overflow:hidden;
-                border:1px solid #000;
-            }
-            .table-wrap {
-                width:100%;
-                overflow:auto;
-            }
-            .table-scroll table {
-                /*width:100%;*/
-                margin:auto;
-                border-collapse:separate;
-                border-spacing:0;
-            }
-            .table-scroll th, .table-scroll td {
-                padding:5px 10px;
-                border:1px solid #000;
-                background:#fff;
-                white-space:nowrap;
-                vertical-align:top;
-            }
-            .table-scroll thead, .table-scroll tfoot {
-                background:#f9f9f9;
-            }
-            .clone {
-                position:absolute;
-                top:0;
-                left:0;
-                pointer-events:none;
-            }
-            .clone th, .clone td {
-                visibility:hidden
-            }
-            .clone td, .clone th {
-                border-color:transparent
-            }
-            .clone tbody th {
-                visibility:visible;
-                color:red;
-            }
-            .clone .fixed-side {
-                border:1px solid #000;
-                background:#eee;
-                visibility:visible;
-            }
-            .clone thead, .clone tfoot{background:transparent;}
-        </style>
+
     </head>
     <body>
-    <div class="au-card m-b-30">
-        <div class="au-card-inner">
-            <div style="text-align: center">
-                <h4>Task of <?= $this->session->nik ?> (per <?= date('d M Y', strtotime($date_from))  ?> - <?= date('d M Y', strtotime($date_to)) ?>)</h4>
-            </div><br>
-            <div id="table-scroll" class="table-scroll" style="font-size: 15px">
-                <div class="table-wrap">
-                    <table class="main-table">
-                        <thead>
-                        <tr>
-                            <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">No</th>
-                            <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">Category</th>
-                            <th style="vertical-align: middle" class="fixed-side" scope="col" rowspan="2">Title</th>
-                            <th style="vertical-align: middle" scope="col" rowspan="2">Info</th>
-                            <?php
-                            $real_month_to = $month_to;
-                            $real_month_from = $month_from;
-                            for($y = $year_from; $y <= $year_to; $y++) {
-                                if ($y < $year_to) {
-                                    $month_to = 12;
-                                }
-                                else {
-                                    if(isset($real_month_to)){
-                                        $month_to = $real_month_to;
-                                    }
-                                }
-                                for ($m = $month_from; $m <= $month_to; $m++) {
-                                    ?>
-                                    <?php
-//                            if ($year_to != $year_from && $y == $year_to && $m < $month_to && $m > $month_from){
-//                                $date = new DateTime($y.'-' . $m);
-//                                $date->modify('last day of this month');
-//                                $count_date = $date->format('d');
-//                                $colspan = $count_date;
-//                            }
 
-                                    if ($year_to != $year_from && $y == $year_from && $m > $month_from){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $count_date = $date->format('d');
-                                        $colspan = $count_date;
-                                    }
-
-                                    if ($year_to != $year_from && $y == $year_from && $m == $month_from){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $count_date = $date->format('d');
-                                        $colspan = ($count_date - $day_from) + 1;
-                                    }
-
-                                    if ($year_to != $year_from && $m < $month_to && $y == $year_to){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $count_date = $date->format('d');
-                                        $colspan = $count_date;
-                                    }
-
-                                    if ($year_to != $year_from && $y == $year_to && $m == $month_to){
-                                        $colspan = $day_to;
-                                    }
-
-                                    if ($m > $month_from && $m < $month_to && $year_to == $year_from) {
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $count_date = $date->format('d');
-                                        $colspan = $count_date;
-                                    }
-
-                                    if ($month_to == $month_from && $year_to == $year_from) {
-                                        $colspan = ($day_to - $day_from) + 1;
-                                    }
-
-                                    if ($m == $month_from && $month_to > $month_from && $year_to == $year_from) {
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $count_date = $date->format('d');
-                                        $colspan = $count_date;
-                                    }
-
-                                    if ($m == $month_to && $month_to > $month_from && $year_to == $year_from) {
-                                        $colspan = $day_to;
-                                    }
-                                    if ($m == $month_from && $month_to > $month_from && $year_to == $year_from) {
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $count_date = $date->format('d');
-                                        $colspan = ($count_date - $day_from) + 1;
-                                    }
-                                    if ($m == $month_from && $month_to == $month_from && $year_to == $year_from) {
-                                        $colspan = $day_to;
-                                    }
-                                    ?>
-                                    <th scope="col" colspan="<?= $colspan ?>"
-                                        style="text-align: center"><?= date('M Y', strtotime($y . '-' . $m)) ?></th>
-                                    <?php
-                                    if ($m == $month_to && $y != $year_to) {
-                                        $month_from = 1;
-                                    }
-                                }
-                            }
-                            ?>
-                        </tr>
-                        <tr>
-                            <?php
-                            $ii = 0;
-                            $real_day_to = $day_to;
-                            $real_day_from = $day_from;
-                            $month_from = date('n', strtotime($date_from));
-                            $month_to = date('n', strtotime($date_to));
-                            for ($y = $year_from; $y <= $year_to; $y++) {
-                                if ($y < $year_to) {
-                                    $month_to = 12;
-                                }
-                                else {
-                                    if(isset($real_month_to)){
-                                        $month_to = $real_month_to;
-                                    }
-                                }
-                                for ($m = $month_from; $m <= $month_to; $m++) {
-                                    //TAHUN TERAKHIR
-                                    if ($year_from!= $year_to && $y == $year_to && $m == $month_to){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $day_to = $real_day_to;
-                                        $day_from = 1;
-                                    }
-//
-                                    if ($year_from!= $year_to && $y == $year_to && $m != $month_to){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $day_to = $date->format('d');
-                                        $day_from = 1;
-                                    }
-
-                                    //TAHUN AWAL
-
-                                    if ($year_from!= $year_to && $y == $year_from && $m > $month_from){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $day_to = $date->format('d');
-                                        $day_from = 1;
-                                    }
-//
-                                    elseif ($year_from!= $year_to && $y == $year_from && $m == $month_from){
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $day_to = $date->format('d');
-//                                    $day_from = 1;
-                                    }
-
-                                    // SATU TAHUN
-
-                                    elseif ($m > $month_from && $m < $month_to && $year_to == $year_from) {
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $day_to = $date->format('d');
-                                        $day_from = 1;
-                                    }
-                                    elseif ($m == $month_from && $month_from < $month_to && $year_to == $year_from ) {
-                                        $date = new DateTime($y.'-' . $m);
-                                        $date->modify('last day of this month');
-                                        $day_to = $date->format('d');
-                                    }
-
-                                    elseif ($month_from == $month_to && $year_to == $year_from) {
-                                        $day_to = $real_day_to;
-                                    }
-                                    elseif ($m == $month_to && $year_to == $year_from) {
-                                        $day_to = $real_day_to;
-                                        $day_from = 1;
-                                    }
-                                    for ($i = $day_from; $i <= $day_to; $i++) {
-                                        $data_date[$ii] = date('d-m-Y', strtotime($i.'-'.$m.'-'.$y));
-                                        $ii++;
-                                        ?>
-                                        <?php
-                                        if (date('D', strtotime($i.'-'.$m.'-'.$y)) == 'Sun' || date('D', strtotime($i.'-'.$m.'-'.$y)) == 'Sat'){
-                                        ?>
-                                        <td style="background-color: red;color:white"><?= $i ?></td>
-                                        <?php } else {?>
-                                            <td><?= $i ?></td>
-                                        <?php }
-                                    }
-                                    if ($m == $month_to && $y != $year_to){
-                                        $month_from = 1;
-                                    }
-                                }
-                            }
-                            ?>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div class="table-responsive">
+                    <table id="example" class="table table-hover table-data3 table-bordered">
+                      <thead>
+                      <tr>
+                        <th rowspan="2" style="vertical-align: middle;text-align: center;padding:0px">Ctg</th>
+                        <th rowspan="2" style="vertical-align: middle;text-align: center;">Title</th>
+                        <th rowspan="2" style="vertical-align: middle;text-align: center;padding:0px">Info</th>
+                        <th colspan="12" style="text-align: center"><?= $year ?></th>
+                      </tr>
+                      <tr>
+                        <th style="padding:14px">Jan</th>
+                        <th style="padding:14px">Feb</th>
+                        <th style="padding:14px">Mar</th>
+                        <th style="padding:14px">Apr</th>
+                        <th style="padding:14px">Mei</th>
+                        <th style="padding:14px">Jun</th>
+                        <th style="padding:14px">Jul</th>
+                        <th style="padding:14px">Ags</th>
+                        <th style="padding:14px">Sep</th>
+                        <th style="padding:14px">Okt</th>
+                        <th style="padding:14px">Nov</th>
+                        <th style="padding:14px">Dec</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach ($task as $task): ?>
                         <?php
-                        $num = 1;
-                        foreach ($task as $task){
                         if ($task->status == 'progress'){
                             $color = '#35f235';
+                            $font_color = "black";
                         }
                         if ($task->status == 'pending'){
                             $color = '#FFFF00';
+                            $font_color = "black";
                         }
                         if ($task->status == 'done'){
                             $color = '#0000FF';
+                            $font_color = "white";
                         }
                         if ($task->status == 'rejected'){
                             $color = '#000000';
+                            $font_color = "white";
                         }
                         if ($task->status == 'canceled'){
                             $color = '#D62222';
+                            $font_color = "white";
                         }
                         ?>
                         <tr>
-                            <td class="fixed-side" ><?= $num ?></td>
-                            <td class="fixed-side" ><?=  strtoupper($task->category) ?></td>
-                            <td class="fixed-side" ><?=  ucfirst($task->remark) ?></td>
-                            <td style="color: <?= $color ?>"><button type="button" id="<?= $task->id ?>" data-toggle="modal" data-target="#modal-info" class="btn btn-info btn-sm btn-detail"><i class="fa fa-eye"></i></button></td>
-                            <?php
-                            for ($i=0; $i < count($data_date); $i++){
-                                ?>
+                          <td><?= $task->category ?></td>
+                          <td><?= $task->remark ?></td>
+                          <td style="text-align:center"><button data-toggle="modal" data-target="#modal-info" id="<?= $task->id ?>" type="button" class="btn-detail btn btn-info btn-sm"><i class="fa fa-search"></i></button></td>
+                          <?php for ($i=1; $i <= 12; $i++) {
+                            $month_from = date('n', strtotime($task->date_from));
+                            $month_to = date('n', strtotime($task->date_to));
 
-                                <?php
-                                if (date('D',strtotime($data_date[$i])) == 'Sun' || date('D',strtotime($data_date[$i])) == 'Sat'){
-                                    ?>
-                                    <td style="background-color: red"></td>
-
-
-                                <?php }
-                                elseif (strtotime($data_date[$i]) >= strtotime($task->date_from) && strtotime($data_date[$i]) <= strtotime($task->date_to)) {
-
-                                ?>
-                                    <td style="background-color: <?= $color ?>"></td>
-                                <?php }else { ?>
-                                    <td></td>
-                                    <?php
-                                } }$num++; }
-                            ?>
+                            if ($i >= $month_from && $i <= $month_to) {
+                          ?>
+                            <td style="background-color:<?= $color ?>"></td>
+                          <?php
+                            }
+                            else { ?>
+                              <td>&nbsp;</td>
+                          <?php } } ?>
                         </tr>
-                        <?php  ?>
+                      <?php endforeach; ?>
+                    </tbody>
                     </table>
                 </div>
-            </div>
+
         </div>
         <br>
 
@@ -346,6 +119,9 @@ $year_to = date('Y', strtotime($date_to));
     </body>
 </html>
 <script type="text/javascript">
+    $('#example').DataTable({
+
+    });
     jQuery(document).ready(function() {
         jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
     });

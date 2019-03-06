@@ -83,8 +83,8 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="cc-payment" class="control-label mb-1">Year:</label>
-                                                    <input name="year" style="padding:0.5%" class="form-control" type="text" id="inputyear">
+                                                    <label for="cc-payment" class="control-label mb-1">Date Period:</label>
+                                                    <input id="daterange" style="padding:0.5%" class="form-control" type="text" name="daterange" />
                                                 </div>
                                             </div>
                                         </div>
@@ -137,11 +137,7 @@
 
 </html>
 <script type="text/javascript">
-    $("#inputyear").datepicker({
-      format: "yyyy",
-      viewMode: "years",
-      minViewMode: "years"
-    });
+    $('input[name="daterange"]:eq(0)').daterangepicker();
 
     $(document).ready(function(){
         $(".select-category").select2({
@@ -150,7 +146,7 @@
 
         $("#btn-submit").click(function(){
             var category = $("#category-form option:selected").val();
-            var year = $('#inputyear').val();
+            var date_range = $('input[name="daterange"]:eq(0)').val();
 
             if(category == '') {
                 alert("All required fields cannot be empty!");
@@ -159,7 +155,7 @@
                 $.ajax({
                     url: "<?php echo base_url(); ?>/Mycalendar/search/",
                     type: 'post',
-                    data: {'category': category, 'year': year},
+                    data: {'category': category, 'date_range': date_range},
                     success: function (html) {
                         $("#calendar-content").html(html);
                     }
@@ -168,9 +164,9 @@
         });
 
         $("#excel").click(function(){
-            var year = $('#inputyear').val();
+            var date_range = $('input[name="daterange"]:eq(0)').val();
             var category = $("#category-form option:selected").val();
-            $.redirect("Mycalendar/excel", {year: year, category:category}, "POST");
+            $.redirect("Mycalendar/excel", {date_range: date_range, category:category}, "POST");
         });
     });
 </script>

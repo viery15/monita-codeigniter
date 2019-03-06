@@ -101,12 +101,12 @@ class Task_model extends CI_Model
     public function searchCalendar()
     {
         $post = $this->input->post();
-        $date = explode(" - ",$post['date_range']);
-        $date_from = date('Y m d', strtotime($date[0]));
-        $date_to = date('Y m d', strtotime($date[1]));
+        $date1 = date('Y-m-d', strtotime($post['year'] . '-'.'01'.'-'.'01'));
+        $date2 = date('Y-m-d', strtotime($post['year'] . '-'.'12'.'-'.'31'));
 
-        $this->db->where('date_from >=', $date_from);
-        // $this->db->where('date_to <=', $date_to);
+        $this->db->where('date_from >=', $date1);
+        $this->db->where('date_to <=', $date2);
+        
         if ($post['category'] != 'all'){
             $this->db->where('category', $post['category']);
         }
