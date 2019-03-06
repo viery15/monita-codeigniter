@@ -55,7 +55,8 @@ class Myrequest extends CI_Controller
             '</table><br><br>'.
             'The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
             'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
-            'do not reply this email.'
+            'do not reply this email. <br>'.
+            '( MONITA - Monitoring Task Application )'
         );
 
         if($this->email->send()){
