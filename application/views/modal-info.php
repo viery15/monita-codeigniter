@@ -98,7 +98,7 @@ if ($task->status == 'canceled') {
                             $end_date = new DateTime($end_date1);
                             $interval = $start_date->diff($end_date);
                             ?>
-                            <?= $interval->days ?>
+                            <?= $interval->days+1 ?>
                         </div>
                     </div>
 
