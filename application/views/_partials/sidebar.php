@@ -7,6 +7,10 @@
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
+                <li class="<?php echo $this->uri->segment(1) == 'dashboard' ? 'active': '' ?>">
+                    <a href="<?php echo base_url(); ?>dashboard">
+                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                </li>
                 <?php
                 if ($this->session->role == 'admin') {
                   if ($this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'users' || $this->uri->segment(1) == 'manage_task') {
@@ -36,10 +40,7 @@
                 </li>
                 <?php } ?>
 
-                <li class="<?php echo $this->uri->segment(1) == 'dashboard' ? 'active': '' ?>">
-                    <a href="<?php echo base_url(); ?>dashboard">
-                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                </li>
+
                 <li class="<?php echo $this->uri->segment(1) == 'mytask' ? 'active': '' ?>">
                     <a href="<?php echo base_url(); ?>mytask"><i class="fas fa-list-alt"></i> My Task</a>
                 </li>
