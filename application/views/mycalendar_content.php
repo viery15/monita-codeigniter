@@ -63,7 +63,7 @@
                         }
                         ?>
                         <tr>
-                          <td><?= $task->category ?></td>
+                          <td><?= strtoupper($task->category) ?></td>
                           <td><?= $task->remark ?></td>
                           <td style="text-align:center"><button data-toggle="modal" data-target="#modal-info" id="<?= $task->id ?>" type="button" class="btn-detail btn btn-info btn-sm"><i class="fa fa-search"></i></button></td>
                           <?php for ($i=1; $i <= 12; $i++) {
@@ -126,7 +126,7 @@
         jQuery(".main-table").clone(true).appendTo('#table-scroll').addClass('clone');
     });
 
-    $(".btn-detail").click(function(){
+    $("#example").on("click", ".btn-detail", function(){
         var id = $(this).attr('id');
         $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
     });

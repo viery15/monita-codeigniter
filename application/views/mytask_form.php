@@ -76,13 +76,17 @@ if(isset($task->id)) {
             <input type="hidden" class="form-control" id="user_to" name="user_to" value="<?= $this->session->nik ?>">
             <input type="hidden" class="form-control" id="status" name="status" value="progress">
             <!--            <input type="hidden" class="form-control" id="status" name="status" value="pending">-->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="nik">Date: <i style="color:red">*</i></label>
                 <div class="input-group input-daterange">
                     <input style="height:28px;background-color: white" type="text" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
                     <div class="input-group-addon" style="padding:4px;height:28px;width:32px">to</div>
                     <input style="height:28px;background-color: white" type="text" id="date_to" name="date_to" class="form-control" autocomplete="off" readonly>
                 </div>
+            </div> -->
+            <div class="form-group">
+                <label for="cc-payment" class="control-label mb-1">Date : <i style="color:red">*</i></label>
+                <input id="daterange" style="padding:0.5%" class="form-control" type="text" name="daterange" />
             </div>
             <div class="form-group">
                 <label for="role">Assign From: <i style="color:red">*</i></label>
@@ -128,6 +132,8 @@ if(isset($task->id)) {
 <?php } ?>
 
 <script type="text/javascript">
+    $('input[name="daterange"]:eq(0)').daterangepicker();
+
     $(".select-nik").select2({
         width: 'resolve' // need to override the changed default
     });
@@ -139,12 +145,11 @@ if(isset($task->id)) {
     });
 
     $('#submit-task').click(function(){
-        var date_from = $("#date_from").val();
-        var date_to = $("#date_to").val();
+
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_from").children("option:selected").val();
-        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "") {
+        if (user_to == "" || remark == "" || description == "") {
             alert("All required fields cannot be empty!");
         }
         else {

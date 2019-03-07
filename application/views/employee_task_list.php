@@ -53,7 +53,8 @@
             <td style="display: none;"><?= date('d M Y', strtotime($task->date_to)) ?></td>
             <td><?= $task->category ?></td>
             <td><?= $task->remark ?></td>
-            <td style="display: none;"><?= $task->description ?></td>
+
+            <td style="display: none;"><?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($task->description))) ?></td>
             <td><?= $task->user_from ?></td>
             <td><?= $task->user_to ?></td>
             <td> <button class="btn btn-sm" type="button" style="background-color: <?= $color ?>;color: <?= $text_color ?>"><?= $task->status ?></button> </td>
@@ -92,13 +93,16 @@ $date_now = date('d M Y');
                     columns: [ 0, 1, 2, 3, 4, 5, 6, 7]
                 },
                 customize: function ( doc ) {
-//                    doc.content[1].table.widths = [
-//                        '20%',
-//                        '20%',
-//                        '20%',
-//                        '20%',
-//                        '20%'
-//                    ]
+                   doc.content[1].table.widths = [
+                       '10%',
+                       '10%',
+                       '10%',
+                       '10%',
+                       '30%',
+                       '10%',
+                       '10%',
+                       '10%'
+                   ]
                 },
                 filename: 'Requests of '+ <?= $this->session->nik ?>+' (per <?= $date_now ?>)',
             }, {

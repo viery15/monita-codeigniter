@@ -106,7 +106,7 @@ class Task_model extends CI_Model
 
         $this->db->where('date_from >=', $date1);
         $this->db->where('date_to <=', $date2);
-        
+
         if ($post['category'] != 'all'){
             $this->db->where('category', $post['category']);
         }
@@ -355,11 +355,15 @@ class Task_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
+        $date = explode(" - ",$post['daterange']);
+        $date_from = $date[0];
+        $date_to = $date[1];
+        unset($post['daterange']);
 
         $post['created_at'] = date("Y-m-d H:i:s");
         $post['updated_at'] = date("Y-m-d H:i:s");
-        $post['date_from'] = date("Y-m-d H:i:s", strtotime($post['date_from']));
-        $post['date_to'] = date("Y-m-d H:i:s", strtotime($post['date_to']));
+        $post['date_from'] = date("Y-m-d H:i:s", strtotime($date_from));
+        $post['date_to'] = date("Y-m-d H:i:s", strtotime($date_to));
         $this->db->insert($this->_table,$post);
         $insert_id = $this->db->insert_id();
         return $insert_id;

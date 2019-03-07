@@ -306,7 +306,15 @@ class Mytask extends CI_Controller
     }
 
     public function create(){
-        $id_task = $this->task_model->save();
+        $post = $this->input->post();
+
+        $task_id = $this->task_model->save();
+
+        $date = explode(" - ",$post['daterange']);
+        $date_from = $date[0];
+        $date_to = $date[1];
+
+
 
         $data["task"] = $this->task_model->getById($id_task);
         $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
@@ -315,8 +323,8 @@ class Mytask extends CI_Controller
         $email['type'] = "reject";
         $email['from'] = $data['task']->user_to;
         $email['task_id'] = $data['task']->id;
-        $email['date_from'] = $data['task']->date_from;
-        $email['date_to'] = $data['task']->date_to;
+        $email['date_from'] = $date_from;
+        $email['date_to'] = $date_to;
         $email['description'] = $data['task']->description;
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
