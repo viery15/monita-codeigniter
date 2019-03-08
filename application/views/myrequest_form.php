@@ -31,7 +31,7 @@ if(isset($request->id)) {
             </div> -->
             <div class="form-group">
                 <label for="cc-payment" class="control-label mb-1">Date Period:</label>
-                <input id="daterange" style="padding:0.5%" class="form-control" type="text" name="daterange" />
+                <input value="<?= date('m/d/Y', strtotime($request->date_from)) ?> - <?= date('m/d/Y', strtotime($request->date_to)) ?>" id="daterange" style="padding:0.5%" class="form-control" type="text" name="daterange" />
             </div>
             <div class="form-group">
                 <label for="role">Assign To: <i style="color:red">*</i></label>
@@ -182,13 +182,11 @@ if(isset($request->id)) {
     });
 
     $('#update-user').click(function(){
-        var date_from = $("#date_from").val();
-        var date_to = $("#date_to").val();
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_to").children("option:selected").val();
         var category = $("#category").children("option:selected").val();
-        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "" || category == "") {
+        if (user_to == "" || remark == "" || description == "" || category == "") {
             alert("All required fields cannot be empty!");
         }
         else {
