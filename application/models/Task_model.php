@@ -372,11 +372,15 @@ class Task_model extends CI_Model
     public function update()
     {
         $post = $this->input->post();
+        $date = explode(" - ",$post['daterange']);
+        $date_from = $date[0];
+        $date_to = $date[1];
+
         $this->id = $post["id"];
         $this->user_from = $post["user_from"];
         $this->status = $post["status"];
-        $this->date_from = $post["date_from"];
-        $this->date_to = $post["date_to"];
+        $this->date_from = date("Y-m-d H:i:s", strtotime($date_from));
+        $this->date_to = date("Y-m-d H:i:s", strtotime($date_to));
         $this->category = $post["category"];
         $this->user_to = $post["user_to"];
         $this->remark = $post["remark"];

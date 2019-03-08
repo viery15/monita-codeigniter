@@ -6,15 +6,6 @@
  * Time: 10:26 AM
  */
 ?>
-<?php
-/**
- * Created by PhpStorm.
- * User: VIERY
- * Date: 1/31/2019
- * Time: 10:55 PM
- */
-?>
-
 
 <?php
 if(isset($request->id)) {
@@ -30,12 +21,14 @@ if(isset($request->id)) {
             <input type="hidden" class="form-control" name="id" value="<?= $request->id ?>">
             <!--            <input type="hidden" class="form-control" id="status" name="status" value="pending">-->
             <div class="form-group">
-                <label for="nik">Date Range: <i style="color:red">*</i></label>
+                <!-- <label for="nik">Date Range: <i style="color:red">*</i></label>
                 <div class="input-group input-daterange">
                     <input style="height:28px;padding:0.5%;background-color: white" type="text" value="<?= $request->date_from ?>" id="date_from" name="date_from" class="form-control" autocomplete="off" readonly>
                     <div class="input-group-addon" style="padding:4px;height:28px;width:32px">to</div>
                     <input style="height:28px;padding:0.5%;background-color: white" type="text" id="date_to" value="<?= $request->date_to ?>" name="date_to" class="form-control" autocomplete="off" readonly>
-                </div>
+                </div> -->
+                <label for="cc-payment" class="control-label mb-1">Date : <i style="color:red">*</i></label>
+                <input value="<?= date('m/d/Y', strtotime($request->date_from)) ?> - <?= date('m/d/Y', strtotime($request->date_to)) ?>" id="daterange" style="padding:0.5%" class="form-control" type="text" name="daterange" />
             </div>
             <div class="form-group">
                 <label for="role">Assign To: <i style="color:red">*</i></label>
@@ -72,7 +65,7 @@ if(isset($request->id)) {
 
     </div>
     <div class="modal-footer">
-        <button id="update-user" type="submit" class="btn btn-info">Update</button>
+        <button id="update-task" type="submit" class="btn btn-info">Update</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
     </div>
 <?php } else {?>
@@ -125,6 +118,8 @@ if(isset($request->id)) {
 <?php } ?>
 
 <script type="text/javascript">
+    $('input[name="daterange"]:eq(0)').daterangepicker();
+
     $(".select-nik").select2({
         width: 'resolve' // need to override the changed default
     });
@@ -151,14 +146,12 @@ if(isset($request->id)) {
         });
     });
 
-    $('#update-user').click(function(){
-        var date_from = $("#date_from").val();
-        var date_to = $("#date_to").val();
+    $('#update-task').click(function(){
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_to").children("option:selected").val();
         var category = $("#category").children("option:selected").val();
-        if (date_from == ""  || date_to == "" || user_to == "" || remark == "" || description == "" || category == "") {
+        if (user_to == "" || remark == "" || description == "" || category == "") {
             alert("All required fields cannot be empty!");
         }
         else {
