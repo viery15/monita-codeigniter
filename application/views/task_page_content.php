@@ -15,7 +15,7 @@
         <?= nl2br(str_replace('  ', ' &nbsp;', htmlspecialchars($task->description))) ?>
         <br><br>
         <?php
-        if ($task->status == 'pending' && $task->user_to == $this->session->nik) {
+        if ($task->status == 'pending' && $task->user_to == $this->session->nik && $this->session->role != 'admin') {
             ?>
             <button type="button" id="<?= $task->id ?>" class="btn-approve btn btn-sm btn-success"><i class="fa fa-check"></i> Approve</button>
             <button type="button" id="<?= $task->id ?>" class="btn-reject btn btn-sm btn-danger"><i class="fa fa-close"></i> Reject</button>
@@ -57,6 +57,12 @@
 
         <?php
         if ($task->status == 'canceled' && $task->user_from == $this->session->nik) {
+            ?>
+            <button id="<?= $task->id ?>" type="button" class="btn-resend btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Resend Request</button>
+        <?php } ?>
+
+        <?php
+        if ($task->status == 'canceled' && $task->user_from != $this->session->nik && $this->session->role == 'admin') {
             ?>
             <button id="<?= $task->id ?>" type="button" class="btn-resend btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Resend Request</button>
         <?php } ?>
