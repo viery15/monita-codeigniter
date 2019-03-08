@@ -60,10 +60,10 @@ class Myrequest extends CI_Controller
         );
 
         if($this->email->send()){
-          return "Email sent";
+          return "email sent suuccessful";
         }
         else {
-          return "Failed to send email";
+          return "failed to send email";
         }
     }
 
@@ -167,13 +167,11 @@ class Myrequest extends CI_Controller
         }
 
         $response = array(
-          'msg' => 'Data Saved successful',
+          'msg' => 'Data Saved',
           'msg_email' => $return
         );
 
         echo json_encode($response);
-
-
     }
 
     public function loadRequestTable(){
@@ -182,17 +180,6 @@ class Myrequest extends CI_Controller
     }
 
     public function submitcomment(){
-        // $post = $this->input->post();
-        //
-        // $this->comment_model->save();
-        //
-        // $data["task"] = $this->task_model->getById($post['task_id']);
-        // $this->notification_model->comment($data['task']);
-        //
-        // $data["comment"] = $this->comment_model->getByTaskId($post['task_id']);
-        //
-        // $this->load->view("myrequest_form_comment", $data);
-
         header('Content-type: application/json');
 
         $post = $this->input->post();
@@ -315,10 +302,21 @@ class Myrequest extends CI_Controller
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
 
-        $this->sendmail($email);
+        $email_connection = $this->emailConnection();
 
-        $data["myrequest"] = $this->task_model->getRequest();
-        $this->load->view("myrequest_table_list", $data);
+        if ($email_connection == 'true') {
+          $return = $this->sendmail($email);
+        }
+        else {
+          $return = "Failed to send email";
+        }
+
+        $response = array(
+          'msg' => 'Data saved',
+          'msg_email' => $return
+        );
+
+        echo json_encode($response);
     }
 
     public function resend2(){
@@ -328,7 +326,7 @@ class Myrequest extends CI_Controller
         $data["user"] = $this->user_model->getByNik2($data['task']->user_to);
 
         $this->notification_model->resend($data['task']);
-        
+
         $email['destination'] = $data['user']->email;
         $email['type'] = "new";
         $email['from'] = $data['task']->user_to;

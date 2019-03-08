@@ -305,6 +305,7 @@
                 $.ajax({
                     url: "<?php echo base_url(); ?>/Mytask/cancel",
                     type: 'post',
+                    dataType: 'json',
                     data: {
                         'id': id_task,
                         'page': page
@@ -313,9 +314,9 @@
                         $('#loading').click();
                     },
                     success: function (a) {
-                        $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
-                        $('#modal-loading').modal('toggle');
-                        alert("Data canceled successful");
+                      $('#modal-loading').modal('toggle');
+                      alert(a.msg + ' and ' + a.msg_email);
+                      $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
             }
@@ -354,12 +355,13 @@
                     url: "<?php echo base_url(); ?>/Mytask/done",
                     type: 'post',
                     data: {'id': id},
+                    dataType : 'json',
                     beforeSend: function () {
                         $('#loading').click();
                     },
                     success: function (a) {
                         $('#modal-loading').modal('toggle');
-                        alert("Success");
+                        alert(a.msg + ' and ' + a.msg_email);
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -373,12 +375,13 @@
                     url: "<?php echo base_url(); ?>/Mytask/reject",
                     type: 'post',
                     data: {'id': id},
+                    dataType : 'json',
                     beforeSend: function () {
                         $('#loading').click();
                     },
                     success: function (a) {
                         $('#modal-loading').modal('toggle');
-                        alert("Data rejected successful");
+                        alert(a.msg + ' and ' + a.msg_email);
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -392,12 +395,13 @@
                     url: "<?php echo base_url(); ?>/Mytask/approve",
                     type: 'post',
                     data: {'id': id},
+                    dataType: 'json',
                     beforeSend: function () {
                         $('#loading').click();
                     },
                     success: function (a) {
                         $('#modal-loading').modal('toggle');
-                        alert("Data approved successful");
+                        alert(a.msg + ' and ' + a.msg_email);
                         $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
@@ -426,13 +430,14 @@
                     url: "<?php echo base_url(); ?>/Myrequest/resend",
                     type: 'post',
                     data: {'id': id},
+                    dataType: 'json',
                     beforeSend: function () {
                         $('#loading').click();
                     },
                     success: function (a) {
-                        $('#modal-loading').modal('toggle');
-                        alert("Data resent successful");
-                        $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
+                      $('#modal-loading').modal('toggle');
+                      alert(a.msg + ' and ' + a.msg_email);
+                      $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                     }
                 });
             }

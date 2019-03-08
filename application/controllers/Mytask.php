@@ -74,15 +74,16 @@ class Mytask extends CI_Controller
             '</table><br><br>'.
             'The current status is <b>' . strtoupper($email['status']) . '</b><br>'.
             'For more action, you can access on ' . base_url() . 'task/'. $email['task_id'].'<br><br>'.
-            'do not reply this email.'
+            'do not reply this email. <br>'.
+            '( MONITA - Monitoring Task Application )'
         );
 
 
         if($this->email->send()){
-
+          return "email sent successful";
         }
         else {
-
+          return "failed to send email";
         }
     }
 
@@ -130,11 +131,25 @@ class Mytask extends CI_Controller
         $this->load->view("mytask_form",$data);
     }
 
+    public function emailConnection(){
+      $connected = @fsockopen("www.gmail.com", 80);
+
+      if ($connected){
+          $is_conn = true;
+          fclose($connected);
+      }else{
+          $is_conn = false;
+      }
+      return $is_conn;
+    }
+
     public function approve(){
         $post = $this->input->post();
         $this->task_model->approve();
         $data["task"] = $this->task_model->getById($post['id']);
         $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
+
+        $this->notification_model->approve($data['task']);
 
         $email['destination'] = $data['user']->email;
         $email['type'] = "approve";
@@ -146,13 +161,24 @@ class Mytask extends CI_Controller
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
 
-        $this->sendmail($email);
+        $email_connection = $this->emailConnection();
 
-        $this->notification_model->approve($data['task']);
+        if ($email_connection == 'true') {
+          $return = $this->sendmail($email);
+        }
+        else {
+          $return = "Failed to send email";
+        }
 
-        $data["mytask"] = $this->task_model->getTask();
+        $response = array(
+          'msg' => 'Data saved',
+          'msg_email' => $return
+        );
 
-        $this->load->view("mytask_table_list", $data);
+        echo json_encode($response);
+        // $data["mytask"] = $this->task_model->getTask();
+        //
+        // $this->load->view("mytask_table_list", $data);
     }
 
     public function approve2(){
@@ -199,9 +225,24 @@ class Mytask extends CI_Controller
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
 
-        $this->sendmail($email);
-        $data["mytask"] = $this->task_model->getTask();
-        $this->load->view("mytask_table_list", $data);
+        $email_connection = $this->emailConnection();
+
+        if ($email_connection == 'true') {
+          $return = $this->sendmail($email);
+        }
+        else {
+          $return = "Failed to send email";
+        }
+
+        $response = array(
+          'msg' => 'Data saved',
+          'msg_email' => $return
+        );
+
+        echo json_encode($response);
+
+        // $data["mytask"] = $this->task_model->getTask();
+        // $this->load->view("mytask_table_list", $data);
     }
 
     public function done2(){
@@ -245,10 +286,21 @@ class Mytask extends CI_Controller
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
 
-        $this->sendmail($email);
+        $email_connection = $this->emailConnection();
 
-        $data["mytask"] = $this->task_model->getTask();
-        $this->load->view("mytask_table_list", $data);
+        if ($email_connection == 'true') {
+          $return = $this->sendmail($email);
+        }
+        else {
+          $return = "Failed to send email";
+        }
+
+        $response = array(
+          'msg' => 'Data saved',
+          'msg_email' => $return
+        );
+
+        echo json_encode($response);
     }
 
     public function cancel(){
@@ -269,16 +321,21 @@ class Mytask extends CI_Controller
         $email['status'] = $data['task']->status;
         $email['title'] = $data['task']->remark;
 
-        $this->sendmail($email);
-        $data["mytask"] = $this->task_model->getTask();
+        $email_connection = $this->emailConnection();
 
-        if ($post['page'] == 'page detail') {
-            $this->load->view("task_page_content", $data);
+        if ($email_connection == 'true') {
+          $return = $this->sendmail($email);
         }
-
         else {
-            $this->load->view("mytask_table_list", $data);
+          $return = "Failed to send email";
         }
+
+        $response = array(
+          'msg' => 'Data saved',
+          'msg_email' => $return
+        );
+
+        echo json_encode($response);
     }
 
     public function reject2(){
