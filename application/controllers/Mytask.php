@@ -25,10 +25,14 @@ class Mytask extends CI_Controller
         $this->load->model("category_model");
     }
 
-    public function index()
-    {
+    public function index(){
         $data["mytask"] = $this->task_model->getTask();
         $this->load->view("mytask", $data);
+    }
+
+    public function task_page_content($id){
+      $data["task"] = $this->task_model->getById($id);
+      $this->load->view("task_page_content", $data);
     }
 
     public function sendmail($email){

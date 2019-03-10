@@ -130,27 +130,21 @@
     $(".btn-cancel").click(function(){
         $(".close").click();
         var id_task = $(this).attr('id');
-        var page = 'page detail';
         if (confirm('Are you sure you want to cancel this?')) {
             $.ajax({
                 url: "<?php echo base_url(); ?>/Mytask/cancel",
                 type: 'post',
                 data: {
                     'id': id_task,
-                    'page': page
                 },
+                dataType: 'json',
                 beforeSend: function () {
                     $('#loading').click();
                 },
                 success: function (a) {
-                    if (page == 'page detail') {
-                        $("#task-content").html(a);
-                    }
-                    else {
-                        $("#mytask-table-list").html(a);
-                    }
-                    $('#modal-loading').modal('toggle');
-                    alert("Data canceled successful");
+                  $('#modal-loading').modal('toggle');
+                  alert(a.msg + ' and ' + a.msg_email);
+                  $('#task-content').load("<?php echo base_url(); ?>/mytask/task_page_content/<?= $task->id ?>");
                 }
             });
         }
@@ -181,16 +175,17 @@
         var id = $(this).attr('id');
         if (confirm('Are you sure you want to resend this?')) {
             $.ajax({
-                url: "<?php echo base_url(); ?>/Myrequest/resend2",
+                url: "<?php echo base_url(); ?>/Myrequest/resend",
                 type: 'post',
                 data: {'id': id},
+                dataType: 'json',
                 beforeSend: function () {
                     $('#loading').click();
                 },
                 success: function (a) {
-                    $('#modal-loading').modal('toggle');
-                    alert("Data resent successful");
-                    $("#task-content").html(a);
+                  $('#modal-loading').modal('toggle');
+                  alert(a.msg + ' and ' + a.msg_email);
+                  $('#task-content').load("<?php echo base_url(); ?>/mytask/task_page_content/<?= $task->id ?>");
                 }
             });
         }
@@ -200,16 +195,17 @@
         var id = $(this).attr('id');
         if (confirm('Are you sure you want to approve this?')) {
             $.ajax({
-                url: "<?php echo base_url(); ?>/Mytask/approve2",
+                url: "<?php echo base_url(); ?>/Mytask/approve",
                 type: 'post',
                 data: {'id': id},
+                dataType: 'json',
                 beforeSend: function () {
                     $('#loading').click();
                 },
                 success: function (a) {
-                    $('#modal-loading').modal('toggle');
-                    alert("Data approved successful");
-                    $("#task-content").html(a);
+                  $('#modal-loading').modal('toggle');
+                  alert(a.msg + ' and ' + a.msg_email);
+                  $('#task-content').load("<?php echo base_url(); ?>/mytask/task_page_content/<?= $task->id ?>");
                 }
             });
         }
@@ -219,16 +215,17 @@
         var id = $(this).attr('id');
         if (confirm('Are you sure done with this request?')) {
             $.ajax({
-                url: "<?php echo base_url(); ?>/Mytask/done2",
+                url: "<?php echo base_url(); ?>/Mytask/done",
                 type: 'post',
                 data: {'id': id},
+                dataType: 'json',
                 beforeSend: function () {
                     $('#loading').click();
                 },
                 success: function (a) {
-                    $('#modal-loading').modal('toggle');
-                    alert("Success");
-                    $("#task-content").html(a);
+                  $('#modal-loading').modal('toggle');
+                  alert(a.msg + ' and ' + a.msg_email);
+                  $('#task-content').load("<?php echo base_url(); ?>/mytask/task_page_content/<?= $task->id ?>");
                 }
             });
         }
@@ -238,16 +235,17 @@
         var id = $(this).attr('id');
         if (confirm('Are you sure you want to reject this?')) {
             $.ajax({
-                url: "<?php echo base_url(); ?>/Mytask/reject2",
+                url: "<?php echo base_url(); ?>/Mytask/reject",
                 type: 'post',
                 data: {'id': id},
+                dataType: 'json',
                 beforeSend: function () {
                     $('#loading').click();
                 },
                 success: function (a) {
-                    $('#modal-loading').modal('toggle');
-                    alert("Data rejected successful");
-                    $("#task-content").html(a);
+                  $('#modal-loading').modal('toggle');
+                  alert(a.msg + ' and ' + a.msg_email);
+                  $('#task-content').load("<?php echo base_url(); ?>/mytask/task_page_content/<?= $task->id ?>");
                 }
             });
         }
