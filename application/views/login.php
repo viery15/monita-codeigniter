@@ -30,11 +30,11 @@
                         <form id="form-login" method="post">
                             <div class="form-group">
                                 <label>NIK:</label>
-                                <input style="padding: 0.5%" class="form-control" type="text" name="nik" autocomplete="off">
+                                <input id="nik" style="padding: 0.5%" class="form-control" type="text" name="nik" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Password:</label>
-                                <input style="padding: 0.5%" class="form-control" type="password" name="password">
+                                <input id="password" style="padding: 0.5%" class="form-control" type="password" name="password">
                             </div>
                             <button id="btn-login" class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
                         </form>
@@ -53,6 +53,10 @@
 <!-- end document-->
 
 <script type="text/javascript" language="JavaScript">
+    $(document).ready(function(){
+      $('#nik').focus();
+    });
+
     $("#form-login").submit(function(){
         event.preventDefault();
         $.ajax({
@@ -63,6 +67,9 @@
             success : function(a) {
                 if (a.failed == 'true') {
                     alert('Invalid credentials');
+                    $("#nik").val('');
+                    $("#password").val('');
+                    $('#nik').focus();
                 }
                 else if(a.failed == 'false') {
                     window.location.href = "<?php echo base_url(); ?>dashboard";
