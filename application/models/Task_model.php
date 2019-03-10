@@ -59,9 +59,11 @@ class Task_model extends CI_Model
 
     public function getRequest()
     {
-        $this->db->order_by('updated_at','DESC');
-        $this->db->where('user_from', $this->session->nik);
-        return $this->db->get($this->_table)->result();
+      $this->db->select('monita.tasks.*, category.name');
+      $this->db->where('user_from', $this->session->nik);
+      $this->db->order_by('updated_at','DESC');
+      $this->db->join('monita.category', 'monita.tasks.category = monita.category.label');
+      return $this->db->get($this->_table)->result();
     }
 
     public function getUserMonitoring()

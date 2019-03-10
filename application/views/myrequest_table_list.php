@@ -51,7 +51,7 @@
         <tr>
             <td><?= date("d M Y", strtotime($request->date_from)) ?></td>
             <td style="display: none;"><?= date("d M Y", strtotime($request->date_to)) ?></td>
-            <td><?= strtoupper($request->category) ?></td>
+            <td><?= strtoupper($request->name) ?></td>
             <td><?= ucfirst($request->remark) ?></td>
             <td style="display: none;"><?= ucfirst($request->description) ?></td>
             <td style="display: none;"><?= $request->user_from ?></td>
@@ -73,6 +73,7 @@ $date_now = date('d M Y');
     $(document).ready(function(){
         $('#table-request').DataTable({
             dom: 'Bfrtip',
+            "order": [],
 
             buttons: [{
                 extend: 'pdf',
@@ -100,55 +101,15 @@ $date_now = date('d M Y');
             }],
         });
 
-        $("#table-request").on("click", ".btn-update", function(){
-            var id = $(this).attr('id');
-            $('#content-modal').load("<?php echo base_url(); ?>/Myrequest/form_update/"+id);
-        });
 
-        $("#table-request").on("click", ".btn-comment", function(){
-            var id = $(this).attr('id');
-            $('#content-modal-comment').load("<?php echo base_url(); ?>/Myrequest/form_comment/"+id);
-        });
 
         $("#table-request").on("click", ".btn-detail", function(){
             var id = $(this).attr('id');
             $('#modal-info-body').load("<?php echo base_url(); ?>/Mycalendar/info/"+id);
         });
 
-        
 
-        $("#table-request").on("click", ".btn-delete", function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure you want to delete this?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Myrequest/delete",
-                    type: 'post',
-                    data: {'id': id},
-                    success: function (a) {
-                        alert("Data deleted successful");
-                        $("#myrequest-table-list").html(a);
-                    }
-                });
-            }
-        });
 
-        $("#table-request").on("click", ".btn-resend", function(){
-            var id = $(this).attr('id');
-            if (confirm('Are you sure you want to resend this?')) {
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/Myrequest/resend",
-                    type: 'post',
-                    data: {'id': id},
-                    beforeSend: function () {
-                        $('#loading').click();
-                    },
-                    success: function (a) {
-                        $('#modal-loading').modal('toggle');
-                        alert("Data resent successful");
-                        $("#myrequest-table-list").html(a);
-                    }
-                });
-            }
-        });
+
     });
 </script>
