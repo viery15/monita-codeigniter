@@ -49,7 +49,7 @@ if ($task->status == 'canceled') {
                     <div class="row" style="margin-bottom: 2%">
                         <div class="col-md-12">
                             <b>Category :</b> <br>
-                            <?= ucfirst($task->category) ?>
+                            <?= ucfirst($task->name) ?>
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 2%">

@@ -375,26 +375,11 @@ class Mytask extends CI_Controller
         $date_from = $date[0];
         $date_to = $date[1];
 
-
-
         $data["task"] = $this->task_model->getById($id_task);
         $data["user"] = $this->user_model->getByNik2($data['task']->user_from);
-
-        $email['destination'] = $data['user']->email;
-        $email['type'] = "reject";
-        $email['from'] = $data['task']->user_to;
-        $email['task_id'] = $data['task']->id;
-        $email['date_from'] = $date_from;
-        $email['date_to'] = $date_to;
-        $email['description'] = $data['task']->description;
-        $email['status'] = $data['task']->status;
-        $email['title'] = $data['task']->remark;
-
-        $this->sendmail($email);
-
-        $data["mytask"] = $this->task_model->getTask();
-        $this->load->view("mytask_table_list", $data);
     }
+
+
 
     public function update(){
         $this->task_model->update();

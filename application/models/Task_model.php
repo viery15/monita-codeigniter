@@ -117,8 +117,10 @@ class Task_model extends CI_Model
 
     public function getTask()
     {
-        $this->db->order_by('updated_at','DESC');
+        $this->db->select('monita.tasks.*, category.name');
         $this->db->where('user_to', $this->session->nik);
+        $this->db->order_by('updated_at','DESC');
+        $this->db->join('monita.category', 'monita.tasks.category = monita.category.label');
         return $this->db->get($this->_table)->result();
     }
 
@@ -339,7 +341,11 @@ class Task_model extends CI_Model
 
     public function getById($id)
     {
-        return $this->db->get_where($this->_table, ["id" => $id])->row();
+      $this->db->select('monita.tasks.*, category.name');
+      $this->db->where('monita.tasks.id', $id);
+      $this->db->join('monita.category', 'monita.tasks.category = monita.category.label');
+      return $this->db->get($this->_table)->row();
+      // return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 
     public function getByCategory($category)

@@ -145,7 +145,6 @@ if(isset($task->id)) {
     });
 
     $('#submit-task').click(function(){
-
         var remark = $("#remark").val();
         var description = $("#description").val();
         var user_to = $("#user_from").children("option:selected").val();
@@ -159,13 +158,13 @@ if(isset($task->id)) {
                 data: $("#form-task").serialize(),
                 beforeSend: function () {
                     $('#modal-task').modal('hide');
-                    $('#loading').click();
+                    // $('#loading').click();
                 },
                 success: function (a) {
-                    $('#modal-loading').modal('toggle');
+                    // $('#modal-loading').modal('toggle');
                     alert("Data saved successful");
                     $("#form-task")[0].reset();
-                    $("#mytask-table-list").html(a);
+                    $("#mytask-table-list").load("<?php echo base_url(); ?>/Mytask/mytask_table_list");
                     $('#timeline-dashboard').load("<?php echo base_url(); ?>/Site/timeline");
                 }
             });
