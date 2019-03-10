@@ -248,7 +248,7 @@ class Myrequest extends CI_Controller
 
         if ($_FILES['attachment']['size'] > 20755230) {
           $response = array(
-            'msg' => 'File too large (maksimum : 20 MB)',
+            'msg' => 'File too large (max: 20 MB)',
             'type' => 'error'
           );
 
