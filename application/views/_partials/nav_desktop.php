@@ -146,6 +146,10 @@ $data = $this->ci->notification_model->getByUserTarget();
                                 </div>
                                 <div class="account-dropdown__body">
                                     <div class="account-dropdown__item">
+                                        <a href="<?php echo site_url('Myrequest/download/MONITA USER GUIDE.pdf') ?>">
+                                            <i class="fa fa-file-pdf"></i>User guide</a>
+                                    </div>
+                                    <div class="account-dropdown__item">
                                         <a href="<?php echo base_url(); ?>logout">
                                             <i class="zmdi zmdi-power"></i>Logout</a>
                                     </div>
